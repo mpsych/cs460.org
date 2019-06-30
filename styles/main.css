@@ -1,0 +1,98 @@
+html, body { 
+  background-color:#000;
+  margin: 0;
+  padding: 0;
+  font-family: din_condensed;
+  font-size: 18pt;
+  color: white;
+}
+
+a {
+  color: hotpink;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+}
+
+#header {
+  padding-top: 10px;
+  padding-left: 10px;
+  font-size: 24pt;
+  background-color: #005a8c;
+}
+
+.video {
+  /*border: thin solid darkgray;*/
+}
+
+.highlight {
+  color: hotpink;
+}
+
+.bookthumb {
+  width: 150px;
+  height: 200px;
+  margin: 10px;
+}
+
+#description {
+  width: 640px;
+  text-align: justify;
+}
+
+#instructor {
+  width: 440px;
+}
+
+#examplelabel {
+  transform: rotate(270deg);
+  float: left;
+  left: -350px;
+  font-size:22px;
+  position: relative;
+  top: 310px;
+  background-color: gray;
+  padding: 10px;
+  width: 560px;
+  text-align: right;
+}
+
+#schedule {
+  width: 640px;
+}
+
+#scheduletable {
+  margin-left:100px;
+  width:800px;
+  /*font-size: 14pt;*/
+}
+
+footer {
+  border-top: thin solid lightgray;
+  margin-top: 50px;
+  width: 100%;
+  height: 200px;
+  position: relative;
+  float: left;
+  padding: 40px 0;
+  text-align: center;
+  background: #005a8c;
+  -webkit-box-shadow: inset 0 20rem 20rem -20rem rgba(0,0,0,.69);
+  box-shadow: inset 0 20rem 20rem -20rem rgba(0,0,0,.69);
+}
+
+.invisiblelink {
+  color:white;
+}
+
+.institution_bottom {
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: left;
+  margin-left: 10px;
+  margin-top: 7px;
+  float: left;
+}
+
