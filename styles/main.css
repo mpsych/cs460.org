@@ -16,9 +16,10 @@ a:hover {
   color: white;
 }
 
-#header {
+.header {
   padding-top: 10px;
   padding-left: 10px;
+  padding-right: 10px;
   font-size: 24pt;
   background-color: #005a8c;
 }
