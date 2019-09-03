@@ -224,6 +224,11 @@
               document.getElementById(frames[f]).style.display = 'block';
             } else {
               music.volume = .2;
+
+              setTimeout(function(f) {
+                music.volume = 0;
+              }, 3000);
+              
             }
 
           }.bind(this,f), times[f]);
