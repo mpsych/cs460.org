@@ -1,0 +1,89 @@
+<html>
+<head>
+	<meta content="utf-8" http-equiv="encoding">
+
+	<style>
+		html,body {
+			background: black;
+			margin: 0px;
+			padding: 0px;
+		}
+
+		iframe {
+			border:none;
+		}
+
+	</style>
+
+	<script>
+
+		window.onload = function() {
+
+
+			users = ['genlikan','kawuz1','zenitopires', 'nolan123456789', 'Trancho123','miranjum','YahtzeeRage', 'fnovak02', 'ryanhdang','rcaetani','Mushaddict','rpan001']
+
+			for (u in users) {
+
+				u = users[u];
+
+				newiframe = document.createElement('iframe');
+
+				newiframe.style.width = '200px';
+				newiframe.style.height = '150px';
+				newiframe.src = u+'.html';
+				document.body.appendChild(newiframe);
+
+			}
+
+
+			setTimeout(function() {
+
+			alliframes = document.body.children;
+			// console.log(alliframes)
+			for (var b=0; b<alliframes.length; b++) {
+				
+				a = alliframes[b];
+
+				a.contentWindow.document.body.children[0].style.display = 'none';
+
+
+
+				a.contentWindow.document.getElementById('logo').style.display = 'none';
+
+				// if (b==0)
+					
+
+				switch(b) {
+					// case 0: a.contentWindow.r.camera.position = [0,0,-300]; break;
+					// case 1: a.contentWindow.r.camera.position = [0,0, -20]; break;
+					case 0: a.contentWindow.r.camera.position = [0,0, 30]; break;
+					case 3: a.contentWindow.r.camera.position = [0,0, -60]; break;
+					case 10: a.contentWindow.r.camera.position = [0,0, 30]; break;
+					default: a.contentWindow.r.camera.position = [0,0, -300]; break;
+				}
+
+			}
+
+			}, 5000);
+
+
+
+
+
+		};
+
+
+
+	</script>
+
+</head>
+
+
+<body>
+	
+
+
+
+</body>
+
+</html>
