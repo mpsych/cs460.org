@@ -103,7 +103,14 @@
         controller = {
           anaglyph: false,
           dance: function() {
+
+            var music = document.getElementById('music');
+            music.autoplay = true;
+            music.load();
+            
+
             for (var r in ALLROBOTS) {
+
               ALLROBOTS[r].dance();
             }
           }
@@ -180,7 +187,7 @@
   <body>
     <div style="visibility:hidden">
     <audio id='music'>
-      <source src="techno.mp3">
+      <source src="bensound-evolution.mp3">
     </audio>
     </div>
   </body>
