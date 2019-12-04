@@ -200,18 +200,18 @@
         music.volume = .1;
 
         // activate speech
-        // var voice = document.getElementById('voice');
-        // voice.autoplay = true;
-        // voice.volume = 1;
-        // voice.load();
+        var voice = document.getElementById('voice');
+        voice.autoplay = true;
+        voice.volume = 1;
+        voice.load();
 
         frames = ['content1', 'content2', 'content3', 'content4', 'content5', null];
         times = [0, // Today... 
-                 1100, // 
-                 5500, // And
-                 6700, // 
-                 10500, // this is lecture 19
-                 17500];
+                 1000, // 
+                 3500, // And
+                 4700, // 
+                 7000, // this is lecture 19
+                 13500];
 
         //
         // this is (like the whole animation concept), a little hacky!!
@@ -257,9 +257,9 @@
     <audio id='music'>
       <source src="bensound-evolution.mp3">
     </audio>
-   <!--  <audio id='voice'>
-      <source src="lecture36.mp3">
-    </audio> -->
+    <audio id='voice'>
+      <source src="lecture37.mp3">
+    </audio>
   </div>
     <div id='caption' style='display:none;position: absolute;color:white;top:45%;left:50%;margin-left:50px;font-size:440%'>CS460</div>
 
