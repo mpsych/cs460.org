@@ -18,6 +18,25 @@
     </style>
 
     <script type='text/javascript'>
+
+
+      /*
+      click to begin!
+      */
+      start = function() {
+          if ( clicked ) {
+              return;
+          }
+
+
+          var clicker = document.getElementById('clicker');
+          clicker.style.display = 'none';
+
+          init();
+
+      }
+
+
       window.onload = function() {
 
         // create a new test_renderer
@@ -56,7 +75,7 @@
       };
 
       clicked = false;
-      window.onclick = function() {
+      init = function() {
         
         if (clicked) return; // sometimes you click again by accident,
                              // and restart the animation.. let's not!
@@ -113,6 +132,8 @@
 
           bostongfx.transform.rotateY(rotateCounter*2);
         },100);
+
+
 
       };
 
@@ -192,13 +213,14 @@
 
         // reduce music volume
         var music = document.getElementById('music');
-        music.volume = .2;
+        music.volume = .1;
 
         // activate speech
         var voice = document.getElementById('voice');
         voice.autoplay = true;
         voice.volume = 1;
         voice.load();
+
 
         frames = ['content1', 'content2', 'content3', 'content4', 'content5', 'content6', null];
         times = [0, // Today... 
@@ -222,12 +244,20 @@
 
             if (frames[f] != null) {
               document.getElementById(frames[f]).style.display = 'block';
-            } else {
-              music.volume = .2;
+            } else { 
+              music.volume = .1;
 
               setTimeout(function(f) {
-                music.volume = 0;
-              }, 3000);
+                fadeout = setInterval(function(f) {
+                  if (music.volume <= 0.) {
+                    clearInterval(fadeout);
+                    return;
+                  }
+                  music.volume -= .05;
+                  
+                }, 500);
+              },3000);
+
               
             }
 
@@ -241,6 +271,12 @@
     </script>
   </head>
   <body>
+
+
+  <div id='clicker' style='width:100%;height:100%;'>
+    <span style='position:absolute;top:35%;left:35%;width:10%;cursor: pointer;padding:20px;color:white;font-family: sans-serif;text-align:center' onclick='javascript:start();'><img src='../../gfx/cs460.png'></span>
+  </div>
+
      <div style="visibility:hidden">
     <audio id='music'>
       <source src="bensound-evolution.mp3">
