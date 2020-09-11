@@ -76,7 +76,7 @@ to the teaching staff in person or at staff@cs460.org.
 Course Structure
 ----------------
 
-41 Lectures
+38 Lectures
 10 Assignments (30% of final grade, plus 10% bonus)
 13 Quizzes (20% of final grade, take-home through blackboard)
 Final Project (40% of final grade)

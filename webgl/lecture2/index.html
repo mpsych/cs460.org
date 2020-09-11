@@ -18,6 +18,24 @@
     </style>
 
     <script type='text/javascript'>
+
+
+      /*
+      click to begin!
+      */
+      start = function() {
+          if ( clicked ) {
+              return;
+          }
+
+
+          var clicker = document.getElementById('clicker');
+          clicker.style.display = 'none';
+
+          init();
+
+      }
+
       window.onload = function() {
 
         // create a new test_renderer
@@ -48,7 +66,7 @@
         r.add(bostongfx);
 
         // setup the camera
-        r.camera.position = [00, 00, 60];
+        r.camera.position = [0, 0, 60];
         
         // .. and render it
         r.render();
@@ -56,7 +74,7 @@
       };
 
       clicked = false;
-      window.onclick = function() {
+      init = function() {
         
         if (clicked) return; // sometimes you click again by accident,
                              // and restart the animation.. let's not!
@@ -223,11 +241,19 @@
             if (frames[f] != null) {
               document.getElementById(frames[f]).style.display = 'block';
             } else {
-              music.volume = .2;
+              music.volume = .1;
 
               setTimeout(function(f) {
-                music.volume = 0;
-              }, 3000);
+                fadeout = setInterval(function(f) {
+                  if (music.volume <= 0.) {
+                    clearInterval(fadeout);
+                    return;
+                  }
+                  music.volume -= .05;
+                  
+                }, 500);
+              },3000);
+
               
             }
 
@@ -241,6 +267,11 @@
     </script>
   </head>
   <body>
+
+  <div id='clicker' style='width:100%;height:100%;'>
+    <span style='position:absolute;top:35%;left:35%;width:10%;cursor: pointer;padding:20px;color:white;font-family: sans-serif;text-align:center' onclick='javascript:start();'><img src='../../gfx/cs460.png'></span>
+  </div>
+
      <div style="visibility:hidden">
     <audio id='music'>
       <source src="bensound-evolution.mp3">
