@@ -17,7 +17,7 @@ document.getElementById("content").innerHTML = "\
 \
     <div id='content5' style='display:none;position: absolute;color:white;top:45%;left:40%;margin-left:50px;font-size:440%'>This is lecture 8.</div>    \
   <audio id='voice'>    \
-    <source src='lectures/078mp3'>    \
+    <source src='lectures/08.mp3'>    \
   </audio>    \
 </div>   \
 \
