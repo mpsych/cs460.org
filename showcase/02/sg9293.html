@@ -1,0 +1,118 @@
+<html>
+  <head>
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+
+    <script type="text/javascript">
+      window.onload = function() {
+        var r = new X.renderer3D();  //new renderer
+        var eyes = [];
+        r.init();
+        for (var i = 0; i < 9; i++) {
+          for (var j = 0; j < 9; j++) {
+            if (j <= 7 && j >= 1 && i >= 2 && i <= 5) {
+              c = new X.cube(); //creating a cube for the face of fox
+              c.center = [25 * j, 0, 25 * i];
+              r.add(c);  //add it to the scene;
+              c.color =  [4,1,0];
+            }
+            if (((j <= 7 && j >= 6) || (j <= 2 && j >= 1)) && i == 6) {
+              c = new X.cube(); //creating a cube for the head of the fox
+              c.center = [25 * j, 0, 25 * i];
+              r.add(c);  //add it to the scene;
+              c.color =  [4,1,0];
+            }
+            if (((j == 1) || (j == 7)) && i == 7) {
+              c = new X.cube(); //creating a cube for the ear of the fox
+              c.center = [25 * j, 0, 25 * i];
+              r.add(c);  //add it to the scene;
+              c.color =  [4,1,0];
+            }
+            if (j <= 5 && j >= 3 && i >= 0 && i <= 1) {
+              c = new X.cube(); //creating a cube for the face around the mouth of fox
+              c.center = [25 * j, 0, 25 * i];
+              r.add(c);  //add it to the scene;
+              c.color =  [4,1,0];
+            }
+            if (((j == 2) || (j == 6)) && i == 1) {
+              c = new X.cube(); //creating a cube for completing the face around the mouth of fox
+              c.center = [25 * j, 0, 25 * i];
+              r.add(c);  //add it to the scene;
+              c.color =  [4,1,0];
+            }
+            if (j == 4 && i == 1) {
+              c = new X.cube(); //creating a cube for the face of the fox
+              c.center = [25 * j, 0, 25 * i];
+              r.add(c);  //add it to the scene;
+              c.color =  [1,0,0];
+            }
+            if (j == 3 && i == 4) {
+              eye1 = new X.cube(); //creating a cube for eyes of the fox
+              eye1.center = [25 * j, 0, 25 * i];
+              r.add(eye1);  //add it to the scene;
+              eye1.color =  [0,0,1];
+            }
+            if (j == 2 && i == 4) {
+              eye2 = new X.cube(); //creating a cube for eyes of the fox
+              eye2.center = [25 * j, 0, 25 * i];
+              r.add(eye2);  //add it to the scene;
+              eye2.color =  [0,0,1];
+            }
+            if (j == 6 && i == 4) {
+              eye3 = new X.cube(); //creating a cube for eyes of the fox
+              eye3.center = [25 * j, 0, 25 * i];
+              r.add(eye3);  //add it to the scene;
+              eye3.color =  [0,0,1];
+            }
+            if (j == 5 && i == 4) {
+              eye4 = new X.cube(); //creating a cube for eyes of the fox
+              eye4.center = [25 * j, 0, 25 * i];
+              r.add(eye4);  //add it to the scene;
+              eye4.color =  [0,0,1];
+            }
+          }
+        }
+        r.camera.position = [0,300,0];
+        r.render(); //start rendering
+
+        eyesclosed = false;
+        setInterval (function() {
+          if (eyesclosed) {
+          	eye1.color = [0,0,1];
+          	eye2.color = [0,0,1];
+          	eye3.color = [0,0,1];
+          	eye4.color = [0,0,1];
+          	eyesclosed = false;
+          }
+          else {
+          	eye1.color = [0,0,0];
+          	eye2.color = [0,0,0];
+          	eye3.color = [0,0,0];
+          	eye4.color = [0,0,0];
+          	eyesclosed = true;
+          }
+        },1000);
+
+      };
+    </script>
+    
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

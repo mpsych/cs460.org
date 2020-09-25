@@ -1,0 +1,117 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;
+      }
+ 
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    
+    <script type="text/javascript" src="http://get.goXTK.com/xtk_edge.js"></script>
+ 
+    <script type="text/javascript">
+ 
+    window.onload = function() {
+      // this gets called when the site is ready
+
+      dst = 25; // distance between cubes
+
+      // an empty grid of 9x9 cubes
+      g = [];
+      for (var i=0; i<9; i++) {
+          g[i] = new Array(9);
+      }
+
+      // paints in R G B
+      p1 = [255, 82, 29]; // face
+      p2 = [28, 11, 4]; // eyes
+      p3 = [0, 0, 0]; // nose
+      for (var i=0; i<3; i++) { // to percentage
+        p1[i] /= 255;
+        p2[i] /= 255;
+        p3[i] /= 255;
+      }
+
+      // assign cubes to the grid 
+      for (var i=2; i<9; i++) {
+        g[1][i] = new X.cube();
+        g[7][i] = new X.cube();
+      }
+      for (var i=1; i<8; i++) {
+        g[2][i] = new X.cube();
+        g[6][i] = new X.cube();
+      }
+      for (var i=0; i<6; i++) {
+        g[3][i] = new X.cube();
+        g[4][i] = new X.cube();
+        g[5][i] = new X.cube();
+      } 
+        
+      // create a new scene and renderer
+      r = new X.renderer3D();
+      r.init();
+ 
+      // create cubes and add them!
+      for (var i=0; i<9; i++) {
+        for (var j =0; j<9; j++) {
+          if (g[i][j] != undefined) {
+            g[i][j].color = p1;
+            g[i][j].center = [i*dst, j*dst, 0];
+            r.add(g[i][j]);
+          }
+        }
+      }
+      g[4][1].color = p3; // nose
+      g[2][4].color = p2; // eyes
+      g[3][4].color = p2;
+      g[5][4].color = p2;
+      g[6][4].color = p2;
+
+      // set camera further away!
+      r.camera.position = [0, 0, 1000];
+ 
+      // render everything!
+      r.render();
+ 
+    };
+
+    eyeOpen = true;
+
+    setInterval(function() {
+      if (!eyeOpen) {
+        eyeOpen = true;
+        g[2][4].color = p2;
+        g[3][4].color = p2;
+        g[5][4].color = p2;
+        g[6][4].color = p2;
+      }
+      else if (Math.random() > 0.9) {
+        eyeOpen = false;
+        g[2][4].color = p1;
+        g[3][4].color = p1;
+        g[5][4].color = p1;
+        g[6][4].color = p1;
+      }
+    }, 100);
+    
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

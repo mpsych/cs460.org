@@ -1,0 +1,143 @@
+<html>
+    <head>
+        <title>CS460 Assignment 02</title>
+        <style>
+            body{
+                background-color: white;
+                color: black; 
+                font-family: sans-serif;
+                
+            }
+            
+            #logo{
+                position: absolute;
+                right: 10px;
+                top: 10px;
+            }
+           
+        </style>
+        <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+        <script typr="text/javascript">
+        
+        window.onload=function()
+        {
+            
+            //new rendering window
+            var r = new X.renderer3D();
+            r.init();
+            r.camera.position = [0, 5, 100];
+            var blink = [];
+            var blink1 = [];
+            var boolean = true;
+            for ( var i = 0; i < 14; i++) 
+            {
+                for ( var j = 0; j < 13; j++) 
+                {
+                    var c1 = new X.cube();
+
+                    c1.center = [i * 3, j * 3, 0];
+
+                    c1.lengthX = c1.lengthY = c1.lengthZ = 2;
+
+                    if( [1,2, 3, 10,11,12].includes(i) & j == 0 ) 
+                    { 
+                        c1.color = [0, 0, 0];
+                    }
+             
+                    else if( [0,1,2, 3,4, 9,10,11,12,13].includes(i) & j == 1 ) 
+                    { 
+                        c1.color = [0, 0, 0];
+                    }
+                    else if( [0,1,2, 3,4, 9,10,11,12,13].includes(i) & j == 2 ) 
+                    { 
+                        c1.color = [0, 0, 0];
+                    }
+                    else if( j == 3 ) 
+                    { 
+                        c1.color = [0, 0, 0];
+                    }
+                    else if( [1,2, 3,4,5,6,7,8, 9,10,11,12].includes(i) & j == 4 ) 
+                    { 
+                        c1.color = [0, 0, 0];
+                    }
+                    else if( [2, 3,4,5,6,7,8, 9,10,11].includes(i) & j == 5 ) 
+                    { 
+                        c1.color = [0, 0, 0];
+                    }
+          
+                    else if( [1,2, 3,4,5,6,7,8, 9,10,11,12].includes(i) & j == 6 ) 
+                    { 
+                        c1.color = [0, 0, 0];
+                    }
+                    else if( j == 7 ) 
+                    { 
+                        c1.color = [1,0,0];
+                    }
+                    else if( j == 8 ) 
+                    { 
+                        c1.color = [1,0,0];
+                    }
+                    else if( [0,1,2,3,6,7,10,11,12,13].includes(i) & j == 9 ) 
+                    { 
+                        c1.color = [1,0,0];
+                    }
+                    else if( [1,2,3,6,7,10,11,12].includes(i) & j == 10 ) 
+                    { 
+                        c1.color = [1,0,0];
+                    }
+                    else if( [2,3,4,5,6,7,8,9,10,11].includes(i) & j == 11 ) 
+                    { 
+                        c1.color = [1,0,0];
+                    }
+                    else if( [3,4,5,6,7,8,9,10].includes(i) & j == 12 ) 
+                    { 
+                        c1.color = [1,0,0];
+                    }
+                    else if( [4,5,8,9].includes(i) & j == 10 ) 
+                    { 
+                        c1.color = [255, 255, 0];
+                        blink.push(c1);
+                    }
+                    else if( [4,5,8,9].includes(i) & j == 9 ) 
+                    { 
+                        c1.color = [255, 255, 0];
+                        blink1.push(c1);
+                    }
+                    r.add(c1);
+                }
+            }     
+           
+            setInterval(function() 
+                {
+                boolean = !boolean;
+                if (boolean) 
+                {
+                    for(var i = 0; i < 4; i++) 
+                    {
+                        blink[i].color = [255, 255, 0];
+                        blink1[i].color = [255, 255, 0];
+                    }
+                    r.render();
+                }
+                else 
+                {
+                    for(var i = 0; i < 4; i++) 
+                    {
+                        blink[i].color = [0, 0, 0];
+                        blink1[i].color = [0, 0, 0];
+                    }
+                    r.render();
+                }
+            }, 
+            1000); 
+
+        };        
+        </script>
+       
+    </head>
+    <body>
+        <h1>CS460 Assignment 2</h1>
+        <img id='logo' src='gfx/cs460.png' style='height: 60px'>
+       
+    </body>
+</html>

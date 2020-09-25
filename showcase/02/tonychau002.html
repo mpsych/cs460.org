@@ -1,0 +1,108 @@
+<html>
+  <head>
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+      }
+ 
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script> 
+    <script type="text/javascript">
+      window.onload =function(){
+
+        var fox =  [[0,1,0,0,0,0,0,1,0,],
+                    [0,1,1,0,0,0,1,1,0,],
+                    [0,1,1,0,0,0,1,1,0,],
+                    [0,1,1,1,1,1,1,1,0,],
+                    [0,1,0,0,1,0,0,1,0,],
+                    [0,1,1,1,1,1,1,1,0,],
+                    [0,1,1,1,1,1,1,1,0,],
+                    [0,0,1,1,2,1,1,0,0,],
+                    [0,0,0,1,1,1,0,0,0,]];
+
+        var r = new X.renderer3D();
+        r.init();
+        for(var i = 0; i < 9; i++){
+          for(var j = 0; j < 9; j++){
+            if(fox[i][j] == 1){
+              c = new X.cube();
+              c.color = [0, 0, 20];
+              c.lengthX = 10;
+              c.lengthY = 10;
+              c.lengthZ = 10;
+              c.center = [90-(j*10)-j, 10, 90-(i*10)-i];
+              r.add(c);
+            }
+            else if(fox[i][j] == 2){
+              c = new X.cube();
+              c.color = [20, 0, 0];
+              c.lengthX = 10;
+              c.lengthY = 10;
+              c.lengthZ = 10;
+              c.center = [90-(j*10)-j, 10, 90-(i*10)-i];
+              r.add(c);
+            }
+          }
+        }
+        var flip = false;
+        c1 = new X.cube();
+        c1.color = [10, 0, 0];
+        c1.lengthX = 10;
+        c1.lengthY = 10;
+        c1.lengthZ = 10;
+        c1.center = [68, 10, 46];
+        r.add(c1);
+        c2 = new X.cube();
+        c2.color = [10, 0, 0];
+        c2.lengthX = 10;
+        c2.lengthY = 10;
+        c2.lengthZ = 10;
+        c2.center = [57, 10, 46];
+        r.add(c2);
+        c3 = new X.cube();
+        c3.color = [10, 0, 0];
+        c3.lengthX = 10;
+        c3.lengthY = 10;
+        c3.lengthZ = 10;
+        c3.center = [35, 10, 46];
+        r.add(c3);
+        c4 = new X.cube();
+        c4.color = [10, 0, 0];
+        c4.lengthX = 10;
+        c4.lengthY = 10;
+        c4.lengthZ = 10;
+        c4.center = [24, 10, 46];
+        r.add(c4);
+        setInterval(function() {
+          if(flip){
+            c1.color = [10, 0, 0];
+            c2.color = [10, 0, 0];
+            c3.color = [10, 0, 0];
+            c4.color = [10, 0, 0];
+            flip = false;
+          }
+          else{
+            c1.color = [10, 10, 10];
+            c2.color = [10, 10, 10];
+            c3.color = [10, 10, 10];
+            c4.color = [10, 10, 10];
+            flip = true;
+          }
+        }, 1000);
+        r.render();
+      };
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

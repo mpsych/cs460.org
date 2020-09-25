@@ -1,0 +1,160 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 02</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    <script type="text/javascript" src = "https://get.goXTK.com/xtk_edge.js"></script>
+    <script type="text/javascript">
+
+    window.onload = function() {
+
+    var r = new X.renderer3D();
+    r.init();
+        
+        // set camera position
+        r.camera.position = [0,0,180];
+     
+        var x_cube,y_cube;
+        var foxEyes = [];
+
+          // create 9X9 matrix cube
+          for ( x_cube = 0; x_cube < 9; x_cube ++) {
+            for ( y_cube = 0; y_cube < 9; y_cube ++) {
+              c = new X.cube();
+
+              // set center
+              c.center = [x_cube * 2, y_cube * 2, 0];
+
+              // set cube edge => 1
+              c.lengthX = c.lengthY = c.lengthZ = 1;
+
+              // set eye color and animate
+
+              if((y_cube == 3 && x_cube == 3) 
+                   || (y_cube == 3 && x_cube == 5)) {
+                      c.color = [1,1,1];
+      
+              }
+              else if((y_cube == 3 && x_cube == 3) 
+                   || (y_cube == 3 && x_cube == 5)) {
+                c.color = [-1, -1, -1];
+              }
+
+              // color the fox
+              else if( x_cube == 0 || x_cube == 8){
+                c.color = [-1, -1, -1];
+              }
+
+              // set mouth color
+              else if((y_cube == 1 && x_cube == 4)) {
+                c.color = [1,0,0];
+              }
+
+              // color black squares
+              else if((y_cube == 0 && x_cube == 1) 
+                   || (y_cube == 0 && x_cube == 2)
+                   || (y_cube == 8 && x_cube == 2) 
+                   || (y_cube == 8 && x_cube == 3) 
+                   || (y_cube == 7 && x_cube == 4) 
+                   || (y_cube == 7 && x_cube == 5) 
+                   || (y_cube == 6 && x_cube == 3) 
+                   || (y_cube == 6 && x_cube == 4) 
+                   || (y_cube == 6 && x_cube == 5)
+                   || (y_cube == 1 && x_cube == 1) 
+                   || (y_cube == 8 && x_cube == 4) 
+                   || (y_cube == 8 && x_cube == 5) 
+                   || (y_cube == 8 && x_cube == 6) 
+                   || (y_cube == 7 && x_cube == 3) 
+                   || (y_cube == 0 && x_cube == 7) 
+                   || (y_cube == 0 && x_cube == 6) 
+                   || (y_cube == 1 && x_cube == 7) 
+                   || (y_cube == 5 && x_cube == 1) 
+                   || (y_cube == 5 && x_cube == 7)) { 
+                c.color = [-1, -1, -1];
+              }
+
+              // set body color
+              else if((y_cube == 0 && x_cube == 3) 
+                   || (y_cube == 0 && x_cube == 4) 
+                   || (y_cube == 0 && x_cube == 5) 
+                   || (y_cube == 1 && x_cube == 3) 
+                   || (y_cube == 1 && x_cube == 5)) {
+                c.color = [1,1,1];
+              }
+
+              // set body color
+              else {
+                c.color = [0.8,0.4,0.2];
+              }
+
+              r.add(c);
+
+            }
+        }
+
+    /********************************************************************
+      /* 
+       * Class exercise 
+       * new renderer 
+      @/
+
+      //create a cube
+      c = new X.cube();
+
+      //RFB -> Hex not working
+
+      c.color = [0,1,0]
+     
+      c.lengthX =50; // size in to x direction
+
+      c.lengthY = 19;
+      c.lengthZ = 19;
+
+      r.add(c);
+
+      c2 = new X.cube()
+      c2.color = [1,0,0];
+      r.add(c2);
+      
+      *********************************************************************/
+
+     // start rendering 
+     r.render();
+       
+       // fox eye close 
+      setInterval(function() {
+      for (x_cube = 0; x_cube < foxEyes.length; x_cube ++) {
+        foxEyes[x_cube].color = [1, 1, 1];
+      }
+      
+    }, 800);
+
+     // fox eye open 
+    setInterval(function() {
+      for (x_cube = 0; x_cube < foxEyes.length; x_cube ++) {
+        eyes[x_cube].color = [0.8, 0.4, 0.2];
+      }
+    }, 1000);
+
+  };
+</script>
+</head>
+<body>
+  <h1>CS460 Assignment 2</h1>
+  <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  <div id="output"></div>
+</body>
+</html>

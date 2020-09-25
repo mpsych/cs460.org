@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS460 Assignment 2</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: sans-serif;
+            height: calc(100vh - 90px);
+            /* width: 90vw */
+        }
+        #header {
+            text-align: left;
+        }
+        #logo {
+            height: 60px;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+    </style>
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+    <script type="text/javascript">
+
+        let params = new URL(document.location).searchParams
+        // gap between boxes
+        const GAP = parseInt((params.get('gap') || 2));
+        // image to load
+        const IMG = (params.get('img') || 'gfx/cs460small.png');
+        // number of frames in animation
+        const FRAMES = parseInt(params.get('frames') || 1);
+        // delay between frames
+        const DELAY = (params.get('delay') || 100);
+        // speed of rotation
+        const speed = parseFloat((params.get('spin') || .5))
+
+        window.addEventListener("load", function() {
+            
+
+            // current frame
+            let frame = 0;
+            // returns index of pixel in data
+            coord = (x, y) =>
+                (frame * pixels.length * pixels[0].length * 4) + y * (pixels.length * 4) + x * 4;
+
+            window.render = function render() {
+                for (let i = 0; i < pixels.length; i++) {
+                    for (let j = 0; j < pixels[i].length; j++) {
+                        let c = coord(i, j);
+                        if (pixels[i][j] != null) {
+                            if (data.data[c] == null) console.error(c)
+                            pixels[i][j].color = [
+                                data.data[c] / 255,
+                                data.data[c + 1] / 255,
+                                data.data[c + 2] / 255,
+                            ];
+                            pixels[i][j].opacity = data.data[c + 3] / 255;
+                        }
+                    }
+                } 
+            }
+
+            window.r = new X.renderer3D();
+            r.init();
+
+            let image = new Image()
+            image.onload = function() {
+                // create an offscreen canvas to extract the image data from
+                let canvas = document.createElement('canvas');
+                canvas.width = image.width;
+                canvas.height = image.height;
+                let context = canvas.getContext('2d');
+                context.drawImage(image, 0, 0);
+                window.data = context.getImageData(0, 0, canvas.width, canvas.height);
+                
+                // height of each frame
+                let height = canvas.height / FRAMES;
+
+                // scale the scene so it can fit the viewport
+                let scale = Math.min(4 / height, 8 / image.width)
+
+                // initialize the pixel grid
+                window.pixels = Array(canvas.width)
+                for (let i = 0; i < canvas.width; i++) {
+                    pixels[i] = (Array(height))
+                    for (let j = 0; j < height; j++) {
+                        let c = coord(i, j);
+                        // if there is only one frame we dont need to create transparent cubes
+                        if (FRAMES > 1 || data.data[c + 3] != 0) {
+                            let cube = new X.cube();
+                            cube.lengthX = cube.lengthY = cube.lengthZ = 20*scale;
+                            cube.center = [-i*(20+GAP)*scale, 0, -j*(20+GAP)*scale];
+                            r.add(cube);
+                            pixels[i][j] = cube
+                        } else {
+                            console.log('blank')
+                        }
+                    }
+                }
+
+                render();
+                // not worth using requestAnimationFrame, not enough fps
+                if (FRAMES > 1) {
+                    setInterval(() => {
+                        frame = (frame + 1) % FRAMES;
+                        render();
+                    }, DELAY);
+                }
+
+                // rotation animation, we want this to be smooth so use requestAnimationFrame
+                let spin = speed > 0;
+                let t0;
+                requestAnimationFrame(function step(t1) {
+                    if (t0 !== undefined && spin) {
+                        r.camera.rotate([(t1-t0) * speed, 0]);
+                    }
+                    t0 = t1;
+                    requestAnimationFrame(step);
+                });
+                window.addEventListener('keydown', (e) => {
+                    if (e.code == 'Space') spin = !spin
+                });
+
+            }
+            image.src = IMG;
+
+            r.render();
+        })
+    </script>
+</head>
+<body>
+    <h1 id="header">CS460 Assignment 2</h1>
+    <img src="gfx/cs460.png" id="logo">
+
+</body>
+</html>

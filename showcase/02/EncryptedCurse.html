@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<title>CS460 Assignment 2</title>
+
+		<style>
+			body {
+				background-color: black;
+				color: white;
+				font-family: sans-serif;
+			}
+
+			#logo {
+				position: absolute;
+				right: 10px;
+				top: 10px;
+			}
+		</style>
+
+		<script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				r = new X.renderer3D();
+				r.init();
+
+				/*
+					the following code creates an n * n cube grid; the array approach allows
+					us to still access their individual attributes outside of the loops
+				*/
+				n = 9;
+				a = []; 															// initialize a 1D array
+				for (var i = 0; i < n; i++) {
+					a[i] = [];														// make each element in the 1D array an array,
+					for (var j = 0; j < n; j++) {									// so we now have a 2D array of the drawing grid
+						a[i][j] = new X.cube();
+						a[i][j].opacity = 0;										// hide the cubes until we color them later
+						a[i][j].center = [i * -3.4, j * -3.4, 0];					// spacing between cubes
+						a[i][j].lengthX = a[i][j].lengthY = a[i][j].lengthZ = 3;	// individual cube dimensions
+						r.add(a[i][j]);
+					}
+				}
+
+				/*
+					color names in the "colors" array should be the same throughout all variable names;
+					e.g. the string "orange" should have a matching `orange` color definition and `orange_pixels` array;
+				*/
+				colors = ["orange", "white"];
+
+				orange = [253/255, 138/255, 13/255];
+				orange_pixels = [
+									[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6],
+									[2, 1], [2, 2], [2, 3], [2, 4], [2, 5], [2, 6], [2, 7],
+									[3, 3], [3, 4], [3, 5], [3, 6], [3, 7], [3, 8],
+									[4, 3], [4, 4], [4, 5], [4, 6], [4, 7], [4, 8],
+									[5, 3], [5, 4], [5, 5], [5, 6], [5, 7], [5, 8],
+									[6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6], [6, 7],
+									[7, 0], [7, 1], [7, 2], [7, 3], [7, 4], [7, 5], [7, 6]
+								];
+
+				white = [255/255, 255/255, 255/255];
+				white_pixels = [
+									[2, 4], [3, 4], [4, 7], [5, 4], [6, 4]
+							   ];
+
+				for (var i = 0; i < colors.length; i++) {								// for each color `c`...
+					var pixels = window[`${colors[i]}_pixels`];							//     (dynamically access array names)
+					for (var j = 0; j < pixels.length; j++) {							//     for each pixel of color `c`...
+						a[pixels[j][0]][pixels[j][1]].color = window[`${colors[i]}`];	//         change the color of the cube at that coordinate
+						a[pixels[j][0]][pixels[j][1]].opacity = 1;						//         make it visible (since it was hidden at creation)
+					}
+				}
+
+				r.camera.position = [0, 0, -60]; // this alone turns the camera upside down
+				r.camera.position = [0, 0, -60]; // this flips it back to normal for some reason...
+
+				r.render();
+
+				/*
+					animate the fox's eyes opening and closing
+				*/
+				brown = [134/255, 64/255, 0/255];
+				eye_pixels = [
+									[2, 4], [3, 4], [5, 4], [6, 4]
+							 ];
+
+				setInterval(function() {
+					// JavaScript doesn't have a sleep function and setTimeout is non-blocking...mumble mumble...
+					setTimeout(function() {	
+						for (var i = 0; i < eye_pixels.length; i++) {
+							a[eye_pixels[i][0]][eye_pixels[i][1]].color = brown;
+						}
+					}, 1000);
+					setTimeout(function() {
+						for (var i = 0; i < eye_pixels.length; i++) {
+							a[eye_pixels[i][0]][eye_pixels[i][1]].color = white;
+						}
+					}, 2000);
+				}, 3000);
+			}
+		</script>
+	</head>
+
+	<body>
+		<h1>CS460 Assignment 2</h1>
+		<div id="logo"><img style="height: 60px" src="gfx/cs460.png"></div>
+	</body>
+</html>

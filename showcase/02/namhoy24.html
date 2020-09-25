@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+      }
+ 
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+
+  <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+
+  <script type="text/javascript">
+
+    window.onload = function() {
+
+      //new renderer window
+      var r = new X.renderer3D();
+      r.init();
+      r.camera.position = [0,0,-1000];
+      create_cube(0,1,[1,1,0]); //R G B
+      create_cube(1,3,[0,1,0]);
+      create_cube(2,3,[0,1,0]);
+      create_cube(3,7,[0,1,0]);
+      create_cube(4,7,[0,1,0]);
+      create_cube(5,9,[0,1,0]);
+      create_cube(6,9,[0,1,0]);
+      create_cube(7,3,[0.16,0.01,0.09]);
+      create_cube(8,3,[0.16,0.01,0.09]);
+
+      function create_cube(line, howmany, color){
+        for(var i=0; i<howmany; i++) {
+          c = new X.cube();
+          c.color = color;
+          c.center =[((9-howmany)/2*25)+i*25, line*25, 0];
+          r.add(c);
+        }
+      }
+
+      //start rendering.
+      r.render();
+    }
+
+  </script>
+
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

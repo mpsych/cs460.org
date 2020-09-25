@@ -1,0 +1,148 @@
+<html>
+    <head>
+        <title>CS460 Assignment 02</title>
+
+        <style type="text/css">
+            body {
+                background-color: black;
+                color: white; /* font color */
+                font-family: sans-serif;
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                overflow: hidden !important;
+            }
+            #logo {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+            }
+        </style>
+
+        <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+
+        <script type="text/javascript">
+            // A lookup table for the shape of the tree
+            var grid = [[0,0,0,0,1,0,0,0,0],
+                    [0,0,0,1,1,1,0,0,0],
+                    [0,0,0,1,1,1,0,0,0],
+                    [0,1,1,1,1,1,1,1,0],
+                    [0,1,1,1,1,1,1,1,0],
+                    [1,1,1,1,1,1,1,1,1],
+                    [1,1,1,1,1,1,1,1,1],
+                    [0,0,0,1,1,1,0,0,0],
+                    [0,0,0,1,1,1,0,0,0]];
+
+            // Some color variables, for legibility
+            var green = [0,0.4,0];
+            var brown = [0.55,0.27,0.07];
+            var red   = [1,0,0];
+            var gold  = [1,0.84,0];
+            var white = [1,1,1];
+
+            // Variable to store the green cubes
+            var greens = [];
+
+            // Function to add a green block with the given center to the given renderer
+            addGreen = function(r, center) {
+                var c = new X.cube();
+                c.center = center;
+                c.color = green;
+                greens.push(c);
+                r.add(c);
+            }
+
+            setRotate = function(r, direction) {
+                r.camera.rotate(direction);
+            }
+
+            window.onload = function() {
+                // New renderer window
+                var r = new X.renderer3D();
+                r.init();
+                var spacer = 22;
+
+                // Loops from -4 to 4, to help with working from origin
+                // v for vertical, h for horizontal
+                for (var v = -4; v <= 4; v++) {
+                    for (var h = -4; h <= 4; h++) {
+                        // sign inverted because as v increases, row goes down but height goes up
+                        var vPos = v*-spacer;
+                        if (grid[v+4][h+4]) {
+                            // If not the trunk
+                            if (v <= 0 && Math.abs(h) > 0 || v <= 2 && Math.abs(h) > 1 || v == -4) {
+                                // Add green cubes on the main axes (pi/2 top-down angles)
+                                addGreen(r, [0       , vPos, spacer*h]);
+                                addGreen(r, [spacer*h, vPos, 0       ]);
+                                // if 2 or more cubes from center
+                                if (Math.abs(h) > 1) {
+                                    // add green cubes on diagonals (pi/4 angles)
+                                    var half = Math.floor(Math.abs(h)/2) * Math.sign(h);
+                                    addGreen(r, [spacer*half, vPos, half* spacer]);
+                                    addGreen(r, [spacer*half, vPos, half*-spacer]);
+                                    // If 4 or more center from trunk
+                                    if (Math.abs(h) > 3) {
+                                        // add green cubes on half diagonals (pi/8 angle)
+                                        var qrtr = Math.floor(Math.abs(h)/4) * Math.sign(h);
+                                        addGreen(r, [spacer*qrtr, vPos, half* spacer]);
+                                        addGreen(r, [spacer*qrtr, vPos, half*-spacer]);
+                                        addGreen(r, [spacer*half, vPos, qrtr* spacer]);
+                                        addGreen(r, [spacer*half, vPos, qrtr*-spacer]);
+                                        // If 4 cubes from center and bottom row of green
+                                        if (v == 2) {
+                                            // add green cubes to diagonal corners (pi/4 again)
+                                            var corner = 3 * Math.sign(h);
+                                            addGreen(r, [spacer*corner, vPos,  66]);
+                                            addGreen(r, [spacer*corner, vPos, -66]);
+                                        }
+                                    }
+                                }
+                            } else {
+                                // Else, add brown cubes for tree trunk
+                                var c = new X.cube();
+                                c.center = [spacer*h,vPos,0];
+                                c.color = brown;
+                                r.add(c);     
+                                var c = new X.cube();
+                                c.center = [0,vPos,spacer*h];
+                                c.color = brown;
+                                r.add(c);                           
+                            }
+                        }
+                    }
+                }
+                // Camera position slightly offset for better viewing angle
+                r.camera.position = [0, 75, -400];
+
+                var changed = [];
+                var colors = [red, gold, red, white, red];
+                r.onRender = function() {
+                    // rotate the camera around the tree.
+                    // slight y rotation provides additional angles
+                    r.camera.rotate([1, 0.025]);
+
+                    // Change cube color in approximately 10% of frames
+                    if (Math.random() > 0.9) {
+                        // pick a random cube and give it a random color from colors array
+                        var cube   = greens[Math.floor(Math.random() * greens.length)];
+                        cube.color = colors[Math.floor(Math.random() * colors.length)];
+                        changed.push(cube);
+
+                        // Keep tree mostly green
+                        if (changed.length > greens.length/2.5) {
+                            changed.shift().color = green;
+                        }
+                    }
+                };
+
+                r.render();
+            };
+        </script>
+
+    </head>
+
+    <body>
+        <h1>CS460 Assignment 2</h1>
+        <div id="logo"><img src="gfx/cs460.png" style="height: 60px"></div>
+    </body>
+</html>

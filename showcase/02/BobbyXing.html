@@ -1,0 +1,156 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    
+    <script type="text/javascript" src="http://get.goXTK.com/xtk_edge.js"></script>
+
+    <script type="text/javascript">
+
+    window.onload = function() {
+
+      // this gets called when the site is ready
+
+      // create a new scene and renderer
+      r = new X.renderer3D();
+      r.init();
+
+      // build cat 
+      for (var j = 0; j < 7; j++){
+        // first and last cal
+      	if (j == 0 || j == 6){
+      		for (var i = 0; i < 6; i ++){
+      			c = new X.cube();
+      			c.center = [25*j,25*i,0];
+      			r.add(c);
+          }
+      	}
+        // second and last second cal
+      	if (j == 1 || j == 5){
+      		for (var i = 0; i < 6; i ++){
+      			c1 = new X.cube();
+      			c1.center = [25*j,25*(i-1),0];
+      			r.add(c1);
+      		}
+      	}
+        // 3,4,5 cal
+      	if (j == 2 || j == 4 || j == 3){
+      		for (var i = 0; i < 6; i ++){
+      			c2 = new X.cube();
+      			c2.center = [25*j,25*(i-2),0];
+      			r.add(c2);
+      		}
+      	}
+      }
+      // creat eye and mouth
+      // eyes
+      cube_eye = [];
+      for (var i = 0; i < 5; i++){
+        if (i != 2){
+          eye = new X.cube();
+          eye.center = [(i+1)*25,2*25,0];
+          eye.color = [0,1,1];
+          eye.lengthY = 20.00000001;
+          eye.lengthZ = 20.00000001;
+          r.add(eye); 
+          cube_eye.push(eye);
+        }
+      }
+      // mouth
+      mouth = new X.cube();
+      mouth.center = [3*25,-25,0];
+      mouth.color = [1,0,0];
+      mouth.lengthY = 20.00000001;
+      mouth.lengthZ = 20.00000001;
+      r.add(mouth);
+      // set camera further away!
+      r.camera.position = [0, 0, 500];
+
+      // render everything!
+      r.render();
+      cube_3 = [];
+
+      for (var j = 0; j < 9; j++){
+        if (j > 0 && j < 8){    
+          for (var i = 0; i < 2; i ++){
+            c3 = new X.cube();
+            c3.lengthY = 5;
+            c3.center = [25*(j-1),25*(i+7),0];
+            r.add(c3);
+            cube_3.push(c3)
+          }
+        }
+          if ( j == 0 || j == 8){
+            for (var i = 0; i < 2; i ++){
+            c3 = new X.cube();
+            c3.lengthY = 10;
+            c3.lengthX = 5;
+            c3.center = [(j-1)*25,25*8-12.5,0];            
+            r.add(c3);
+            cube_3.push(c3);
+          }          
+        }        
+      }
+      // Animation
+      // aureole animation
+      cubeYellow = false;
+      setInterval(function (){
+      	if (!cubeYellow){
+          for (var i = 0; i < 18; i++){
+      		cube_3[i].color = [1,1,0];
+        }
+      		cubeYellow = true;
+      	}
+      	else{
+          for (var i = 0; i < 18; i++){
+          cube_3[i].color = [0,0,0];
+        }
+      		cubeYellow = false;
+      	}
+      }, 1000);
+      
+      // eye animation
+      eyeOpen = false;
+      setInterval(function (){
+        if (!eyeOpen){
+          for (var i = 0; i < 4; i++){
+          cube_eye[i].color = [0,0,0];
+        }
+          eyeOpen = true;
+        }
+        else{
+          for (var i = 0; i < 4; i++){
+          cube_eye[i].color = [0,1,1];
+        }
+          eyeOpen = false;
+        }
+
+      }, 1000);
+	
+    };
+
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

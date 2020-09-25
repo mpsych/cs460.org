@@ -1,0 +1,136 @@
+	
+<html>
+  <head>
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+      }
+ 
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+  <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+  <script type="text/javascript">
+    window.onload = function() {
+
+      //new renderer window 
+      var r = new X.renderer3D(); 
+      r.init();                   // initialize
+      eyes = [];                 // to add all the cubes for applying animation to the eyes
+
+      for (var i = 7 ; i > 5 ; i--) {
+        for (var j = 1; j <= i; j++) {
+          var c = new X.cube();         //create a cube
+          c.center = [i*4,0,j*4];
+          c.lengthX = 3;               // configure the edge length
+          c.lengthY = 3;              // configure the edge length
+          c.lengthZ =3;                // configure the edge length       
+          if (i== 6 && j ==3 ){                    
+            c.color = [1,1,1];             
+            eyes.push(c);
+          }    else {
+            c.color = [1,1,0]; 
+          }    
+          //c.color = [1,1,1];           //c.color = [0,1,0]; //R,G,B      
+          r.add(c);                     //add it to scene
+        }     
+          
+      }
+
+      for (var i = -1; i <=0; i++) {
+        for (var j = 1 -i ; j <=6 + i ; j++) {
+          var c = new X.cube();
+          c.center = [j*4,0,i*4];
+          c.lengthX = 3;
+          c.lengthY = 3;
+          c.lengthZ =3;          
+
+          if (i== 0 && (j ==3 || j== 4)){
+            c.color = [1, 1, 1];
+          }   else{
+            c.color = [1,1,0]; 
+          }
+          
+          r.add(c);
+        }     
+           
+      }
+
+      for (var i = 1; i < 5; i++) {
+        for (var j = 1; j < 6; j++) {
+          var c = new X.cube();
+          c.center = [j*4,0,i*4];
+          c.lengthX = 3;
+          c.lengthY = 3;
+          c.lengthZ =3;
+          if (i== 3 && (j ==2 || j== 5)){
+            c.color = [1,1,1];            
+            eyes.push(c);
+            
+          }    else {
+            c.color = [1,1,0]; 
+          }              
+          
+          r.add(c); 
+        }     
+      }
+      
+      for (var i = 1 ; i >=0 ; i--) {
+        for (var j = 1; j <=7-i; j++) {
+          var c = new X.cube();
+          c.center = [i*4,0,j*4];
+          c.lengthX = 3;
+          c.lengthY = 3;
+          c.lengthZ =3;
+          if (i== 1 && j ==3 ){
+            c.color = [1,1,1];            
+            eyes.push(c);            
+          } else {
+            c.color = [1,1,0]; 
+          }           
+          
+          r.add(c)
+        }  
+      }
+
+      
+      r.render();           //start rendering
+      cubeEye = false;  
+      setInterval(function(){                           // applying animation
+        if(!cubeEye){
+          for (e in eyes){                             // eyes opened
+            eyes[e].color=[1,1,1];
+            cubeEye = true;
+          }
+        } else {
+          for (e in eyes){                             // eyes closed
+            eyes[e].color = [0,0,0];
+            cubeEye = false;
+          }
+        }             
+
+       },500);
+             
+
+    
+      r.onRender = function (){
+        r.camera.rotate([1, 1]);        //rotate camera in X,Y direction
+      };
+
+      r.camera.position = [100, 0, 100 ];     // camera position   
+
+      
+    };
+  </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

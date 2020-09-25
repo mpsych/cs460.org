@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <title>CS460 Assignment 02</title>
+    
+    <style >
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+    <script type='text/javascript'>
+
+      window.onload = function() {
+        // add a neew renderer
+        r = new X.renderer3D();
+        r.init();
+
+        draw_row([0,0,0],1,[1,.50,.2]);
+        draw_row([6*25,0,0],1,[1,.50,.2]);
+        draw_row([0,-25,0],2,[1,.50,.2]);
+        draw_row([5*25,-25,0],2,[1,.50,.2]);
+        draw_row([0,-25*2,0],7,[1,.50,.2]);
+
+        eyes = [];
+        draw_row([0,-25*3,0],1,[1,.50,.2]);
+        draw_row([25,-25*3,0],2,[0,1,1], true);
+        draw_row([75,-25*3,0],1,[1,.50,.2]);
+        draw_row([100,-25*3,0],2,[0,1,1], true);
+        draw_row([150,-25*3,0],1,[1,.50,.2]);
+
+        draw_row([0,-25*4,0],7,[1,.50,.2]);
+        draw_row([0,-25*5,0],7,[1,.50,.2]);
+
+        draw_row([25,-25*6,0],2,[1,.50,.2]);
+        setInterval(function() {draw_row([75,-25*6,0],1,[1,0,0])}, 1000);
+        draw_row([100,-25*6,0],2,[1,.50,.2]);
+        draw_row([50,-25*7,0],3,[1,.50,.2]);
+
+        r.camera.position = [0,0,1000];
+        r.render();
+
+        r.onRender = function() {
+            r.camera.rotate([40,-40]);
+            r.camera.rotate([-40,40]);
+            r.camera.rotate([5,-5]);
+        }
+
+        eyesclosed = false;
+        setInterval(function() {
+            if(eyesclosed) {
+                for (e in eyes) {
+                    eyes[e].color = [0,1,1];
+                }
+                eyesclosed = false;
+            } else {
+                for (e in eyes) {
+                    eyes[e].color = [1,1,1];
+                }
+                eyesclosed = true;
+            }
+        }, 1000);
+
+      };
+
+      function draw_row(start, howmany, color, keeptrack) {
+          for (var i = 0; i < howmany; i++) {
+            c = new X.cube();
+            c.color = color;
+            c.center = [start[0]+i*20+i*5, start[1], start[2]];
+            r.add(c);
+            if (keeptrack) {
+                eyes.push(c);
+            }
+          }
+      }
+  
+      
+
+    </script>
+  </head>
+
+  <body>
+    <h1> CS460 Assignment-2 </h1>
+    <img id='logo' src='cs460.png' style='height: 60px'>
+    <div id='output'></div>
+  </body>
+</html>

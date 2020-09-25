@@ -1,0 +1,193 @@
+<!--
+
+  CS 460 Assignment 02
+  9/21/2020
+  Ayah Aboelela
+
+  Inspired by:
+    - https://github.com/nandiniiys/cs460student/tree/master/02
+    - https://github.com/MichaelOToole001/cs460student/tree/master/02
+
+-->
+
+<html>
+
+<head>
+<title>CS460 Assignment 02</title>
+<style>
+body {
+background-color: lavender;
+color: rgb(0,0, 0);
+font-family: sans-serif;
+
+}
+
+#logo {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+</style>
+
+<script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+
+<script type="text/javascript">
+
+window.onload = function() {
+// gets executed once the page is completely loaded
+
+var r = new X.renderer3D();
+r.init();
+
+var borders = [];
+var second = [];
+var inner = [];
+var center;
+
+for (var i = 0; i < 325; i+=27) {
+  for (var j = 0; j < 325; j += 27) { //27
+    c = new X.cube();
+   c.lengthX = 25;
+    c.lengthY = 25;
+    c.lengthZ = 25;
+    c.center = [i, j, 0];
+ 
+
+
+    if ((i == 0 || i ==324) && (j <= 108 || j > 189)) { // top and bottom edge
+      borders.push(c);
+    }
+    else if (i == 162 && j == 162) 
+    {
+      center = c;
+      c.color = [1, 128/255, 0];
+    }
+    else if ((j == 0 || j == 324) && (i <=108 || i >189)) { // left and right edge
+      borders.push(c);
+    }
+
+    
+    //horizontal center
+    else if (i == 162 && j >= 54 && j < 271) 
+    {
+      borders.push(c);
+      } 
+    else if (j == 162 && i >= 54 && i < 271) //vertical center
+    {
+    borders.push(c);
+    } 
+
+    // the 8 diagonal pieces for the petal borders
+    else if ((i == 27 && j == 135) || (i == 27 && j == 189) || (i == 297 && j == 189) || (i == 297 && j == 135) || (j == 27 && i == 135) || (j == 27 && i == 189) || (j == 297 && i == 135) || (j == 297 && i == 189))
+    {
+    borders.push(c);
+    }
+
+    // horizontal inner borders
+    else if ((i == 27) && ((j >= 27 && j<135) || (j>189 && j <324) ) ) 
+    {
+      second.push(c);
+       }
+    else if ((i == 297) && ((j >= 27 && j<135) || (j>189 && j <324) ) ) 
+    { 
+      second.push(c);
+      }
+    else if ((i == 135) && ((j >= 54 && j<162) || (j>162 && j <297) )) { 
+      second.push(c);
+    }
+    else if ((i == 189) && ((j >= 54 && j<162) || (j>162 && j <297) )) 
+    {
+      second.push(c);
+      }
+
+    //vertical inner borders
+    else if ((j == 27) && ((i>27 && i <135) || (i>189 && i <297))) 
+    {
+      second.push(c);
+      }
+    else if ((j == 297) && ((i>27 && i < 135) || (i>189 && i <297))) {
+      second.push(c); 
+      }
+    else if ((j == 135) && ((i >= 54 && i<162) || (i>162 && i <297) )) { 
+      second.push(c);
+      }
+    else if ((j == 189) && ((i >= 54 && i<162) || (i>162 && i <297) )) 
+    { 
+      second.push(c);
+      }
+
+    // inner petals
+    else if (i >= 54 && i <= 108) {
+      inner.push(c);
+      }
+    else if (i > 189 && i <= 270) {
+
+      inner.push(c);
+      }
+    
+    else { c = null;}
+    
+    r.add(c);
+  }
+}
+
+
+  r.camera.position = [0, 0,1000];
+
+  var bool = true;
+
+  var lightpink = [255/255, 102/255, 178/255];
+  var mediumpink = [255/255, 0, 127/255];
+  var darkpink = [153/255, 0, 76/255];
+
+  var lightpurple = [211/255, 134/255, 255/255];
+  var mediumpurple = [136/255, 69/255, 175/255];
+  var darkpurple = [78/255, 27/255, 107/255];
+
+  setInterval(function() {
+    bool = !bool;
+    if (bool) {
+      for (var i =0; i < borders.length; i++){
+        borders[i].color = darkpurple;
+      }
+      for (var i =0; i < inner.length; i++){
+        inner[i].color = lightpurple;
+      }
+      for (var i =0; i < second.length; i++){
+        second[i].color = mediumpurple;
+      }      
+      r.render();
+    }
+    else {
+      for (var i = 0; i < borders.length; i++){
+        borders[i].color = darkpurple;
+      }
+      for (var i =0; i < inner.length; i++){
+        inner[i].color = mediumpurple;
+      }
+      for (var i =0; i < second.length; i++){
+        second[i].color = lightpurple;
+      }
+      r.render();
+    }
+  }, 1000);
+
+//  r.render();
+
+
+};
+
+
+
+</script>
+
+</head>
+
+<body>
+<h1> CS460 Assignment 2</h1>
+<img id='logo' src='gfx/cs460.png' style = height:60px>
+<div id='output'></div>
+
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+<html>
+<head>
+  <title>CS460 Assignment 2</title>
+  <style>
+    body {
+      background-color: black;
+      color: white; /* font color */
+      font-family: sans-serif;
+    }
+
+    #logo {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+  </style>
+
+  <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+
+  <script type="text/javascript">
+
+    window.onload = function() {
+
+    // new renderer
+    var r = new X.renderer3D();
+    r.init();
+
+    var eyecubes = [];
+
+    // fox with eyes 
+    for ( var x = 0; x < 9; x++) {
+      for ( var y = 0; y < 9; y++) {
+
+        var c = new X.cube();
+
+        var black = [0, 0, 0];
+        var white = [1, 1, 1];
+        var orange = [255/255, 128/255, 0];
+        var nose = [54/255, 81/255, 94/255];
+
+        c.center = [x * 3, y * 3, 0];
+
+        c.lengthX = c.lengthY = c.lengthZ = 2;
+
+        
+        // setting sides to black
+        if (x == 0 || x == 8) { 
+          c.color = black;
+        }
+        
+        // top of face
+        else if( [2, 3, 4, 5, 6].includes(x) & y == 0 ) { 
+          c.color = black;
+        }
+        else if( [3, 4, 5].includes(x) & y == 1 ) { 
+          c.color = black;
+        }
+
+        // now bottom half of face
+        else if( [1, 2, 6, 7, 8].includes(x) & y == 8 ) { 
+          c.color = black;
+        }
+        else if( [1, 7, 8].includes(x) & y == 7 ) { 
+          c.color = black;
+        }
+
+        // left eye
+        else if( [2, 3].includes(x) & y == 4) { 
+          c.color = white;
+          eyecubes.push(c);
+        }
+
+        // right eye
+        else if( [5, 6].includes(x) & y == 4) {  
+          c.color = white;
+          eyecubes.push(c);
+        } 
+
+        // nose
+        else if( x == 4 & y == 7 ) { 
+          c.color = white;
+        }
+
+        // fill in the rest of the fox
+        else {
+          c.color = orange;
+        }
+
+        r.add(c);
+      }
+    } 
+
+
+    var boolean = true;
+    r.camera.position = [0, 5, 100];
+
+    setInterval(function() {
+ 
+      boolean = !boolean;
+      
+      if (boolean) {
+
+        for(var i = 0; i < 4; i++) {
+
+          eyecubes[i].color = [255/255, 128/255, 0];
+
+        }
+        r.render();
+      }
+      else {
+        for(var i = 0; i < 4; i++) {
+
+          eyecubes[i].color = [1, 1, 1];
+
+        }
+        r.render();
+      }
+    }, 1000); 
+
+  }
+
+</script>
+
+
+</head>
+<body>
+  <h1>CS460 Assignment 2</h1>
+  <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+</body>
+</html>

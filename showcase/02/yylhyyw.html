@@ -1,0 +1,130 @@
+	
+<html>
+    <head>
+      <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+      <meta content="utf-8" http-equiv="encoding">
+      <title>CS460 Assignment 2</title>
+      <style>
+        body {
+          background-color: black;
+          color: white; /* font color */
+          font-family: sans-serif;
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          overflow: hidden !important;
+        }
+   
+        #logo {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+        }
+      </style>
+      
+      <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+   
+      <script type="text/javascript">
+
+        // eyes array
+      var eyes = [];
+
+        // create columns with offset to center in Y direction(row)
+      function create_col(col, offset=0) {
+        // when columns have offset in Y direction(row). It starts generate cube from offset in Y position(row).
+        if(offset != 0) {
+          for(var i = offset; i < offset + 25*6; i+=25) {
+            var c = new X.cube();
+            c.center = [col, i, 0];
+            // if col is -75 or 25 and row is 4th row from bottom to top , the cube is eye.
+            if(i == offset+3*25 && (col === -75 || col === 25)) {
+                c.color = [0,0,1];
+                eyes.push(c);
+            }
+            r.add(c);
+          }
+        // when columns don't have offset in Y direction(row). starts generate cube from 0 in Y position(row).
+        } else {
+          for(var i = 0; i < 25*6; i+=25) {
+            var c = new X.cube();
+            c.center = [col, i, 0];
+            // if col is -50 or 0 and row is 5th row from bottom to top , the cube is eye.
+            if(i == offset+4*25 && (col === -50 || col === 0)) {
+                c.color = [0,0,1];
+                eyes.push(c);
+            }
+            // if column position is -25 and row is 2th row from bottom to top, the cube is mouth.
+            if(i == offset+1*25 && col === -25) {
+                c.color = [1,0,0];
+            }
+            r.add(c);
+          }
+        }
+      }
+      window.onload = function() {
+   
+        // this gets called when the site is ready
+   
+        // create a new scene and renderer
+        r = new X.renderer3D();
+        r.init();
+        var row_offset = 50;
+        var col_pos = -100;
+        
+        // generate left 2 columns
+        for(col_pos; col_pos <= -75; col_pos+=25) {
+            create_col(col_pos, row_offset);
+            row_offset -= 25;
+        }
+
+        // generate mid 3 columns
+        for(col_pos; col_pos <= -25; col_pos+=25) {
+            create_col(col_pos);
+        }
+
+        // generate right 2 columns
+        for(col_pos; col_pos <=50; col_pos+=25) {
+            create_col(col_pos, row_offset);
+            row_offset += 25;
+        }
+
+        
+
+        
+   
+        // set camera further away!
+        r.camera.position = [0, 0, 1000];
+   
+        // render everything!
+        r.render();
+
+        // eye is open at start.
+        var eye_closed = false;
+
+        // animate the eyes of the fox 1s per time.
+        setInterval(function() {
+          // if eye is closed. set eyes to blue.
+            if(eye_closed) {
+              for(let eye of eyes) {
+                  eye.color = [0,0,1];
+                  eye_closed = false;
+              }
+            // if eye is open. set eyes to white.
+            } else {
+              for(let eye of eyes) {
+                  eye.color = [1,1,1];
+                  eye_closed = true;
+              }
+            }
+
+        },1000);
+   
+      };
+   
+      </script>
+    </head>
+    <body>
+      <h1>CS460 Assignment 2</h1>
+      <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+    </body>
+  </html>

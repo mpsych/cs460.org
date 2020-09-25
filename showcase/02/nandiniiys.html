@@ -1,0 +1,98 @@
+<! Nandinii Yeleswarapu >
+<! CS460 Assignment 2 >
+<! Due: 21st Sept 2020 >
+
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+html, body { 
+  background-color:#000;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden !important;  
+}
+
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+    <script type="text/javascript">
+
+    window.onload = function() {  
+
+        // new renderer 
+        var r = new X.renderer3D();
+        r.init();
+        
+        // an array of cubes to keep track of tree element cubes to be used in the "lighting up" action for bonus qn 2.
+        var cubes = [45];
+        var z = 0;
+
+
+        // nested for loops build 2d array of cube objects.
+        // each cube is 10*10 thus increments of 11 ensure gaps betwene the cubes
+        for (var i = 0; i < 89; i += 11) {
+            for (var j = 0; j < 89; j += 11) {
+                // create a cube
+                c = new X.cube();
+                c.lengthX = 10;
+                c.lengthY = 10;
+                c.lengthZ = 10;
+                c.center = [i, j, 0];
+
+                // the following if statements color the cubes either green or black to form the tree image on the cube matrix.
+                if (i == 44) {
+                    c.color = [0, 1, 0];
+                    cubes[z++] = c;
+                }
+                else if ((i == 33 || i == 55) && j != 0) {
+                    c.color = [0, 1, 0];
+                    cubes[z++] = c;
+                }
+                else if ((i == 22 || i == 66 || i == 11 || i == 77) && (j >= 33 && j <= 66)) {
+                    c.color = [0, 1, 0];
+                    cubes[z++] = c;
+                }
+                else if ((i == 0 || i == 88) && (j == 55 || j == 66)) {
+                    c.color = [0, 1, 0];
+                    cubes[z++] = c;
+                }
+                else {
+               // c.color = [0, 0, 0];
+                 c = null;
+                }
+
+                // add it to scene
+                r.add(c);
+            } 
+
+
+        // code snippet to animate the pine tree mimicking the "lighting up" of the tree.
+        setInterval(function() {
+            // index calculated as a int between 0 and 14 thus ensuring that 15 cubes ligth up in teh tree.
+            var index = Math.floor(Math.random() * 15);
+            // multiplying index * 3 randomized the coloring of the 15 cubes over the entirety of the tree.
+           // cubes[index * 3].color = [1, 1, 1];
+            cubes[index * 3].color = [Math.random(), Math.random(),Math.random()];
+        }, 1000);
+
+        // start rendering
+        r.render();
+        };
+    };
+
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

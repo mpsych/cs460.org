@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+  <head>
+    <meta content = "text/html;charset=utf-8" http-euiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+html, body { 
+  background-color:#000;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden !important;  
+}
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+    <script type="text/javascript">
+      window.onload = function() {
+        // this gets called when the site is ready
+        // create a new scene and renderer
+        r = new X.renderer3D();
+        r.init();
+        var eyes= [];
+        var mouth = [];
+        var Red = [1, 0, 0];
+        var White = [1, 1, 1];
+        var Cyan  = [0, 1, 1];
+        var Black = [0, 0, 1]
+        var eyesBlinked = false;
+        var mouthBlinked = false;
+
+        drawColumn([25*1, 0, 0], 6, White); // column 1
+
+        drawColumn([25*2, 25, 0], 2, White); // starting column 2 with 2 cubes.
+        drawColumn([25*2, 75, 0], 1, Cyan, true); // eye blinks ...
+        drawColumn([25*2, 100, 0], 3, White);
+
+        drawColumn([25*3, 50, 0], 1, White); // starting column 3 with 1 cube.
+        drawColumn([25*3, 75, 0], 1, Cyan, true); // eye blinks ...
+        drawColumn([25*3, 100, 0], 4, White);
+
+        drawColumn([25*4, 50, 0], 4, White); // starting column 4 with 4 cubes.
+        drawColumn([25*4, 150, 0], 1, Red, mouthBlinked); // mouth blinks ...
+        drawColumn([25*4, 175, 0], 1, White);
+
+        drawColumn([25*5, 50, 0], 1, White); // starting column 5 with 1 cube.
+        drawColumn([25*5, 75, 0], 1, Cyan, true); // eye blinks ...
+        drawColumn([25*5, 100, 0], 4, White);
+
+        drawColumn([25*6, 25, 0], 2, White); // starting column 6 with 2 cubes.
+        drawColumn([25*6, 75, 0], 1, Cyan, true); // eye blinks ..
+        drawColumn([25*6, 100, 0], 3, White);
+
+        drawColumn([25*7, 0, 0], 6, White); // whole column 7.
+
+        // render everything!
+        r.camera.position = [0, 0, -100];
+        r.render();
+
+        // animation
+		    setInterval(function() {
+          if(!eyesBlinked) {
+            for (e in eyes) {
+              eyes[e].color = Cyan;
+              eyes.opcacity = 0.7;
+            }
+            eyesBlinked = true;
+          } else {
+            for (e in eyes) {
+              eyes[e].color = White;
+              eyes.opcacity = 0.7;
+            }
+            eyesBlinked = false;
+          }
+
+          if(!mouthBlinked) {
+            for (i in mouth) {
+              mouth[i].color = Red;
+              mouth.opacity = 0.7;
+            }
+            mouth = true;
+          } else {
+            for (i in mouth) {
+              mouth[i].color = Black;
+              mouth.opacity = 0.7;
+            }
+            mouth = false;
+          }
+        }, 1000);
+
+        function drawColumn(start, howMany, color, keep_track, keepTrack) {
+          for(var i = 0; i < howMany; i++) {
+            column = new X.cube();
+            column.color = color;
+            column.center = [start[0], start[1]+i*20+i*5, start[2]];
+            r.add(column);
+
+            if(keep_track) {
+              eyes.push(column);
+            }
+            if(keepTrack) {
+              mouth.push(column);
+            }
+          }
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <h1> CS460 Assignment 2 </h1>
+    <div id="logo"> <img style="height:60px" src="gfx/cs460.png"> </div>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<html>
+	<head>
+		<title>CS460 Assignment 02 </title>
+		<style>
+			body {
+				background-color: black;
+				color: white; /* font color */
+				font-family: sans-serif;
+			}
+			#logo {
+				position: absolute;
+				right: 10px; /*10px from the right side */
+				top: 10px; /*10 px from top*/
+			}
+		</style>
+		<!-- add xtk framework -->
+		<script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				// console.log('loads once the whole website including all libraries is erady')
+
+				//new renderer (the var keyword makes it private,
+				// removing it makes it public
+				var r = new X.renderer3D();
+				r.init();
+
+				var count = 0
+				var dex = 0
+				var eyes = []
+				// loop to create many cubes as a 2D
+				for (var i=0; i<7; i++) {
+					for (var j=0; j<6; j++) {
+						c = new X.cube();
+						c.lengthX = 7;
+						c.lengthY = 7;
+						c.lengthZ = 7;
+						c.center = [i*9, 0, j*9 + count];
+						//fox eyes
+						if ((j == 3 && (i == 1 || i == 5)) || (j == 4 && (i == 2 || i == 4))) {
+							c.color = [1, 1, 1];
+							eyes[dex] = c;
+							dex += 1;
+						}
+						// fox nose
+						else if (i == 3 && j == 1) {
+							c.color = [1, 0, 0];
+						}
+						// fox skin
+						else {
+							c.color = [0.6, 0.3, 0.1];
+						}
+						r.add(c);
+					}
+					if (i < 2) {
+						count -= 9;
+					}
+					if (i > 3) {
+						count += 9;
+					}
+				}
+				r.render();
+
+		eyesClosed = false;
+		setInterval(function() {
+			for (i = 0; i < eyes.length; i++) {
+				eyes[i].color = [1, 1, 1];
+			}
+			//eyesClosed = true;
+		}, 700);
+
+		setInterval(function() {
+			for (i = 0; i < eyes.length; i++) {
+				eyes[i].color = [0.5, 0.2, 0.1];
+			}
+			//eyesClosed = false;
+		}, 900);
+
+				/*
+				//create a cube
+				var c = new X.cube();
+
+				//change color property of the cube
+				c.color = [0, 1, 0]; //R G B
+
+				//adjust size in x direction
+				c.lengthX = 50;
+
+				//adjust center of the object on coordinate plane
+				c.center = [0, 0, 0];
+
+				//add to the scene
+				r.add(c);
+
+				//example make new cube and add to scene
+				var c2 = new X.cube();
+				c2.color = [1, 0, 0];
+				r.add(c2);
+
+				//start rendering
+				r.render();
+				*/
+			};
+		</script>
+		<!-- inline javascript in html -->
+		<!-- from class prior to hw1 -->
+		<!--
+		<script type='text/javascript'>
+			window.onload = function() {
+				var mytext = 'hello students!';
+				var mynumber = 8;
+				var myfloat = 3.1415;
+				var myboolean = true;
+				<!-- automatic cast mynumber to a string from int --
+				console.log(mytext + mynumber);
+				<!-- does not cast --
+				console.log(mytext, mynumber, myfloat);
+				<!-- Try these in console:
+					parseInt(mynumber)
+					typeof "myboolean"
+				-->
+				<!-- This is produce an error because output is not defined yet, unless if you load the page first as a function, as done above. --
+				document.getElementById('output').
+					innerHTML = 'hello';
+			}
+		</script>
+		-->
+
+	</head>
+
+	<body>
+		<h1>CS460 Assignment 2</h1>
+		<img id='logo' src='gfx/cs460.png'style='
+			height:60px'>
+		<div id= 'output'></div>
+	</body>
+<html>

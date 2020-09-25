@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    
+    <script type="text/javascript" src="http://get.goXTK.com/xtk_edge.js"></script>
+
+    <script type="text/javascript">
+
+    window.onload = function() {
+
+      // this gets called when the site is ready
+
+      // create a new scene and renderer
+      r = new X.renderer3D();
+      r.init();
+
+      // tree: (1: green cube, 0: nothing)
+      tree = [
+        [0, 0, 0, 0, 1, 0, 0, 0, 0],
+        [0, 0, 0, 1, 1, 1, 0, 0, 0],
+        [0, 0, 0, 1, 1, 1, 0, 0, 0],
+        [0, 1, 1, 1, 1, 1, 1, 1, 0],
+        [0, 1, 1, 1, 1, 1, 1, 1, 0],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [0, 0, 0, 1, 1, 1, 0, 0, 0],
+        [0, 0, 0, 1, 1, 1, 0, 0, 0]
+      ]
+
+      edge = [
+        [0, 0, 0, 0, 2, 0, 0, 0, 0],
+        [0, 0, 0, 2, 1, 2, 0, 0, 0],
+        [0, 0, 0, 2, 1, 2, 0, 0, 0],
+        [0, 2, 2, 1, 1, 1, 2, 2, 0],
+        [0, 2, 1, 1, 1, 1, 1, 2, 0],
+        [2, 1, 1, 1, 1, 1, 1, 1, 2],
+        [2, 2, 2, 1, 1, 2, 2, 2, 2],
+        [0, 0, 0, 2, 1, 2, 0, 0, 0],
+        [0, 0, 0, 2, 2, 2, 0, 0, 0]
+      ]
+
+      var lights = [];
+      for ( var i = 0; i < 9; i++) {
+        for ( var j = 0; j < 9; j++) {
+          if (tree[i][j]==1){
+            c = new X.cube();
+            c.center = [j * 50, -i * 50, 0];
+            c.lengthX = c.lengthY = c.lengthZ = 40;          
+            c.color = [0, 1, 0];           
+            r.add(c);
+
+            // save cubes on the edge of the tree to lights
+            if (edge[i][j]==2){
+              lights.push(c);
+            }
+
+          }                  
+        }
+      }
+
+
+      // render everything!
+      r.render();
+
+      // set camera further away!
+      r.camera.position = [0, 0, 1000];
+
+      //Bonus part: add animation
+      // tree: (1: green cube, 0: nothing, 2: edges)
+      
+
+
+      setInterval(function() {
+      // your code
+      for (let i=0; i<Math.floor(Math.random() * lights.length);i++)      
+        lights[Math.floor(Math.random() * lights.length)].color = 
+            [Math.random(), Math.random(),Math.random()]   
+      }, 1000);
+
+
+      // render everything!
+      r.render();
+
+    };
+
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

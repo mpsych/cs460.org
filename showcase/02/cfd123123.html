@@ -1,0 +1,121 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;
+      }
+ 
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    
+    <script type="text/javascript" src="http://get.goXTK.com/xtk_edge.js"></script>
+ 
+    <script type="text/javascript">
+
+    // defined a 9*9 2D array 
+        arr =  [[0,0,0,0,1,0,0,0,0],
+                [0,0,0,1,1,1,0,0,0],
+                [0,0,0,1,1,1,0,0,0],
+                [0,1,1,1,1,1,1,1,0],
+                [0,1,1,1,1,1,1,1,0],
+                [1,1,1,1,1,1,1,1,1],
+                [1,1,1,1,1,1,1,1,1],
+                [0,0,0,1,1,1,0,0,0],
+                [0,0,0,1,1,1,0,0,0]];
+    
+        
+    window.onload = function(){
+            var r = new X.renderer3D();
+            r.init();
+            cubes = []; // to store cubes
+            //generate tree
+            for(var i = 0; i < arr.length; i++){
+                for(var j = 0; j < arr[i].length; j++){
+                    if(arr[8-j][i] == 1){
+                        c = new X.cube();
+                        c.center =  [i*30,j*30,0];
+                        c.lengthX = c.lengthY =c.lengthZ= 25; 
+                        c.color = [0,1,0];  
+                        cubes.push(c);                    
+                        r.add(c);                         
+                    }
+                }
+            }
+            
+            // make several cube to change color among blue. red and yellow
+            cubeBlue = false;
+            cubeRed = false;
+            cubeYellow = false;
+            setInterval(function(){  
+                c1 = cubes[1];
+                c2 = cubes[44];
+                c3 = cubes[33];
+                c4 = cubes[16];
+                c5 = cubes[6];
+                c6 = cubes[35];
+                c7 = cubes[21];
+                if(cubeBlue){
+                    c1.color = [255,255,0];
+                    c2.color = [255,255,0];
+                    c3.color = [255,255,0];
+                    c4.color = [255,255,0];
+                    c5.color = [255,255,0];
+                    c6.color = [255,255,0];
+                    c7.color = [255,255,0];
+                    cubeBlue = false;
+                    cubeYellow = true;
+                }else if(cubeRed){
+                    c1.color = [0,0,1];
+                    c2.color = [0,0,1];
+                    c3.color = [0,0,1];
+                    c4.color = [0,0,1];
+                    c5.color = [0,0,1];
+                    c6.color = [0,0,1];
+                    c7.color = [0,0,1];
+                    cubeRed = false;
+                    cubeBlue = true; 
+                }else{
+                    c1.color = [1,0,0];
+                    c2.color = [1,0,0];
+                    c3.color = [1,0,0];
+                    c4.color = [1,0,0];
+                    c5.color = [1,0,0];
+                    c6.color = [1,0,0];
+                    c7.color = [1,0,0];
+                    cubeYellow = false;
+                    cubeRed = true;
+                }
+            },1000);
+         
+        // set camera further away!
+        r.camera.position = [0, 0, 1000];
+        r.render();
+        
+        //set rotate;
+        r.onRender = function(){
+             r.camera.rotate([4,0]);
+        };
+        
+
+    };
+ 
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

@@ -1,0 +1,146 @@
+
+<html>
+  <head>
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+
+    <script type="text/javascript">
+      // Creates n*n grid of cubes.
+      // Returns the cubes array so we can manipulate them.
+      function setup(n) {
+          var r = new X.renderer3D();
+          r.init();
+          let cubes = [];
+          for (var i = 0; i < n; i++) {
+            let cube = [];
+            for (var j = 0; j < n; j++) {
+              c = new X.cube();
+              c.lengthX = 5;
+              c.lengthY = 5;
+              c.lengthZ = 5;
+              c.color = [0,0,0];
+              c.center = [5.5*j,0,5.5*i];
+              cube.push(c);
+              r.add(c);
+            }
+            cubes.push(cube);
+          }
+          r.camera.position = [0,200,0];
+          r.render();
+
+          return cubes;
+      };
+
+      function interpret(num) {
+        switch(num) {
+          case 1: //black
+            return [0,0,0];
+          case 0: //white
+            return [1,1,1];
+          case 2: //red
+            return [1,0,0];
+          case 3: //green
+            return [0,1,0];
+          case 4: //blue
+            return [0,0,1];
+          case 5: //grey
+            return [0.5,0.5,0.5];
+          case 6: //dark red
+            return [0.7,0,0];
+          case 7: // very dark red (i think)...
+            return [0.3,0,0];
+          default:
+            return [1,1,1];
+        }
+      };
+
+      function recolor(cubes,input) {
+        var n = input.length;
+        for (var i = 0; i < n; i++) {
+          for (var j = 0; j < n; j++) {
+            cubes[n-1-i][j].color = interpret(input[i][j]);
+          }
+        }
+      };
+
+      function maketransparent() {
+        var n = cubes.length;
+        for (var i = 0; i < n; i++) {
+          for (var j = 0; j < n; j++) {
+            if (transparent[i][j] == 0 ) {
+              cubes[n-1-i][j].opacity = 0;
+            }
+          }
+        }
+      };
+
+      // animate blinking by recoloring.
+      function animateBlink() {
+        setInterval(function() {
+          recolor(cubes,blinkfox);
+        }, 1000);
+        setInterval(function() {
+          recolor(cubes,redfox);
+        }, 1500);
+
+      };
+
+      window.onload = function() {
+        transparent = [[0,1,0,0,0,0,0,1,0],
+                     [0,1,1,0,0,0,1,1,0],
+                     [0,1,2,0,0,0,2,1,0],
+                     [0,2,2,2,2,2,2,2,0],
+                     [0,2,1,1,2,1,1,2,0],
+                     [0,2,2,2,2,2,2,2,0],
+                     [0,2,2,2,2,2,2,2,0],
+                     [0,0,2,2,1,2,2,0,0],
+                     [0,0,0,1,1,1,0,0,0]];
+
+        redfox = [[1,5,1,1,1,1,1,5,1],
+                 [1,5,5,1,1,1,5,5,1],
+                 [1,0,5,1,1,1,5,0,1],
+                 [1,6,2,2,2,2,2,6,1],
+                 [1,6,6,1,2,1,6,6,1],
+                 [1,6,6,1,2,1,6,6,1],
+                 [1,0,6,6,2,6,6,0,1],
+                 [1,1,0,6,2,6,0,1,1],
+                 [1,1,1,0,1,0,1,1,1]];
+
+        blinkfox = [[1,5,1,1,1,1,1,5,1],
+                   [1,5,5,1,1,1,5,5,1],
+                   [1,0,5,1,1,1,5,0,1],
+                   [1,6,2,2,2,2,2,6,1],
+                   [1,6,6,2,2,2,6,6,1],
+                   [1,6,7,7,2,7,7,6,1],
+                   [1,0,6,6,2,6,6,0,1],
+                   [1,1,0,6,2,6,0,1,1],
+                   [1,1,1,0,1,0,1,1,1]];
+
+          // new renderer
+          cubes = setup(9);
+          maketransparent();
+          recolor(cubes,redfox);
+          animateBlink();
+      };
+    </script>
+
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>
