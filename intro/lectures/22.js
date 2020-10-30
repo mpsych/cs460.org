@@ -1,10 +1,10 @@
 frames = ['content1', 'content2', 'content3', 'content4', 'content5', null];
 times = [0, // Today... 
-         1000, // 
-         3500, // And
-         4500, // 
-         7300, // this is lecture 19
-         13000];
+         1500, // 
+         5000, // And
+         7000, // 
+         9300, // this is lecture 19
+         15000];
 
 
 document.getElementById("content").innerHTML = "\
