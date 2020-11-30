@@ -1,5 +1,5 @@
 frames = ['content1', 'content2', 'content2b', 'content3', 'content4', 'content5', 'content6', 'content7', 'content8', 'content9', 'content10', 'content11', 
-// 'content12', 
+'content12', 
 'content13', null];
 times = [0, // Today... 
          1300, // 
@@ -14,9 +14,8 @@ times = [0, // Today...
          39200,
          47400,
          58599,
-         // 63600,
-         // 72000];
-         65000];
+         63600,
+         72000];
 
      
 document.getElementById("content").innerHTML = "\
