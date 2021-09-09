@@ -40,7 +40,7 @@ University Hall Y04-4170
 Office Hours
 Mondays, Wednesdays, Fridays
 11:00am-12:00pm and by request
-McCormack M-3-0201-02, please use https://calendly.com/haehn/ to reserve a slot.
+McCormack M-3-0201-20, please use https://calendly.com/haehn/ to reserve a slot.
 
 
 Blackboard Access
@@ -56,7 +56,7 @@ Please direct questions and concerns of any kind (now and during the semester) t
 staff@cs460.org.
 
 Course Structure
-41 Lectures
+38 Lectures
 10 Assignments (30% of final grade, plus 10% bonus)
 13 Quizzes (20% of final grade, take-home through blackboard)
 Final Project (40% of final grade)
