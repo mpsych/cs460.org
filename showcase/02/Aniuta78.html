@@ -1,0 +1,196 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color:burlywood;
+        color: white; /* font color */
+        font-family: sans-serif;
+        overflow: hidden !important;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    <script type="text/javascript" 
+    src="https://get.goXTK.com/xtk_edge.js"></script>
+    <script type="text/javascript">
+    
+  
+
+    window.onload = function() {
+
+      // create a 3d renderer
+      r = new X.renderer3D();
+      r.init();
+      
+      var cubAgap = 25;
+      // row1
+      for(var i=0; i<9; i++){
+        c1 =  new X.cube();
+        c1.center = [cubAgap+ (i*cubAgap), 0, 0];
+
+        if (i == 1 || i == 7){
+          c1.color = [1, .6, 0];
+        }else{
+          c1.color = [0, 0, 0];
+        }
+
+        r.add(c1);
+      }
+        
+      //row 2
+      for(var i=0; i<9; i++){
+        c2 =  new X.cube();
+        c2.center = [cubAgap+ (i*cubAgap), 0, -cubAgap];
+
+        if (i == 1 || i == 2 || i == 6 || i == 7){
+          c2.color = [1, .6, 0];
+        }else{
+          c2.color = [0, 0, 0];
+        }
+
+        r.add(c2);
+      }
+      //row 3 
+      for(var i=0; i<9; i++){
+        c3 =  new X.cube();
+        c3.center = [cubAgap+ (i*cubAgap), 0, -cubAgap*2];
+
+        if (i == 1 || i == 2 || i == 6 || i == 7){
+          c3.color = [1, .6, 0];
+        }else{
+          c3.color = [0, 0, 0];
+        }
+
+        r.add(c3);        
+      }
+      //row 4
+      for(var i=0; i<9; i++){
+        c4 =  new X.cube();
+        c4.center = [cubAgap+ (i*cubAgap), 0, -cubAgap*3];
+
+        if (i == 0 || i == 8){
+          c4.color = [0, 0, 0];
+        }else{
+          c4.color = [1, .6, 0];
+        }
+
+        r.add(c4);
+      }
+      //row 5
+      for(var i=0; i<9; i++){
+        c5 =  new X.cube();
+        c5.center = [cubAgap+ (i*cubAgap), 0, -cubAgap*4];
+
+        if (i == 0 || i == 8){
+          c5.color = [0, 0, 0];
+        }else if (i == 1 || i == 4 || i == 7 ){
+          c5.color = [1, .6, 0];
+        }else if (i == 2 || i == 3){
+          c5.color = [.4, 1, 0];
+          
+          if(i==2){
+            eyeCubeLeft = c5;
+            eyeCubeLeft.toggle= false;
+          }
+
+          if(i==3){
+            eyeCubeRight = c5;
+          }
+          
+          function toggle(){
+            eyeCubeLeft.toggle = !eyeCubeLeft.toggle; 
+            if(eyeCubeLeft.toggle){
+              eyeCubeLeft.color = [1, .6, 0];
+              eyeCubeRight.color = [1, .6, 0];
+              setTimeout(toggle, 200);
+            }else{
+              eyeCubeLeft.color = [.4, 1, 0];
+              eyeCubeRight.color = [.4, 1, 0];
+              setTimeout(toggle, 1000);
+            }
+            eyeCubeLeft.modified();
+            eyeCubeRight.modified();
+          }
+
+          if(i == 2)
+            setTimeout(toggle, 1000);
+            //setInterval(toggle, 500);         
+        }else{
+          c5.color = [.4, 1, 0];
+        }
+
+        r.add(c5);
+      }
+      //row 6
+      for(var i=0; i<9; i++){
+        c6 =  new X.cube();
+        c6.center = [cubAgap+ (i*cubAgap), 0, -cubAgap*5];
+
+        if (i == 0 || i == 8){
+          c6.color = [0, 0, 0];
+        }else{
+          c6.color = [1, .6, 0];
+        }
+
+        r.add(c6);
+      }
+      //row 7
+      for(var i=0; i<9; i++){
+        c7 =  new X.cube();
+        c7.center = [cubAgap+ (i*cubAgap), 0, -cubAgap*6];
+        
+        if (i == 0 || i == 8){
+          c7.color = [0, 0, 0];
+        }else{
+          c7.color = [1, .6, 0];
+        }
+
+        r.add(c7);      
+      }
+      //row 8
+      for(var i=0; i<9; i++){
+        c8 =  new X.cube();
+        c8.center = [cubAgap+ (i*cubAgap), 0, -cubAgap*7];
+        
+        if (i == 0 || i == 1 || i == 7 || i == 8){
+          c8.color = [0, 0, 0];
+        }else if (i == 4) {
+          c8.color = [1, 0, 0];
+        }else{
+          c8.color = [1, .6, 0];
+        }
+      
+        r.add(c8);
+      }
+      //row 9
+      for(var i=0; i<9; i++){
+        c9 =  new X.cube();
+        c9.center = [cubAgap+ (i*cubAgap), 0, -cubAgap*8];
+
+        if (i == 3 || i == 4 || i == 5){
+          c9.color = [1, .6, 0];
+        }else{
+          c9.color = [0, 0, 0];
+        }
+      
+        r.add(c9);      
+      }
+
+        //start the rendering
+        r.camera.position = [0, -600, 0];
+        r.render();
+    };
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

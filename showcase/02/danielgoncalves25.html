@@ -1,0 +1,120 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        overflow: hidden !important;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    <script
+      type="text/javascript"
+      src="https://get.goXTK.com/xtk_edge.js"
+    ></script>
+
+    <script type="text/javascript">
+      window.onload = function () {
+        // Function was not created by me,
+        // I got copied it from the JavaScript Documentation
+        function getRandomInt(min, max) {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+          return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        // define colors
+        const RED = [1, 0, 0];
+        const GREEN = [0, 1, 0];
+        const BLUE = [0, 0, 1];
+        const YELLOW = [1, 1, 0];
+        const BLACK = [0, 0, 0];
+
+        const lights = [RED, BLUE, YELLOW];
+
+        //Create scene/render
+        r = new X.renderer3D();
+        r.init();
+        r.camera.position = [0, 0, 500];
+
+        cubeMatrix = [];
+
+        // Number of green cubes at the ith row
+        greenCubes = [1, 3, 3, 7, 7, 9, 9, 3, 3];
+        middle = Math.floor(9 / 2);
+
+        // Initalize 9x9 cubes and create a Matrix to hold
+        // each cube so I can change the colors later
+        for (var i = 0; i < 9; i++) {
+          cubeMatrix.push([]);
+          for (var j = 0; j < 9; j++) {
+            cube = new X.cube();
+            cube.center = [i * 23, j * 23, 0];
+            cube.color = BLACK;
+            r.add(cube);
+            cubeMatrix[i].push(cube);
+          }
+          cubeMatrix[i].reverse();
+        }
+        // Fills in the nessesary cubes in Green color
+        // so it looks like a pine tree
+        for (var i = 0; i < 9; i++) {
+          maxGreen = greenCubes[i];
+          cubeMatrix[middle][i].color = GREEN;
+          sum = 1;
+          left = middle - 1;
+          right = middle + 1;
+          while (sum < maxGreen) {
+            cubeMatrix[left][i].color = GREEN;
+            cubeMatrix[right][i].color = GREEN;
+            left -= 1;
+            right += 1;
+            sum += 2;
+          }
+        }
+
+        r.render();
+
+        // Keep track of cubes that color was changed
+        lightUpCubes = [];
+        numOfLightCubes = 0;
+
+        // Change a cubes color every half second
+        lightTree = setInterval(() => {
+          if (numOfLightCubes != 7) {
+            row = getRandomInt(0, 8);
+            col = getRandomInt(0, 5);
+            while (cubeMatrix[row][col].color == BLACK) {
+              row = getRandomInt(0, 8);
+              col = getRandomInt(0, 5);
+            }
+            newColor = getRandomInt(0, 2);
+            cubeMatrix[row][col].color = lights[newColor];
+            numOfLightCubes += 1;
+            lightUpCubes.push(cubeMatrix[row][col]);
+          }
+        }, 500);
+
+        // Change a cube back to Green every second
+        setInterval(() => {
+          lightUpCubes[0].color = GREEN;
+          lightUpCubes.shift();
+          numOfLightCubes -= 1;
+        }, 1000);
+      };
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height: 40px" src="gfx/cs460.png" /></div>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+	
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        overflow: hidden !important;
+      }
+ 
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+    <script type="text/javascript">
+ 
+    window.onload = function() {
+ 
+      // this gets called when the site is ready
+      r = new X.renderer3D();
+      r.init();
+      
+      //create a cube
+      //c = new X.cube();
+      //c.color = [1., .7, .7];//rgb color
+
+      
+      //add another cube
+      /*c2 = new X.cube();
+      c2.center = [20, 0, 0];//move 20 in X-direction
+      
+      c3 = new X.cube();
+      c3.center = [0, 20, 0]; //move 20 in y-direction
+      */
+      
+      //creat a circle with radius of 12 
+      for (var i = 0; i < 25; i += 1){
+        for(var j = 0; j < 25; j += 1){
+          if ((i-13)*(i-13) + (j-13) * (j-13) < 144 ) {
+            if ( (j == 14 || j == 13 || j == 12) || (i == 9|| i == 10|| i ==11) ){
+              c4 = new X.cube();
+              c4.center = [j * 25, i * 25, 0]
+              c4.color = [255%i, 0, 0];
+            }
+            //hide a circle with radius of 9 then the larger circle becomes a sharp moon
+            else if ( (i-9)*(i-9) + (j-9) * (j-9) < 81){
+              c4 = new X.cube();
+              c4.center = [j * 25, i * 25, 0]
+              c4.visible = false;
+            }
+            else{
+              c4 = new X.cube();
+              c4.center = [j * 25, i * 25, 0]
+              c4.color = [255%i, 215%j, 0];
+            }
+            r.add(c4);
+
+          }
+        }
+      }
+
+      //create a skull object
+      var skull = new X.mesh();
+      skull.file = 'http://x.babymri.org/?skull.vtk';
+      skull.opacity = 0.4;
+      r.add(skull);
+      //camera positon 
+      r.camera.position = [0, 30, 400];
+      r.onRender = function() {
+        skull.transform.rotateZ(1);
+        r.camera.rotate([0,1]);
+      }
+
+      // skull apears and vanishes
+      setInterval(function(){
+                skull.visible = false;
+      }, 1000);
+      setInterval(function(){
+                skull.visible = true;
+      }, 1200);
+      
+      //add the cube to the renderer
+      //r.add( c );
+      //r.add( c2 );
+      //r.add( c3 );
+      
+      //start the rendering
+      r.render();
+ 
+    };
+ 
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

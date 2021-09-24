@@ -1,0 +1,92 @@
+<html>
+    <head>   
+        <title>CS460 Assignment 2</title>  
+        <style>
+            body {
+                margin: 0px;
+                background-color: black;
+            }
+            #header {
+                color: white;
+                font-family: sans-serif;
+                position: absolute;
+            }
+            #logo {
+                height: 60px;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+        </style>
+        <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js">
+        </script>
+        <script type='text/javascript'>
+            // javascript code here
+
+            // gets executed when the page is fully loaded
+            window.onload = function() {
+                // create a 3D renderer             
+                r = new X.renderer3D();
+                r.init();
+
+                // CREDITS: Tung Duong, a fellow classmate, helped come up with 
+                // this more efficient approach, as opposed to my original plan 
+                // of using nested for loops! I also drew inspiration from how
+                // LaTeX sets labels to different colors.
+                var tree = [[0,0,0,0,2,0,0,0,0],
+                            [0,0,0,1,1,1,0,0,0],
+                            [0,0,0,2,1,1,0,0,0],
+                            [0,1,1,1,1,2,1,1,0],
+                            [0,1,1,2,1,1,1,1,0],
+                            [1,1,1,1,1,1,1,2,1],
+                            [2,1,1,1,1,2,1,1,1],
+                            [0,0,0,1,1,1,0,0,0],
+                            [0,0,0,1,1,1,0,0,0]];
+                
+                var effect = [], c = 0;
+                for (var i = 0; i < 9; i++) {
+                    for (var j = 0; j < 9; j++) {
+                        pix = new X.cube();
+                        pix.center = [30 + (i*30), 30*j,0];
+                        if (tree[i][j] == 0) {
+                            pix.color = [0,0,0];
+                        }
+                        if (tree[i][j] == 1) {
+                            pix.color = [0,1,0];                         
+                        }
+                        if (tree[i][j] == 2) {
+                            pix.color = [1,0,1];                                            
+                            effect[c++] = pix;       
+                        }
+                        r.add(pix);
+                    }
+                }
+
+                // start the render call
+                r.render();
+                r.camera.position = [1, 1, 1000];
+                var pink = true;
+                setInterval(function() {
+                    if (effect[0].color[2] == 1) {
+                        pink = true;
+                    }
+                    else pink = false;
+                    for(var i = 0; i < c; i++){
+                        if (pink)
+                            effect[i].color=[1,1,0];
+                        else
+                            effect[i].color=[1,0,1];
+                     }
+                }, 1000);
+                //r.render();
+            }
+
+        </script>
+    </head>
+    <body>
+        <h1 id="header">CS460 Assignment 2</h1>
+        <div id = "logo"><img style="height:60px;" src ="gfx/cs460.png">
+        </div> 
+    </body>
+
+</html>

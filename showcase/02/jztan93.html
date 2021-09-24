@@ -1,0 +1,118 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;
+      }
+ 
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    
+    <script type="text/javascript" src="http://get.goXTK.com/xtk_edge.js"></script>
+ 
+    <script type="text/javascript">
+ 
+    window.onload = function() {
+ 
+      // this gets called when the site is ready
+ 
+      // create a new scene and renderer
+      r = new X.renderer3D();
+      r.init();
+      
+      // create a new array of size 8x7
+      const m = 8;
+      const n = 7; 
+      let arr = new Array(m);
+      for (var i = 0; i < m; i++) {
+        arr[i] = new Array(n);
+      }
+
+      // loop through empty array and populate it with X.cube() objects
+      for (var i = 0; i < 7; i++) {
+        for (var j = 0; j < 8; j++) {
+          arr[i][j] = new X.cube();
+          arr[i][j].center = [30 + (i*30), 30 + (j*30), 0];
+          r.add(arr[i][j]);
+        }
+      }
+
+      //row 1
+      arr[1][7].visible = false;
+      arr[2][7].visible = false;
+      arr[3][7].visible = false;
+      arr[4][7].visible = false;
+      arr[5][7].visible = false;
+
+      //row 2
+      arr[2][6].visible = false;
+      arr[3][6].visible = false;
+      arr[4][6].visible = false;
+
+      //row 4 with the eyes
+      arr[1][4].color = [.1, 1, 1];
+      arr[2][4].color = [.1, 1, 1];
+      arr[4][4].color = [.1, 1, 1];
+      arr[5][4].color = [.1, 1, 1];
+
+      //row 7
+      arr[0][1].visible = false;
+      arr[3][1].color = [1, 0, 0];
+      arr[6][1].visible = false;
+
+      //row 8
+      arr[0][0].visible = false;
+      arr[1][0].visible = false;
+      arr[5][0].visible = false;
+      arr[6][0].visible = false;
+
+      // set camera further away!
+      r.camera.position = [0, 0, 1000];
+ 
+      // render everything!
+      r.render();
+
+      var openeye = false;
+      setInterval(function() {
+
+        if (!openeye) {
+
+          arr[1][5].color = [.1, 1, 1];
+          arr[2][5].color = [.1, 1, 1];
+          arr[4][5].color = [.1, 1, 1];
+          arr[5][5].color = [.1, 1, 1];
+          openeye = true;
+
+        } else {
+
+          arr[1][5].color = [1, 1, 1];
+          arr[2][5].color = [1, 1, 1];
+          arr[4][5].color = [1, 1, 1];
+          arr[5][5].color = [1, 1, 1];
+          openeye = false;
+          
+        }
+      }, 1000);
+ 
+    };
+ 
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="../../cs460.png"></div>
+  </body>
+</html>

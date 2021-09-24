@@ -1,0 +1,381 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    
+    <script type="text/javascript" src="http://get.goXTK.com/xtk_edge.js"></script>
+
+    <script type="text/javascript">
+
+    window.onload = function() {
+
+      // this gets called when the site is ready
+
+      // create a new scene and renderer
+      r = new X.renderer3D();
+      r.init();
+
+      // create a cube and add it!
+      // c = new X.cube();
+      // c2 = new X.cube();
+      // c2.center = [20,0,0];
+      var gap = 1;
+      var cube_length = 20;
+
+      //add the cubes
+      // r.add(c); 
+      // r.add(c2);
+
+
+
+
+
+      // make a chess board
+
+      // ROW 1
+      g1 = new X.cube();
+      g1.center = [20,0,0];
+      r.add(g1);
+
+      w1 = new X.cube();
+      w1.center = [40,0,0];
+      w1.color = [0,5,0];
+      r.add(w1);
+
+
+      g2 = new X.cube();
+      g2.center = [60,0,0];
+      r.add(g2);
+
+      w2 = new X.cube();
+      w2.center = [80,0,0];
+      w2.color = [0,5,0];
+      r.add(w2);
+
+      g3 = new X.cube();
+      g3.center = [100,0,0];
+      r.add(g3);
+
+      w3 = new X.cube();
+      w3.center = [120,0,0];
+      w3.color = [0,5,0];
+      r.add(w3);
+
+      g4 = new X.cube();
+      g4.center = [140,0,0];
+      r.add(g4);
+
+      w4 = new X.cube();
+      w4.center = [160,0,0];
+      w4.color = [0,5,0];
+      r.add(w4);
+
+
+      //ROW 2
+
+      g5 = new X.cube();
+      g5.center = [40,23,0];
+      r.add(g5);
+
+      w5 = new X.cube();
+      w5.center = [20,23,0];
+      w5.color = [0,5,0];
+      r.add(w5);
+
+
+      g6 = new X.cube();
+      g6.center = [80,23,0];
+      r.add(g6);
+
+      w6 = new X.cube();
+      w6.center = [60,23,0];
+      w6.color = [0,5,0];
+      r.add(w6);
+
+      g7 = new X.cube();
+      g7.center = [120,23,0];
+      r.add(g7);
+
+      w7 = new X.cube();
+      w7.center = [100,23,0];
+      w7.color = [0,5,0];
+      r.add(w7);
+
+      g8 = new X.cube();
+      g8.center = [160,23,0];
+      r.add(g8);
+
+      w8 = new X.cube();
+      w8.center = [140,23,0];
+      w8.color = [0,5,0];
+      r.add(w8);
+
+      //row 3
+      g9 = new X.cube();
+      g9.center = [20,46,0];
+      r.add(g9);
+
+      w9 = new X.cube();
+      w9.center = [40,46,0];
+      w9.color = [0,5,0];
+      r.add(w9);
+
+
+      g10 = new X.cube();
+      g10.center = [60,46,0];
+      r.add(g10);
+
+      w10 = new X.cube();
+      w10.center = [80,46,0];
+      w10.color = [0,5,0];
+      r.add(w10);
+
+      g11 = new X.cube();
+      g11.center = [100,46,0];
+      r.add(g11);
+
+      w11 = new X.cube();
+      w11.center = [120,46,0];
+      w11.color = [0,5,0];
+      r.add(w11);
+
+      g12 = new X.cube();
+      g12.center = [140,46,0];
+      r.add(g12);
+
+      w12 = new X.cube();
+      w12.center = [160,46,0];
+      w12.color = [0,5,0];
+      r.add(w12);
+
+      // row 4 
+
+      
+      g13 = new X.cube();
+      g13.center = [40,70,0];
+      r.add(g13);
+
+      w13 = new X.cube();
+      w13.center = [20,70,0];
+      w13.color = [0,5,0];
+      r.add(w13);
+
+
+      g14 = new X.cube();
+      g14.center = [80,70,0];
+      r.add(g14);
+
+      w14 = new X.cube();
+      w14.center = [60,70,0];
+      w14.color = [0,5,0];
+      r.add(w14);
+
+      g15 = new X.cube();
+      g15.center = [120,70,0];
+      r.add(g15);
+
+      w15 = new X.cube();
+      w15.center = [100,70,0];
+      w15.color = [0,5,0];
+      r.add(w15);
+
+      g16 = new X.cube();
+      g16.center = [160,70,0];
+      r.add(g16);
+
+      w16 = new X.cube();
+      w16.center = [140,70,0];
+      w16.color = [0,5,0];
+      r.add(w16);
+
+      // row 5 
+
+      g17 = new X.cube();
+      g17.center = [20,93,0];
+      r.add(g17);
+
+      w17 = new X.cube();
+      w17.center = [40,93,0];
+      w17.color = [0,5,0];
+      r.add(w17);
+
+
+      g18 = new X.cube();
+      g18.center = [60,93,0];
+      r.add(g18);
+
+      w18 = new X.cube();
+      w18.center = [80,93,0];
+      w18.color = [0,5,0];
+      r.add(w18);
+
+      g19 = new X.cube();
+      g19.center = [100,93,0];
+      r.add(g19);
+
+      w19 = new X.cube();
+      w19.center = [120,93,0];
+      w19.color = [0,5,0];
+      r.add(w19);
+
+      g20 = new X.cube();
+      g20.center = [140,93,0];
+      r.add(g20);
+
+      w20 = new X.cube();
+      w20.center = [160,93,0];
+      w20.color = [0,5,0];
+      r.add(w20);
+
+      //row 6
+
+      g21 = new X.cube();
+      g21.center = [40,116,0];
+      r.add(g21);
+
+      w21 = new X.cube();
+      w21.center = [20,116,0];
+      w21.color = [0,5,0];
+      r.add(w21);
+
+
+      g22 = new X.cube();
+      g22.center = [80,116,0];
+      r.add(g22);
+
+      w22 = new X.cube();
+      w22.center = [60,116,0];
+      w22.color = [0,5,0];
+      r.add(w22);
+
+      g23 = new X.cube();
+      g23.center = [120,116,0];
+      r.add(g23);
+
+      w23 = new X.cube();
+      w23.center = [100,116,0];
+      w23.color = [0,5,0];
+      r.add(w23);
+
+      g24 = new X.cube();
+      g24.center = [160,116,0];
+      r.add(g24);
+
+      w24 = new X.cube();
+      w24.center = [140,116,0];
+      w24.color = [0,5,0];
+      r.add(w24);
+
+      //ROW 7 
+
+      g25 = new X.cube();
+      g25.center = [20,139,0];
+      r.add(g25);
+
+      w25 = new X.cube();
+      w25.center = [40,139,0];
+      w25.color = [0,5,0];
+      r.add(w25);
+
+
+      g26 = new X.cube();
+      g26.center = [60,139,0];
+      r.add(g26);
+
+      w26 = new X.cube();
+      w26.center = [80,139,0];
+      w26.color = [0,5,0];
+      r.add(w26);
+
+      g27 = new X.cube();
+      g27.center = [100,139,0];
+      r.add(g27);
+
+      w27 = new X.cube();
+      w27.center = [120,139,0];
+      w27.color = [0,5,0];
+      r.add(w27);
+
+      g28 = new X.cube();
+      g28.center = [140,139,0];
+      r.add(g28);
+
+      w28 = new X.cube();
+      w28.center = [160,139,0];
+      w28.color = [0,5,0];
+      r.add(w28);
+
+      //row 8
+
+      g29 = new X.cube();
+      g29.center = [40,116,0];
+      r.add(g29);
+
+      w29 = new X.cube();
+      w29.center = [20,116,0];
+      w29.color = [0,5,0];
+      r.add(w29);
+
+
+      g30 = new X.cube();
+      g30.center = [80,116,0];
+      r.add(g30);
+
+      w30 = new X.cube();
+      w30.center = [60,116,0];
+      w30.color = [0,5,0];
+      r.add(w30);
+
+      g31 = new X.cube();
+      g31.center = [120,116,0];
+      r.add(g31);
+
+      w31 = new X.cube();
+      w31.center = [100,116,0];
+      w31.color = [0,5,0];
+      r.add(w31);
+
+      g32 = new X.cube();
+      g32.center = [160,116,0];
+      r.add(g32);
+
+      w32 = new X.cube();
+      w32.center = [140,116,0];
+      w32.color = [0,5,0];
+      r.add(w32);
+
+
+
+      // set camera further away!
+      r.camera.position = [0, 0, 1000];
+
+      // render everything!
+      r.render();
+
+    };
+
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

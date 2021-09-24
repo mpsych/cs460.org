@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;
+      }
+ 
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+    <script type='text/javascript'>
+      window.onload = function() {
+        // create a 3D renderer
+        const r = new X.renderer3D()
+        r.init()
+        // adding default dimensions and lengths here so its easier to change later
+        // I always use const as much as possible in JS because it helps reduce errors later
+        const gridDimension = 9
+        const sideLength = 5
+        const gap = 1
+
+        const colors = {
+          black: [0,0,0],
+          green: [0,1,0],
+          red: [1,0,0],
+          yellow: [1,1,0],
+          cyan: [0,1,1]
+        }
+        // this is the least tedious way I could think to do this, but it works pretty well
+        let pixelBlueprint = [
+          [colors.black, colors.black, colors.black, colors.black, colors.green, colors.black, colors.black, colors.black, colors.black],
+          [colors.black, colors.black, colors.black, colors.green, colors.green, colors.green, colors.black, colors.black, colors.black],
+          [colors.black, colors.black, colors.black, colors.green, colors.green, colors.green, colors.black, colors.black, colors.black],
+          [colors.black, colors.green, colors.green, colors.green, colors.green, colors.green, colors.green, colors.green, colors.black],
+          [colors.black, colors.green, colors.green, colors.green, colors.green, colors.green, colors.green, colors.green, colors.black],
+          [colors.green, colors.green, colors.green, colors.green, colors.green, colors.green, colors.green, colors.green, colors.green],
+          [colors.green, colors.green, colors.green, colors.green, colors.green, colors.green, colors.green, colors.green, colors.green],
+          [colors.black, colors.black, colors.black, colors.green, colors.green, colors.green, colors.black, colors.black, colors.black],
+          [colors.black, colors.black, colors.black, colors.green, colors.green, colors.green, colors.black, colors.black, colors.black],
+        ]
+
+        const addCubes = () => {
+          for (let i = 0; i < gridDimension; i++) {
+            for (let j = 0; j < gridDimension; j++) {
+              const c = new X.cube()
+              c.lengthX = c.lengthY = c.lengthZ = sideLength
+
+              // generate coordinates
+              const xCor = j * (sideLength + gap)
+              const yCor = 0
+              const zCor = -(i * (sideLength + gap)) // have to flip this around to make the tree start out on the right side
+              
+              c.center = [xCor, yCor, zCor]
+              c.color = pixelBlueprint[i][j]
+              r.add(c)
+            }
+          }
+        }
+
+        const changeTreeLights = () => {
+          const getRandomLight = () => {
+            const christmasLights = [colors.red, colors.yellow, colors.cyan]
+            return christmasLights[Math.floor(Math.random() * christmasLights.length)]
+          }
+          // updates the pixel map with random christmas lights color
+          const randomChristmasLights = (() => {
+            pixelBlueprint[4][2] = getRandomLight()
+            pixelBlueprint[4][6] = getRandomLight()
+            pixelBlueprint[5][1] = getRandomLight()
+            pixelBlueprint[5][3] = getRandomLight()
+            pixelBlueprint[5][5] = getRandomLight()
+            pixelBlueprint[5][7] = getRandomLight()
+            pixelBlueprint[6][0] = getRandomLight()
+            pixelBlueprint[6][4] = getRandomLight()
+            pixelBlueprint[6][8] = getRandomLight()
+          })()
+          
+          addCubes()
+        }
+
+        r.render()
+        setInterval(changeTreeLights, 1000)
+      }
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body> 
+</html>

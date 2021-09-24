@@ -1,0 +1,215 @@
+	
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        margin: 0px;
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        overflow: hidden !important;
+      }
+ 
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+    <script type="text/javascript">
+ 
+    window.onload = function() {
+ 
+      // create a new 3D renderer
+      r = new X.renderer3D();
+      r.init();
+
+      var gap = 5; // gap between each cube
+      var length = 20;
+
+      // call this function to add cubes
+      // takes color ([float, float, float]), count (int), # of cubes to left (int), and y-pos (int)
+      // and adds the cubes as directed
+      function addCube(color, count, x, y) {
+        y = gap + length + ((y - 1) * (gap + length));
+        for (var i = 0; i < count; i++) { // first 3 white cubes
+          c = new X.cube();
+          c.center = [gap + length + ((i + x - 1) * (gap + length)), y, 0];
+          c.color = color;
+
+          r.add(c);
+        }
+      }
+
+      // Lights
+      l1 = [1, 0, 0];
+      l2 = [0, 0, 1];
+      l3 = [1, 0, 1];
+      l4 = [1, 1, 0];
+
+      //colors
+      white = [1, 1, 1];
+      brown = [.5, .2, .1];
+      green = [0, .4, 0];
+
+      // Line 1
+      addCube(white, 3, 0, 0);
+      addCube(brown, 3, 3, 0);
+      addCube(white, 3, 6, 0);
+
+      // Line 2
+      addCube(white, 3, 0, 1);
+      addCube(brown, 3, 3, 1);
+      addCube(white, 3, 6, 1);
+
+      // Line 3
+      addCube(green, 9, 0, 2);
+
+      // Line 4
+      addCube(green, 2, 0, 3);
+      c1 = new X.cube();
+      c1.color = l2;
+      c1.center = [2 * (gap + length), 3 * (gap + length), 0];
+      r.add(c1);
+      c1_color = 2;
+      addCube(green, 2, 3, 3);
+      c2 = new X.cube();
+      c2.color = l3;
+      c2.center = [5 * (gap + length), 3 * (gap + length), 0];
+      r.add(c2);
+      c2_color = 3;
+      addCube(green, 3, 6, 3);
+
+      // Line 5
+      addCube(white, 1, 0, 4);
+      addCube(green, 7, 1, 4);
+      addCube(white, 1, 8, 4);
+
+      // Line 6
+      addCube(white, 1, 0, 5);
+      addCube(green, 2, 1, 5);
+      c3 = new X.cube();
+      c3.color = l4;
+      c3.center = [3 * (gap + length), 5 * (gap + length), 0];
+      r.add(c3);
+      c3_color = 4;
+      addCube(green, 2, 4, 5);
+      c4 = new X.cube();
+      c4.color = l1;
+      c4.center = [6 * (gap + length), 5 * (gap + length), 0];
+      r.add(c4);
+      c4_color = 1;
+      addCube(green, 1, 7, 5);
+      addCube(white, 1, 8, 5);
+
+      // Line 7
+      addCube(white, 3, 0, 6);
+      addCube(green, 3, 3, 6);
+      addCube(white, 3, 6, 6);
+
+      // Line 8
+      addCube(white, 3, 0, 7);
+      addCube(green, 3, 3, 7);
+      addCube(white, 3, 6, 7);
+
+      // Line 9
+      addCube(white, 4, 0, 8);
+      addCube(green, 1, 4, 8);
+      addCube(white, 4, 5, 8);
+
+      r.render();
+
+      r.camera.position = [0, 0, 1000];
+      
+      setInterval(function() { // pretty blinking oooooo
+
+        // Make the lights blink
+        switch (c1_color) {
+          case 4:
+            c1.color = l1;
+            c1_color = 1;
+            break;
+          case 1:
+            c1_color++;
+            c1.color = l2;
+            break;
+          case 2:
+            c1_color++;
+            c1.color = l3;
+            break;
+          case 3:
+            c1_color++;
+            c1.color = l4;
+            break;
+        }
+
+        switch (c2_color) {
+          case 4:
+            c2.color = l1;
+            c2_color = 1;
+            break;
+          case 1:
+            c2_color++;
+            c2.color = l2;
+            break;
+          case 2:
+            c2_color++;
+            c2.color = l3;
+            break;
+          case 3:
+            c2_color++;
+            c2.color = l4;
+            break;
+        }
+
+        switch (c3_color) {
+          case 4:
+            c3.color = l1;
+            c3_color = 1;
+            break;
+          case 1:
+            c3_color++;
+            c3.color = l2;
+            break;
+          case 2:
+            c3_color++;
+            c3.color = l3;
+            break;
+          case 3:
+            c3_color++;
+            c3.color = l4;
+            break;
+        }
+
+        switch (c4_color) {
+          case 4:
+            c4.color = l1;
+            c4_color = 1;
+            break;
+          case 1:
+            c4_color++;
+            c4.color = l2;
+            break;
+          case 2:
+            c4_color++;
+            c4.color = l3;
+            break;
+          case 3:
+            c4_color++;
+            c4.color = l4;
+            break;
+        }
+      }, 1000);
+    };
+ 
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

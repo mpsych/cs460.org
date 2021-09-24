@@ -1,0 +1,198 @@
+
+
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    
+    <script type="text/javascript" src="http://get.goXTK.com/xtk_edge.js"></script>
+
+    <script type="text/javascript">
+
+    window.onload = function() {
+
+      // this gets called when the site is ready
+
+      // create a new scene and renderer
+      r = new X.renderer3D();
+      r.init();
+
+      // create a cube and add it!
+      c = new X.cube();
+      c.color = [2., .2, .212];
+      c.center = [0, 0, 0];
+      for (var i = 0; i < 7; i++) {
+      c2a = new X.cube();
+      c2a.color = [.45, .45, 0.35];
+      c2a.center = [-90 + (i*30), 30, 0]; 
+      r.add(c2a);}
+      for (var i = 0; i < 5; i++) {
+      c2b = new X.cube();
+      c2b.color = [.45, .45, 0.35];
+      c2b.center = [-60 + (i*30), 0, 0]; 
+      r.add(c2b);}
+      for (var i = 0; i < 3; i++) {
+      c2c = new X.cube();
+      c2c.color = [.45, .45, 0.35];
+      c2c.center = [-30 + (i*30), -30, 0]; 
+      r.add(c2c);}
+      for (var i = 0; i < 7; i++) {
+      c2d = new X.cube();
+      c2d.color = [.45, .45, 0.35];
+      c2d.center = [-90 + (i*30), 60, 0]; 
+      r.add(c2d);}
+      for (var i = 0; i < 9; i++) {
+      c2e = new X.cube();
+      c2e.color = [.45, .45, 0.35];
+      c2e.center = [-120 + (i*30), 90, 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 2; i++) {
+      c2f = new X.cube();
+      c2f.color = [0.35, .75, .15];
+      c2f.center = [-60 + (i*30), 90, 0]; 
+      r.add(c2f);}
+      for (var i = 0; i < 2; i++) {
+      c2f = new X.cube();
+      c2f.color = [0.35, .75, .15];
+      c2f.center = [30 + (i*30), 90, 0];
+      r.add(c2f);}
+      for (var i = 0; i < 2; i++) {
+      c2f = new X.cube();
+      c2f.color = [0.35, .75, .15];
+      c2f.center = [-60 + (i*30), 60, 0]; 
+      r.add(c2f);}
+      for (var i = 0; i < 2; i++) {
+      c2f = new X.cube();
+      c2f.color = [0.35, .75, .15];
+      c2f.center = [30 + (i*30), 60, 0]; 
+      r.add(c2f);}
+      for (var i = 0; i <11; i++) {
+      c2e = new X.cube();
+      c2e.color = [.45, .45, 0.35];
+      c2e.center = [-150 + (i*30), 120, 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 4; i++) {
+      c2e = new X.cube();
+      c2e.color = [1, 1, 1];
+      c2e.center = [60, 150 + (i*30), 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 4; i++) {
+      c2e = new X.cube();
+      c2e.color = [1, 1, 1];
+      c2e.center = [-60, 150 + (i*30), 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 4; i++) {
+      c2e = new X.cube();
+      c2e.color = [1, 1, 1];
+      c2e.center = [30 + (i*30), 180, 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 4; i++) {
+      c2e = new X.cube();
+      c2e.color = [1, 1, 1];
+      c2e.center = [-120 + (i*30), 180, 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 3; i++) {
+      c2e = new X.cube();
+      c2e.color = [.45, .45, 0.35];
+      c2e.center = [0, -90 + (i*30), 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 7; i++) {
+      c2e = new X.cube();
+      c2e.color = [.45, .45, 0.35];
+      c2e.center = [30 + (i*30), -120, 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 9; i++) {
+      c2e = new X.cube();
+      c2e.color = [.45, .45, 0.35];
+      c2e.center = [30 + (i*30), -90, 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 8; i++) {
+      c2e = new X.cube();
+      c2e.color = [.45, .45, 0.35];
+      c2e.center = [0 + (i*30), -150, 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 5; i++) {
+      c2e = new X.cube();
+      c2e.color = [.45, .45, 0.35];
+      c2e.center = [0, -270 + (i*30), 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 5; i++) {
+      c2e = new X.cube();
+      c2e.color = [.45, .45, 0.35];
+      c2e.center = [60, -270 + (i*30), 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 5; i++) {
+      c2e = new X.cube();
+      c2e.color = [.45, .45, 0.35];
+      c2e.center = [180, -270 + (i*30), 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 5; i++) {
+      c2e = new X.cube();
+      c2e.color = [.45, .45, 0.35];
+      c2e.center = [240, -270 + (i*30), 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 1; i++) {
+      c2e = new X.cube();
+      c2e.color = [.15, .15, 0.15];
+      c2e.center = [240, -270 + (i*30), 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 1; i++) {
+      c2e = new X.cube();
+      c2e.color = [.15, .15, 0.15];
+      c2e.center = [180, -270 + (i*30), 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 1; i++) {
+      c2e = new X.cube();
+      c2e.color = [.15, .15, 0.15];
+      c2e.center = [60, -270 + (i*30), 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 1; i++) {
+      c2e = new X.cube();
+      c2e.color = [.15, .15, 0.15];
+      c2e.center = [0, -270 + (i*30), 0]; 
+      r.add(c2e);}
+      for (var i = 0; i < 3; i++) {
+      c2e = new X.cube();
+      c2e.color = [1, 1, 1];
+      c2e.center = [90 + (i*30), -150, 0]; 
+      r.add(c2e);}
+      r.add(c);
+
+      
+
+      
+
+      // set camera further away!
+      r.camera.position = [0, 0, 1000];
+
+      // render everything!
+      r.render();
+
+
+    };
+
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

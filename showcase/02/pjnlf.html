@@ -1,0 +1,128 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        overflow: hidden !important;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+
+    <script type="text/javascript">
+
+    window.onload = function() {
+
+      // this gets called when the site is ready
+      //create a 3D renderer
+      r = new X.renderer3D();
+      r.init();
+
+
+
+
+
+      //for loop to make a lot of cubes
+      for (var i = 0; i < 3; i++) {
+        c4 = new X.cube();
+        c4.center = [-60, 90 + (i*30), 0];
+        c4.color = [1, .647, 0];
+
+        r.add (c4);
+      }
+
+      for (var i = 0; i < 5; i++) {
+        c4 = new X.cube();
+        c4.center = [-30, 60 + (i*30), 0];
+        c4.color = [1, .647, 0];
+               if (i == 2) {
+          c4.color = [1, 0 , 0];
+        }
+
+        r.add (c4);
+      }
+
+
+      for (var i = 0; i < 7; i++) {
+        c4 = new X.cube();
+        c4.center = [0, 30 + (i*30), 0];
+        c4.color = [1, .647, 0];
+
+        r.add (c4);
+      }
+
+      for (var i = 0; i < 7; i++) {
+        c4 = new X.cube();
+        c4.center = [30, 30 + (i*30), 0];
+        c4.color = [1, .647, 0];
+
+        r.add (c4);
+      }
+
+      for (var i = 0; i < 7; i++) {
+        c4 = new X.cube();
+        c4.center = [60, 30 + (i*30), 0];
+        c4.color = [1, .647, 0];
+        if (i == 1 || i == 2 || i == 4 || i == 5) {
+          c4.color = [.678,.846,1];
+        }
+
+        r.add (c4);
+      }
+
+      for (var i = 0; i < 7; i++) {
+        c4 = new X.cube();
+        c4.center = [90, 30 + (i*30), 0];
+        c4.color = [1, .647, 0];
+
+        r.add (c4);
+      }
+
+      //ears
+      for (var i = 0; i < 2; i++) {
+        c4 = new X.cube();
+        c4.center = [120, 30 + (i*30), 0];
+        c4.color = [1, .647, 0];
+
+        r.add (c4);
+      }
+
+      for (var i = 0; i < 2; i++) {
+        c4 = new X.cube();
+        c4.center = [120, 180 + (i*30), 0];
+        c4.color = [1, .647, 0];
+
+        r.add (c4);
+      }
+
+      c = new X.cube();
+      c.center = [150, 30, 0];
+      r.add(c);
+
+      c2 = new X.cube();
+      c2.center = [150, 210, 0];
+      r.add(c2);
+
+
+      //start the rendering
+      r.render();
+
+    };
+
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

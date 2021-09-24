@@ -1,0 +1,107 @@
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <title>CS460 Assignment 2</title>
+  <style>
+  body {
+    background-color: black;
+    color: white; /* font color */
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden !important;
+  }
+  
+  #logo {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+</style>
+
+<script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+
+<script type="text/javascript">
+
+  window.onload = function() {
+
+      // this gets called when the site is ready
+
+      // create a new scene and renderer
+      r = new X.renderer3D();
+      r.init();
+
+      var gundam = [
+      [1,1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,1,1],
+      [0,1,1,1,0,0,0,0,0,0,1,3,1,0,0,0,0,0,0,1,1,1,0],
+      [0,0,0,1,1,1,0,0,0,0,1,3,1,0,0,0,0,1,1,1,0,0,0],
+      [0,0,0,0,1,1,1,0,0,1,1,3,1,1,0,0,1,1,1,0,0,0,0],
+      [0,0,0,0,0,1,1,1,1,1,3,3,3,1,1,1,1,1,0,0,0,0,0],
+      [0,0,0,0,0,1,4,4,4,3,3,3,3,3,4,4,4,1,0,0,0,0,0],
+      [0,0,0,0,1,1,0,0,0,3,3,3,3,3,0,0,0,1,1,0,0,0,0],
+      [0,0,0,1,1,2,2,0,0,0,3,3,3,0,0,0,2,2,1,1,0,0,0],
+      [0,1,1,1,0,2,2,0,0,0,0,3,0,0,0,0,2,2,0,1,1,1,0],
+      [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+      [0,1,0,0,0,1,2,2,2,2,1,1,1,2,2,2,2,1,0,0,0,1,0],
+      [0,1,0,0,0,3,1,2,2,1,3,3,3,1,2,2,1,3,0,0,0,1,0],
+      [0,1,0,1,0,0,3,1,1,3,0,0,0,3,1,1,3,0,0,1,0,1,0],
+      [0,1,0,0,0,0,0,3,3,0,0,0,0,0,3,3,0,0,0,0,0,1,0],
+      [0,1,0,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,0,1,0],
+      [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+      [0,1,0,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,0,1,0],
+      [0,1,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,1,0],
+      [0,1,0,1,0,0,1,0,1,1,0,0,0,1,1,0,1,0,0,1,0,1,0],
+      [0,1,1,0,0,1,1,0,0,1,3,3,3,1,0,0,1,1,0,0,1,1,0],
+      [0,0,1,1,1,1,0,0,0,0,3,3,3,0,0,0,0,1,1,1,1,0,0],
+      [0,0,0,1,1,0,0,0,0,0,3,3,3,0,0,0,0,0,1,1,0,0,0]
+      ];
+
+      // set camera further away!
+      r.camera.position = [5,1,1000];
+
+
+      // array for eye animation
+      var powerOn = []; 
+      var count = 0;
+
+      // pixel arts
+      for (var j = 0;j < 23;j++){
+        for (var i = 0;i < 22;i++){
+          c=new X.cube();
+          c.center=[25*i,25*j,0];
+
+            // color the cube
+            switch (gundam[i][j]){
+              case 0: c.color = [0,0,0]; break;
+              case 1: c.color = [1,1,1]; break;
+              case 2: c.color = [204, 204, 0];
+              powerOn[count++] = c; break;
+              case 3: c.color = [7, 0, 0]; break;
+            }
+            r.add(c);
+          }
+        }
+
+      // eye animation
+      setInterval(function() {
+          // your code
+          var eye_open = powerOn[0].color[0] == 1 ? 0 : 1;
+          for (i = 0; i <= count; i++){
+            powerOn[i].color = [eye_open, eye_open, 0];
+          }
+        }, 1000);
+
+      // render everything!
+      r.render(); 
+
+    };
+
+  </script>
+</head>
+<body>
+  <h1>CS460 Assignment 2</h1>
+  <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+</body>
+</html>

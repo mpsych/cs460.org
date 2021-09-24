@@ -1,0 +1,162 @@
+<html>
+    <head>
+        <title>CS460 Assignment 2</title>
+        <style>
+            body {
+                margin: 0px;
+                background-color: black;
+                color: white;
+                font-family: sans-serif;
+                overflow: hidden !important;
+            }
+
+            #logo {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+        </style>
+        <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+        <script type="text/javascript">
+        window.onload = function(){
+
+                // create a 3D renderer
+                r = new X.renderer3D();
+                r.init(); // Initialize
+
+               
+               
+
+            
+                c1 = new X.cube();
+          
+                c1.center = [-20, 0, 0];
+               
+
+                c2 = new X.cube();
+                c2.color = [0.477, 0.518, 0.530];
+                c2.center = [50, -20, 0];
+
+           
+                c3 = new X.cube();
+                c3.color = [0.837, 0.893, 0.910];
+                c3.center = [258, -10.5, 0];
+                c3.lengthZ = 20;
+                c3.lengthX = 19;
+                c4 = new X.cube();
+                c4.color = [0.780, 0.0468, 0.0468];
+                c4.center = [270, 10.5, 0];
+                c4.lengthX = 12;
+
+                c5 = new X.cube();
+                c5.color = [0.780, 0.0468, 0.0468];
+                c5.center = [285, 0, 0];
+                // c5.transform.rotateZ(20);
+
+                c6 = new X.cube();
+                c6.color = [0.780, 0.0468, 0.04681];
+                c6.center = [278, -10.5, 0];
+
+                c7 = new X.cube();
+                c7.color = [0.780, 0.0468, 0.0468];
+                c7.center = [295, -10.5, 0];
+
+              
+                r.add(c1);
+                r.add(c2);
+                r.add(c3);
+                r.add(c4);
+                r.add(c5);
+                r.add(c6);
+                r.add(c7);
+                // r.add(someRan);
+            
+               
+            
+
+                for(var z = 0; z < 5; z++){
+                    headC = new X.cube()
+                    
+                    headC.center = [75 + (z * 40), 0, 0];
+                    headC.color = [0.220, 0.0418, 0.0418];
+                    // headC.lengthX = 30;
+                    // headC.lengthY = 20;
+                    // headC.lengthZ = 10;
+                    headC.transform.rotateX(50);
+                  
+
+                    r.add(headC);
+                }
+           //create 5 cubes
+                for(var i = 0; i < 26; i++){
+                
+                c = new X.cube();
+              
+
+      // if (i <= 2){
+                if (i < 4){
+                    c.center = [(i * (10)) ,0 , 0];
+                    c.color = [0.370, 0.192, 0.0259];
+                }
+                if (i == 4){
+                    c.center = [(i * (11.4)) ,0 , 0];
+                    c.color = [0.477, 0.518, 0.530];
+                    c.lengthX = 10;
+                }
+                if (i == 5){
+                    c.center = [(i * (10)) ,20 , 0];
+                    c.color = [0.477, 0.518, 0.530];
+                   
+                }
+                if (i > 5){
+                    c.center = [-53 + (i * 20.5) ,-10.5 , 0];
+                    c.color = [0.837, 0.893, 0.910];
+                }
+                if (i > 15){
+                    c.center = [-258 + (i * 20.5) ,10.5 , 0];
+                    c.color = [0.837, 0.893, 0.910];
+
+                }
+              
+                   
+                // }
+                        
+
+                r.add( c );
+
+            }
+
+            
+
+              
+                // set the camera futher away!
+                r.camera.position = [0,0,600];
+
+                // Changing color
+                var cubebool = false;
+                setInterval(function() {
+                    if (!cubebool){
+                        c1.color = [0.477, 0.518, 0.530];
+                        cubebool = true;
+                    } else {
+                        c1.color = [0.810, 0.850, 0.255];
+                        cubebool = false;
+                    }
+                }, 500);
+
+                // start the rendering
+                r.render();
+
+                // don't need c.modier since we don't adjust any detail after render
+
+            r.onRender = function(){
+                r.camera.rotate([-1, 0]);
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <h1 id="header">CS460 Assignment 2</h1>
+        <div id="logo"><img style="height: 60px;" src="gfx/cs460.png"</div>
+    </body>
+</html>

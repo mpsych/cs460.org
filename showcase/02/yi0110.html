@@ -1,0 +1,124 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        overflow: hidden !important;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    <script type="text/javascript" src="http://get.goXTK.com/xtk_edge.js"></script>
+
+    <script type="text/javascript">
+      window.onload = function() {
+        r = new X.renderer3D();
+        r.init();
+        r.camera.position = [500, 0, 0]
+        tree();
+        
+        // Question2
+        // adding lights
+
+        for (var i=0; i<13; i++) {
+          var x = lightP[i][0];
+          var y = lightP[i][1];
+          var h = lightP[i][2];
+          c = new X.cube();
+          c.center = [x*23, y*23, h*23];
+          c.color = lightC[3];
+          Lights[i] = c;
+          r.add(c);}
+        
+        // changing color
+        var loopC = 0;
+        setInterval(function(){
+          switch(loopC){
+            case 0:
+                for (var i=0; i<13; i++) {
+                  Lights[i].color = lightC[0];
+                }
+                loopC = 1;
+                break;
+            case 1:
+                for (var i=0; i<13; i++) {
+                  Lights[i].color = lightC[1];
+                }
+                loopC = 2;
+                break;
+            case 2:
+                for (var i=0; i<13; i++) {
+                  Lights[i].color = lightC[2];
+                }
+                loopC = 0;
+                break;
+            default:
+                for (var i=0; i<13; i++) {
+                  Lights[i].color = lightC[3];
+                }
+                loopC = 0;
+                break;
+          }
+        }, 800)
+        
+        r.render();
+    }
+
+    //data
+      var lightP = new Array(
+          [4,4,2],[-4,4,2],[4,-4,2],[-4,-4,2],
+          [3,3,4],[-3,3,4],[3,-3,4],[-3,-3,4],
+          [1,1,6],[-1,1,6],[1,-1,6],[-1,-1,6],
+          [0,0,8]);
+      var lightC = new Array(
+          [1,0,0],[1,1,0],[0,0,1],
+          [0.65,1,0.65]);
+      var Lights = new Array(13);
+
+    // functions
+    // light
+      function lights() {
+        
+      }
+
+    // tree
+      function layer(l1, l2, h) {
+        var a = Math.floor(l1/2);
+        var b = Math.floor(l2/2);
+        for (var x=-a; x<a+1; x++) {
+          for (var y=-a; y<a+1; y++) {
+            if ((x<-b||x>b)&&(y<-b||y>b)) {}
+            else {
+              c = new X.cube();
+              var g = 0.7+0.15*Math.cos(x)+0.15*Math.cos(y)+0.55*Math.log(0.35*h+0.4)-0.1;
+              c.color = [0, g, 0];
+              c.center = [x*23, y*23, h*23];
+              r.add(c);}}}}
+
+      function tree() {
+        layer(3, 3, 0);
+        layer(3, 1, 1);
+        layer(9, 7, 2);
+        layer(9, 7, 3);
+        layer(7, 5, 4);
+        layer(7, 4, 5);
+        layer(3, 1, 6);
+        layer(3, 1, 7);}
+    
+    </script>
+  </head>
+  
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>
