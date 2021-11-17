@@ -16,9 +16,9 @@ document.getElementById("content").innerHTML = "\
 \
     <div id='content2' style='display:none;position: absolute;color:white;top:30%;left:20%;margin-left:50px;font-size:440%'>We have Jasmine Roberts as our guest.</div>\
 \
-    <div id='content3' style='display:none;position: absolute;color:white;top:20%;left:10%;margin-left:50px;font-size:440%'>Jasmine is an AR/VR specialist and currently at the Google Creative Labs in NYC.</div>\
+    <div id='content3' style='display:none;position: absolute;color:white;top:20%;left:10%;margin-left:50px;font-size:440%'>Jasmine is an AR/VR specialist and currently getting her PhD at the University of Washington.</div>\
 \
-    <div id='content4' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>Before, she worked at Unity, NASA, Playstation, and Intel.</div>\
+    <div id='content4' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>Before, she worked at Google Creative Labs in NYC, Unity, NASA, Playstation, and Intel.</div>\
 \
     <div id='content5' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>Jasmine studied at Columbia, the MIT Media Lab, and the Harvard School of Design.</div>\
 \
@@ -27,9 +27,6 @@ document.getElementById("content").innerHTML = "\
     <div id='content7' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>She will speak to us about her career in computer graphics.</div>\
 \
     <div id='content8' style='display:none;position: absolute;color:white;top:45%;left:40%;margin-left:50px;font-size:440%'>This is lecture 29.</div>    \
-<audio id='voice'>    \
-    <source src='lectures/"+lecturenumber+".mp3'>    \
-  </audio>    \
 </div>   \
 \
 ";
