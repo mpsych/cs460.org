@@ -1,0 +1,213 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    
+    <script type="text/javascript" src="http://get.goXTK.com/xtk_edge.js"></script>
+
+    <script type="text/javascript">
+
+    window.onload = function() {
+
+      // this gets called when the site is ready
+
+      // create a new scene and renderer
+      r = new X.renderer3D();
+      r.init();
+
+      // FACE with 20 pixels
+
+      // Mouth for animation
+      var mouth_l = [2, 2, 2];
+      var mouth_w = [10, 5, 9];
+      
+
+      var face_l = [2, 2, 2, 5, 6, 5, 6,
+                    11, 10, 9, 8, 7, 7, 8, 9, 10, 11, 2, 2, 2]; // length
+      var face_w = [8, 7, 6, 4, 4, 10, 10,
+                    2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 10, 5, 9]; // width
+
+      for (var i = 0; i < 17; i++) {
+        var face = new X.cube();
+        face.color = [0, 0, 225];
+        face.center = [(face_w[i] * 25), (face_l[i] * 25), 0];
+        r.add ( face );
+      }
+
+      // Function that omits pixels for the face.
+      function omit_pixel(arg1, arg2) {
+        for (var i = 0; i < 21; i++) {
+          if (arg1 === face_w[i] && arg2 === face_l[i]) {
+            return false;
+          }
+        }
+        return true;
+      }
+
+      // Body
+
+      for (var i = 0; i < 17; i++) {
+        for (var j = 0; j < 10; j++) {
+          if (omit_pixel(i, j)) {
+            var c = new X.cube();
+            c.color = [255, 0, 255];
+            c.center = [(i * 25), (j * 25), 0];
+            r.add ( c );
+          }
+        }
+      }
+
+
+      //var c2 = new X.cube;
+      //c2.color = [0, 1, 0];
+      //c2.center = [0, 250, 0];
+      //r.add (c2);
+
+      // Hair Parts:
+      // Lower Brow:
+      for (var i = 0; i < 14; i++) {
+        for (var j = 0; j < 5; j++) {
+          if (omit_pixel(i, j + 10)) {
+            var c2 = new X.cube();
+            c2.color = [255, 0, 255];
+            c2.center = [(i * 25), 250 + (j * 25), 0];
+            r.add ( c2 );
+          }
+        }
+      }
+      // Upper brow:
+      for (var i = 0; i < 5; i++) {
+        for (var j = 0; j < 4; j++) {
+          var c3 = new X.cube();
+          c3.color = [255, 0, 255];
+          c3.center = [225 + (i * 25), 375 + (j * 25), 0];
+          r.add ( c3 );
+        }
+      }
+      // Limbs:
+      // Left Arm:
+      
+
+      var al2 = new X.cube();
+      al2.color = [0, 0, 205];
+      al2.center = [-25, 150, 0];
+      r.add( al2 );
+
+      var al1 = new X.cube();
+      al1.color = [0, 0, 205];
+      al1.center = [-50, 125, 0];
+      r.add( al1 );
+
+      for (var j = 0; j < 3; j++) {
+        var al = new X.cube();
+        al.color = [0, 0, 205];
+        al.center = [-75, 50 + (j * 25), 0];
+        r.add( al );
+      }
+
+      // Right Arm:
+      var ar2 = new X.cube();
+      ar2.color = [0, 0, 205];
+      ar2.center = [425, 150, 0];
+      r.add( ar2 );
+
+      var ar1 = new X.cube();
+      ar1.color = [0, 0, 205];
+      ar1.center = [450, 125, 0];
+      r.add( ar1 );
+
+      for (var j = 0; j < 3; j++) {
+        var ar = new X.cube();
+        ar.color = [0, 0, 205];
+        ar.center = [475, 50 + (j * 25), 0];
+        r.add( ar );
+      }
+      // Legs:
+
+      // right leg:
+      for (var j = 0; j < 5; j++) {
+        var rl = new X.cube();
+        rl.color = [0, 0, 205];
+        rl.center = [275, -125 + (j * 25), 0];
+        r.add( rl );
+      }
+
+      for (var i = 0; i < 3; i++) {
+        var rl2 = new X.cube();
+        rl2.color = [0, 0, 205];
+        rl2.center = [300 + (i * 25), -125, 0];
+        r.add( rl2 );
+      }
+
+      // left leg
+      for (var j = 0; j < 5; j++) {
+        var ll = new X.cube();
+        ll.color = [0, 0, 205];
+        ll.center = [150, -125 + (j * 25), 0];
+        r.add( ll );
+      }
+
+      for (var i = 0; i < 3; i++) {
+        var ll2 = new X.cube();
+        ll2.color = [0, 0, 205];
+        ll2.center = [75 + (i * 25), -125, 0];
+        r.add( ll2 );
+      }
+
+
+      m1 = new X.cube();
+      m1.center = [250, 50, 0];
+      m1.color = [0, 0, 225];
+      r.add (m1);
+
+      m2 = new X.cube();
+      m2.center = [125, 50, 0];
+      m2.color = [0, 0, 225];
+      r.add (m2);
+
+      m3 = new X.cube();
+      m3.center = [225, 50, 0];
+      m3.color = [0, 0, 225];
+      r.add (m3);
+
+      // ANIMATION
+      setInterval(function() {
+        //mouth_piece.color = [225, 0, 225]; 
+        m1.color = [225, 0, 225]; 
+        m2.color = [225, 0, 225];
+        m3.color = [225, 0, 225];
+      }, 1000);
+
+      // set camera further away!
+      r.camera.position = [0, 0, 1000];
+
+      // render everything!
+      r.render();
+
+    };
+
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

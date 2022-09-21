@@ -1,0 +1,214 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    
+    <script type="text/javascript" src="http://get.goXTK.com/xtk_edge.js"></script>
+
+    <script type="text/javascript">
+
+    window.onload = function() {
+     
+      // this gets called when the site is ready
+
+      // create a new scene and renderer
+      var r = new X.renderer3D();
+      r.init();
+
+      // create a cube and add it!
+      for (var i=0; i<9; i++){
+         var c = new X.cube();
+      c.color = [0,1,1]
+      c.center = [25*i,75,0]
+      r.add(c);
+      
+
+
+      }
+
+      for (var j=0; j<9; j++){
+         var c2 = new X.cube();
+      c2.color = [0,1,1]
+      c2.center = [25*j,50,0*j]
+      r.add(c2);
+      
+
+
+      }
+
+       for (var h=0; h<9; h++){
+         var c3 = new X.cube();
+      c3.color = [0,1,1]
+      c3.center = [25*h,25,0*h]
+      r.add(c3);
+      
+
+
+      }
+
+      
+
+       for (var k=0; k<9; k++){
+         var c4 = new X.cube();
+      c4.color = [0,1,1]
+      c4.center = [25*k,100,0*k]
+      r.add(c4);
+      
+
+
+      }
+
+      for (var t=0; t<9; t++){
+         var c5 = new X.cube();
+      c5.color = [0,1,1]
+      c5.center = [25*t,125,0*t]
+      r.add(c5);
+      
+
+
+      }
+
+      for (var k=0; k<9; k++){
+         var c4 = new X.cube();
+      c4.color = [0,1,1]
+      c4.center = [25*k,175,0*k]
+      r.add(c4);
+      
+
+
+      }
+
+      for (var t=0; t<9; t++){
+         var c5 = new X.cube();
+      c5.color = [0,1,1]
+      c5.center = [25*t,150,0*t]
+      r.add(c5);
+      
+
+
+      }
+for (var k=0; k<9; k++){
+         var c4 = new X.cube();
+      c4.color = [0,1,1]
+      c4.center = [25*k,200,0*k]
+      r.add(c4);
+      
+
+
+      }
+
+      for (var t=0; t<9; t++){
+         var c5 = new X.cube();
+      c5.color = [0,1,1]
+      c5.center = [25*t,225,0*t]
+      r.add(c5);
+      
+
+
+      }
+
+
+        var c6 = new X.cube();
+      c6.color = [1,0,1]
+      c6.center = [100,150,20]
+      r.add(c6);
+
+      for(var g=0; g<9; g++){
+      var c7 = new X.cube();
+      c7.center = [25*g,50,20]
+    
+      c7.color =[0,1,0]
+      r.add(c7);
+     }
+
+     for(var g=1; g<8; g++){
+      var c7 = new X.cube();
+      c7.center = [25*g,75,20]
+    
+      c7.color =[0,1,0]
+      r.add(c7);
+     }
+
+     for(var g=2; g<7; g++){
+      var c7 = new X.cube();
+      c7.center = [25*g,100,20]
+      c7.color =[0,1,0]
+      
+      r.add(c7);
+     }
+
+
+for(var g=3; g<6; g++){
+      var c7 = new X.cube();
+      c7.center = [25*g,125,20]
+      c7.color =[0,1,0]
+      
+      r.add(c7);
+     }
+
+
+
+
+
+
+for (var p=0; p<9;p++){
+     var sphere = new X.sphere();
+  sphere.radius = 5;
+  center=[25,25,0]
+  r.add(sphere);
+
+}
+      var c8 = new X.cube();
+      c8.center = [100,25,20]
+      c8.color = [1,0,0];
+      c8.color = [0,1,0];
+      r.add(c8);
+      
+
+      
+    
+
+      
+
+      /* var c5 = new X.cube();
+      c5.center = [100,0,0]
+      r.add(c5)
+
+       var c6 = new X.cube();
+      c6.center = [125,0,0]
+      r.add(c6)*/
+
+      // set camera further away!
+      r.camera.position = [0, 0, 500];
+
+      // render everything!
+      r.render();
+
+    };
+
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>
+

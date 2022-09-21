@@ -1,0 +1,125 @@
+<html>
+    <head>
+        <title>
+            Jain Kunal CS460 Assignment 02
+        </title>
+        <style>
+            body {
+                background-color: #121212;
+                color: white;
+                overflow: hidden !important;
+            }
+            #logo_gfx {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+            }
+        </style>
+        
+        <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+        
+        <script text="text/javascript">
+
+            window.onload = function() {
+                var logo = document.getElementById("logo_gfx");
+                console.log(logo);
+                logo.style.right = '500px';
+
+                var renderer = new X.renderer3D();
+                renderer.init();
+
+                var eye1 = new X.cube();
+                var eye2 = new X.cube();
+                var eye3 = new X.cube();
+                var eye4 = new X.cube();
+                var mouth = new X.cube();
+
+                var blink1 = true;
+                var blink2 = true;
+
+                for (var i = 0; i < 9; i++) {
+                    for (var j = 0; j < 9; j++) {
+                        var cube = new X.cube();
+                        cube.center = [25*i, 25*j, 0];
+                        cube.color = [1, 1, 1];
+                        if (i == 1 || i == 7)
+                            if (j >=2 && j <= 8)
+                                cube.color = [1, 0, 0];
+                        if (i == 2 || i == 6) {
+                            if (j >= 1 && j <= 3)
+                                cube.color = [1, 0, 0];
+                            if (j >= 5 && j <= 7)
+                                cube.color = [1, 0, 0];
+                        }
+                        if (i == 3 || i == 5) {
+                            if (j >= 0 && j <= 3)
+                                cube.color = [1, 0, 0];
+                            if (j == 5)
+                                cube.color = [1, 0, 0];
+                        }
+                        if (i == 4) {
+                            if (j == 0)
+                                cube.color = [1, 0, 0];
+                            if (j >= 2 && j <= 5)
+                                cube.color = [1, 0, 0];
+                        }
+                        if (i == 2 || i == 3 || i == 5 || i == 6)
+                            if (j == 4)
+                                cube.color = [0, 0, 1];
+                        if (i == 4 && j == 1)
+                            cube.color = [1, 1, 1];
+                        if (i == 2 && j == 4)
+                            eye1 = cube;
+                        if (i == 3 && j == 4)
+                            eye2 = cube;
+                        if (i == 5 && j == 4)
+                            eye3 = cube;
+                        if (i == 6 && j == 4)
+                            eye4 = cube;
+                        if (i == 4 && j == 1)
+                            mouth = cube;
+                        renderer.add(cube);
+                    }
+                }
+                
+                renderer.camera.position = [0, 0, 1000];
+
+                renderer.render();
+
+                setInterval(function() {
+                    if (blink1) {
+                        eye1.color = [1, 1, 1];
+                        eye2.color = [1, 1, 1];
+                        eye3.color = [1, 1, 1];
+                        eye4.color = [1, 1, 1];
+                        blink1 = false;
+                    } else {
+                        eye1.color = [0, 0, 1];
+                        eye2.color = [0, 0, 1];
+                        eye3.color = [0, 0, 1];
+                        eye4.color = [0, 0, 1];
+                        blink1 = true;
+                    }
+                }, 500);
+
+                setInterval(function() {
+                    if (blink2) {
+                        mouth.color = [0, 1, 0];
+                        blink2 = false;
+                    } else {
+                        mouth.color = [1, 1, 1];
+                        blink2 = true;
+                    }
+                }, 250);
+            };
+
+        </script>
+
+    </head>
+    <body>
+        <h1>CS460 Assignment 02</h1>
+        <div id="logo_gfx">
+            <img src="gfx/cs460.png" />
+        </div>
+    </body>
+</html>

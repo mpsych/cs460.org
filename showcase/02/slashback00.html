@@ -1,0 +1,909 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    
+    <script type="text/javascript" src="http://get.goXTK.com/xtk_edge.js"></script>
+
+    <script type="text/javascript">
+
+    window.onload = function() {
+
+      // this gets called when the site is ready
+
+      // create a new scene and renderer
+     var r = new X.renderer3D();
+      r.init();
+      for (var i=0 ; i<14 ;i++){
+        var c = new X.cube();
+        c.color = [13,2,8]
+        c.center =[25*i,0,0]
+        r.add(c);
+       
+      }     
+      
+        var c1 = new X.cube();
+        c1.color = [13,2,8]
+        c1.center =[0,25,0]
+        r.add(c1);
+    
+        var c2 = new X.cube();
+        c2.color = [13,2,8]
+        c2.center =[0,50,0]
+        r.add(c2);
+    
+        var c3 = new X.cube();
+        c3.color = [13,2,8]
+        c3.center =[0,75,0]
+        r.add(c3);
+
+        var c4 = new X.cube();
+        c4.color = [13,2,8]
+        c4.center =[0,100,0]
+        r.add(c4);
+
+        var c5 = new X.cube();
+        c5.color = [13,2,8]
+        c5.center =[0,125,0]
+        r.add(c5);
+
+        var c6 = new X.cube();
+        c6.color = [13,2,8]
+        c6.center =[0,150,0]
+        r.add(c6);
+
+        var c7 = new X.cube();
+        c7.color = [13,2,8]
+        c7.center =[0,175,0]
+        r.add(c7);
+
+        var c8 = new X.cube();
+        c8.color = [13,2,8]
+        c8.center =[0,200,0]
+        r.add(c8);
+
+        var c9 = new X.cube();
+        c9.color = [13,2,8]
+        c9.center =[0,225,0]
+        r.add(c9);
+
+        var c10 = new X.cube();
+        c10.color = [13,2,8]
+        c10.center =[0,250,0]
+        r.add(c10);
+
+        var c11 = new X.cube();
+        c11.color = [13,2,8]
+        c11.center =[0,275,0]
+        r.add(c11);
+
+        var c12 = new X.cube();
+        c12.color = [13,2,8]
+        c12.center =[0,300,0]
+        r.add(c12);
+
+        var b1 = new X.cube();
+        b1.color = [13,2,8]
+        b1.center =[25,25,0]
+        r.add(b1);
+
+        var b2 = new X.cube();
+        b2.color = [13,2,8]
+        b2.center =[25,50,0]
+        r.add(b2);
+
+        var b3 = new X.cube();
+        b3.color = [13,2,8]
+        b3.center =[25,75,0]
+        r.add(b3);
+
+        var b4 = new X.cube();
+        b4.color = [13,2,8]
+        b4.center =[25,100,0]
+        r.add(b4);
+
+        var b5 = new X.cube();
+        b5.color = [0,0,0]
+        b5.center =[25,125,0]
+        r.add(b5);
+
+        var b6 = new X.cube();
+        b6.color = [0,0,0]
+        b6.center =[25,150,0]
+        r.add(b6);
+    
+        var b7 = new X.cube();
+        b7.color = [0,0,0]
+        b7.center =[25,175,0]
+        r.add(b7);
+
+        var b8 = new X.cube();
+        b8.color = [13,2,8]
+        b8.center =[25,200,0]
+        r.add(b8);
+
+        var b9 = new X.cube();
+        b9.color = [13,2,8]
+        b9.center =[25,225,0]
+        r.add(b9);
+
+        var b10 = new X.cube();
+        b10.color = [13,2,8]
+        b10.center =[25,250,0]
+        r.add(b10);
+
+        var b11 = new X.cube();
+        b11.color = [13,2,8]
+        b11.center =[25,275,0]
+        r.add(b11);
+        
+        var b12 = new X.cube();
+        b12.color = [13,2,8]
+        b12.center =[25,300,0]
+        r.add(b12);
+
+        var d1 = new X.cube();
+        d1.color = [13,2,8]
+        d1.center =[50,25,0]
+        r.add(d1);
+
+        var d2 = new X.cube();
+        d2.color = [13,2,8]
+        d2.center =[50,50,0]
+        r.add(d2);
+
+        var d3 = new X.cube();
+        d3.color = [0,0,0]
+        d3.center =[50,75,0]
+        r.add(d3);
+
+        var d4 = new X.cube();
+        d4.color = [0,0,0]
+        d4.center =[50,100,0]
+        r.add(d4);
+
+        var d5 = new X.cube();
+        d5.color = [230,255,0]
+        d5.center =[50,125,0]
+        r.add(d5);
+
+        var d6 = new X.cube();
+        d6.color = [230,255,0]
+        d6.center =[50,150,0]
+        r.add(d6);
+    
+        var d7 = new X.cube();
+        d7.color = [230,255,0]
+        d7.center =[50,175,0]
+        r.add(d7);
+
+        var d8 = new X.cube();
+        d8.color = [0,0,0]
+        d8.center =[50,200,0]
+        r.add(d8);
+
+        var d9 = new X.cube();
+        d9.color = [0,0,0]
+        d9.center =[50,225,0]
+        r.add(d9);
+
+        var d10 = new X.cube();
+        d10.color = [13,2,8]
+        d10.center =[50,250,0]
+        r.add(d10);
+
+        var d11 = new X.cube();
+        d11.color = [13,2,8]
+        d11.center =[50,275,0]
+        r.add(d11);
+        
+        var d12 = new X.cube();
+        d12.color = [13,2,8]
+        d12.center =[50,300,0]
+        r.add(d12);
+
+        var e1 = new X.cube();
+        e1.color = [13,2,8]
+        e1.center =[75,25,0]
+        r.add(e1);
+
+        var e2 = new X.cube();
+        e2.color = [0,0,0]
+        e2.center =[75,50,0]
+        r.add(e2);
+
+        var e3 = new X.cube();
+        e3.color = [230,255,0]
+        e3.center =[75,75,0]
+        r.add(e3);
+
+        var e4 = new X.cube();
+        e4.color = [230,255,0]
+        e4.center =[75,100,0]
+        r.add(e4);
+
+        var e5 = new X.cube();
+        e5.color = [230,255,0]
+        e5.center =[75,125,0]
+        r.add(e5);
+
+        var e6 = new X.cube();
+        e6.color = [230,255,0]
+        e6.center =[75,150,0]
+        r.add(e6);
+    
+        var e7 = new X.cube();
+        e7.color = [230,255,0]
+        e7.center =[75,175,0]
+        r.add(e7);
+
+        var e8 = new X.cube();
+        e8.color = [230,255,0]
+        e8.center =[75,200,0]
+        r.add(e8);
+
+        var e9 = new X.cube();
+        e9.color = [230,255,0]
+        e9.center =[75,225,0]
+        r.add(e9);
+
+        var e10 = new X.cube();
+        e10.color = [0,0,0]
+        e10.center =[75,250,0]
+        r.add(e10);
+
+        var e11 = new X.cube();
+        e11.color = [13,2,8]
+        e11.center =[75,275,0]
+        r.add(e11);
+        
+        var e12 = new X.cube();
+        e12.color = [13,2,8]
+        e12.center =[75,300,0]
+        r.add(e12);
+
+        var f1 = new X.cube();
+        f1.color = [13,2,8]
+        f1.center =[100,25,0]
+        r.add(f1);
+
+        var f2 = new X.cube();
+        f2.color = [0,0,0]
+        f2.center =[100,50,0]
+        r.add(f2);
+
+        var f3 = new X.cube();
+        f3.color = [230,255,0]
+        f3.center =[100,75,0]
+        r.add(f3);
+
+        var f4 = new X.cube();
+        f4.color = [0,0,0]
+        f4.center =[100,100,0]
+        r.add(f4);
+
+        var f5 = new X.cube();
+        f5.color = [230,255,0]
+        f5.center =[100,125,0]
+        r.add(f5);
+
+        var f6 = new X.cube();
+        f6.color = [230,255,0]
+        f6.center =[100,150,0]
+        r.add(f6);
+    
+        var f7 = new X.cube();
+        f7.color = [0,255,0]
+        f7.center =[100,175,0]
+        r.add(f7);
+
+        var f8 = new X.cube();
+        f8.color = [230,255,0]
+        f8.center =[100,200,0]
+        r.add(f8);
+
+        var f9 = new X.cube();
+        f9.color = [230,255,0]
+        f9.center =[100,225,0]
+        r.add(f9);
+
+        var f10 = new X.cube();
+        f10.color = [0,0,0]
+        f10.center =[100,250,0]
+        r.add(f10);
+
+        var f11 = new X.cube();
+        f11.color = [13,2,8]
+        f11.center =[100,275,0]
+        r.add(f11);
+        
+        var f12 = new X.cube();
+        f12.color = [13,2,8]
+        f12.center =[100,300,0]
+        r.add(f12);
+
+        var g1 = new X.cube();
+        g1.color = [0,0,0]
+        g1.center =[125,25,0]
+        r.add(g1);
+
+        var g2 = new X.cube();
+        g2.color = [230,255,0]
+        g2.center =[125,50,0]
+        r.add(g2);
+
+        var g3 = new X.cube();
+        g3.color = [230,255,0]
+        g3.center =[125,75,0]
+        r.add(g3);
+
+        var g4 = new X.cube();
+        g4.color = [230,255,0]
+        g4.center =[125,100,0]
+        r.add(g4);
+
+        var g5 = new X.cube();
+        g5.color = [0,0,0]
+        g5.center =[125,125,0]
+        r.add(g5);
+
+        var g6 = new X.cube();
+        g6.color = [230,255,0]
+        g6.center =[125,150,0]
+        r.add(g6);
+    
+        var g7 = new X.cube();
+        g7.color = [13,2,8]
+        g7.center =[125,175,0]
+        r.add(g7);
+
+        var g8 = new X.cube();
+        g8.color = [230,255,0]
+        g8.center =[125,200,0]
+        r.add(g8);
+
+        var g9 = new X.cube();
+        g9.color = [0,0,0]
+        g9.center =[125,225,0]
+        r.add(g9); 
+
+        var g10 = new X.cube();
+        g10.color = [230,255,0]
+        g10.center =[125,250,0]
+        r.add(g10);
+
+        var g11 = new X.cube();
+        g11.color = [0,0,0]
+        g11.center =[125,275,0]
+        r.add(g11);
+        
+        var g12 = new X.cube();
+        g12.color = [13,2,8]
+        g12.center =[125,300,0]
+        r.add(g12);
+
+        var h1 = new X.cube();
+        h1.color = [0,0,0]
+        h1.center =[150,25,0]
+        r.add(h1);
+
+        var h2 = new X.cube();
+        h2.color = [230,255,0]
+        h2.center =[150,50,0]
+        r.add(h2);
+
+        var h3 = new X.cube();
+        h3.color = [230,255,0]
+        h3.center =[150,75,0]
+        r.add(h3);
+
+        var h4 = new X.cube();
+        h4.color = [230,255,0]
+        h4.center =[150,100,0]
+        r.add(h4);
+
+        var h5 = new X.cube();
+        h5.color = [0,0,0]
+        h5.center =[150,125,0]
+        r.add(h5);
+
+        var h6 = new X.cube();
+        h6.color = [230,255,0]
+        h6.center =[150,150,0]
+        r.add(h6);
+    
+        var h7 = new X.cube();
+        h7.color = [230,255,0]
+        h7.center =[150,175,0]
+        r.add(h7);
+
+        var h8 = new X.cube();
+        h8.color = [0,0,0]
+        h8.center =[150,200,0]
+        r.add(h8);
+
+        var h9 = new X.cube();
+        h9.color = [230,255,0]
+        h9.center =[150,225,0]
+        r.add(h9);
+
+        var h10 = new X.cube();
+        h10.color = [230,255,0]
+        h10.center =[150,250,0]
+        r.add(h10);
+
+        var h11 = new X.cube();
+        h11.color = [0,0,0]
+        h11.center =[150,275,0]
+        r.add(h11);
+        
+        var h12 = new X.cube();
+        h12.color = [13,2,8]
+        h12.center =[150,300,0]
+        r.add(h12);
+
+        var j1 = new X.cube();
+        j1.color = [0,0,0]
+        j1.center =[175,25,0]
+        r.add(j1);
+
+        var j2 = new X.cube();
+        j2.color = [230,255,0]
+        j2.center =[175,50,0]
+        r.add(j2);
+
+        var j3 = new X.cube();
+        j3.color = [230,255,0]
+        j3.center =[175,75,0]
+        r.add(j3);
+
+        var j4 = new X.cube();
+        j4.color = [230,255,0]
+        j4.center =[175,100,0]
+        r.add(j4);
+
+        var j5 = new X.cube();
+        j5.color = [0,0,0]
+        j5.center =[175,125,0]
+        r.add(j5);
+
+        var j6 = new X.cube();
+        j6.color = [230,255,0]
+        j6.center =[175,150,0]
+        r.add(j6);
+    
+        var j7 = new X.cube();
+        j7.color = [230,255,0]
+        j7.center =[175,175,0]
+        r.add(j7);
+
+        var j8 = new X.cube();
+        j8.color = [0,0,0]
+        j8.center =[175,200,0]
+        r.add(j8);
+
+        var j9 = new X.cube();
+        j9.color = [230,255,0]
+        j9.center =[175,225,0]
+        r.add(j9);
+
+        var j10 = new X.cube();
+        j10.color = [230,255,0]
+        j10.center =[175,250,0]
+        r.add(j10);
+
+        var j11 = new X.cube();
+        j11.color = [0,0,0]
+        j11.center =[175,275,0]
+        r.add(j11);
+        
+        var j12 = new X.cube();
+        j12.color = [13,2,8]
+        j12.center =[175,300,0]
+        r.add(j12);
+
+        var i1 = new X.cube();
+        i1.color = [0,0,0]
+        i1.center =[200,25,0]
+        r.add(i1);
+
+        var i2 = new X.cube();
+        i2.color = [230,255,0]
+        i2.center =[200,50,0]
+        r.add(i2);
+
+        var i3 = new X.cube();
+        i3.color = [230,255,0]
+        i3.center =[200,75,0]
+        r.add(i3);
+
+        var i4 = new X.cube();
+        i4.color = [230,255,0]
+        i4.center =[200,100,0]
+        r.add(i4);
+
+        var i5 = new X.cube();
+        i5.color = [0,0,0]
+        i5.center =[200,125,0]
+        r.add(i5);
+
+        var i6 = new X.cube();
+        i6.color = [230,255,0]
+        i6.center =[200,150,0]
+        r.add(i6);
+    
+        var i7 = new X.cube();
+        i7.color = [0,255,0]
+        i7.center =[200,175,0]
+        r.add(i7);
+
+        var i8 = new X.cube();
+        i8.color = [230,255,0]
+        i8.center =[200,200,0]
+        r.add(i8);
+
+        var i9 = new X.cube();
+        i9.color = [0,0,0]
+        i9.center =[200,225,0]
+        r.add(i9);
+
+        var i10 = new X.cube();
+        i10.color = [230,255,0]
+        i10.center =[200,250,0]
+        r.add(i10);
+
+        var i11 = new X.cube();
+        i11.color = [0,0,0]
+        i11.center =[200,275,0]
+        r.add(i11);
+        
+        var i12 = new X.cube();
+        i12.color = [13,2,8]
+        i12.center =[200,300,0]
+        r.add(i12);
+
+        var k1 = new X.cube();
+        k1.color = [13,2,8]
+        k1.center =[225,25,0]
+        r.add(k1);
+
+        var k2 = new X.cube();
+        k2.color = [0,0,0]
+        k2.center =[225,50,0]
+        r.add(k2);
+
+        var k3 = new X.cube();
+        k3.color = [230,255,0]
+        k3.center =[225,75,0]
+        r.add(k3);
+
+        var k4 = new X.cube();
+        k4.color = [0,0,0]
+        k4.center =[225,100,0]
+        r.add(k4);
+
+        var k5 = new X.cube();
+        k5.color = [230,255,0]
+        k5.center =[225,125,0]
+        r.add(k5);
+
+        var k6 = new X.cube();
+        k6.color = [230,255,0]
+        k6.center =[225,150,0]
+        r.add(k6);
+    
+        var k7 = new X.cube();
+        k7.color = [13,2,8]
+        k7.center =[225,175,0]
+        r.add(k7);
+
+        var k8 = new X.cube();
+        k8.color = [230,255,0]
+        k8.center =[225,200,0]
+        r.add(k8);
+
+        var k9 = new X.cube();
+        k9.color = [230,255,0]
+        k9.center =[225,225,0]
+        r.add(k9);
+
+        var k10 = new X.cube();
+        k10.color = [0,0,0]
+        k10.center =[225,250,0]
+        r.add(k10);
+
+        var k11 = new X.cube();
+        k11.color = [13,2,8]
+        k11.center =[225,275,0]
+        r.add(k11);
+        
+        var k12 = new X.cube();
+        k12.color = [13,2,8]
+        k12.center =[225,300,0]
+        r.add(k12);
+
+        var l1 = new X.cube();
+        l1.color = [13,2,8]
+        l1.center =[250,25,0]
+        r.add(l1);
+
+        var l2 = new X.cube();
+        l2.color = [0,0,0]
+        l2.center =[250,50,0]
+        r.add(l2);
+
+        var l3 = new X.cube();
+        l3.color = [230,255,0]
+        l3.center =[250,75,0]
+        r.add(l3);
+
+        var l4 = new X.cube();
+        l4.color = [230,255,0]
+        l4.center =[250,100,0]
+        r.add(l4);
+
+        var l5 = new X.cube();
+        l5.color = [230,255,0]
+        l5.center =[250,125,0]
+        r.add(l5);
+
+        var l6 = new X.cube();
+        l6.color = [230,255,0]
+        l6.center =[250,150,0]
+        r.add(l6);
+    
+        var l7 = new X.cube();
+        l7.color = [230,255,0]
+        l7.center =[250,175,0]
+        r.add(l7);
+
+        var l8 = new X.cube();
+        l8.color = [230,255,0]
+        l8.center =[250,200,0]
+        r.add(l8);
+
+        var l9 = new X.cube();
+        l9.color = [230,255,0]
+        l9.center =[250,225,0]
+        r.add(l9);
+
+        var l10 = new X.cube();
+        l10.color = [0,0,0]
+        l10.center =[250,250,0]
+        r.add(l10);
+
+        var l11 = new X.cube();
+        l11.color = [13,2,8]
+        l11.center =[250,275,0]
+        r.add(l11);
+        
+        var l12 = new X.cube();
+        l12.color = [13,2,8]
+        l12.center =[250,300,0]
+        r.add(l12);
+
+        var p1 = new X.cube();
+        p1.color = [13,2,8]
+        p1.center =[275,25,0]
+        r.add(p1);
+
+        var p2 = new X.cube();
+        p2.color =[13,2,8]
+        p2.center =[275,50,0]
+        r.add(p2);
+
+        var p3 = new X.cube();
+        p3.color = [0,0,0]
+        p3.center =[275,75,0]
+        r.add(p3);
+
+        var p4 = new X.cube();
+        p4.color = [0,0,0]
+        p4.center =[275,100,0]
+        r.add(p4);
+
+        var p5 = new X.cube();
+        p5.color = [230,255,0]
+        p5.center =[275,125,0]
+        r.add(p5);
+
+        var p6 = new X.cube();
+        p6.color = [230,255,0]
+        p6.center =[275,150,0]
+        r.add(p6);
+
+        var p7 = new X.cube();
+        p7.color = [230,255,0]
+        p7.center =[275,175,0]
+        r.add(p7);
+
+        var p8 = new X.cube();
+        p8.color = [0,0,0]
+        p8.center =[275,200,0]
+        r.add(p8);
+
+        var p9 = new X.cube();
+        p9.color = [0,0,0]
+        p9.center =[275,225,0]
+        r.add(p9);
+
+        var p10 = new X.cube();
+        p10.color = [13,2,8]
+        p10.center =[275,250,0]
+        r.add(p10);
+
+        var p11 = new X.cube();
+        p11.color = [13,2,8]
+        p11.center =[275,275,0]
+        r.add(p11);
+
+        var p12 = new X.cube();
+        p12.color = [13,2,8]
+        p12.center =[275,300,0]
+        r.add(p12);
+    
+
+          var m1 = new X.cube();
+        m1.color = [13,2,8]
+        m1.center =[300,25,0]
+        r.add(m1);
+
+        var m2 = new X.cube();
+        m2.color = [13,2,8]
+        m2.center =[300,50,0]
+        r.add(m2);
+
+        var m3 = new X.cube();
+        m3.color = [13,2,8]
+        m3.center =[300,75,0]
+        r.add(m3);
+
+        var m4 = new X.cube();
+        m4.color = [13,2,8]
+        m4.center =[300,100,0]
+        r.add(m4);
+
+        var m5 = new X.cube();
+        m5.color = [0,0,0]
+        m5.center =[300,125,0]
+        r.add(m5);
+
+        var m6 = new X.cube();
+        m6.color = [0,0,0]
+        m6.center =[300,150,0]
+        r.add(m6);
+
+        var m7 = new X.cube();
+        m7.color = [0,0,0]
+        m7.center =[300,175,0]
+        r.add(m7);
+
+        var m8 = new X.cube();
+        m8.color = [13,2,8]
+        m8.center =[300,200,0]
+        r.add(m8);
+
+        var m9 = new X.cube();
+        m9.color = [13,2,8]
+        m9.center =[300,225,0]
+        r.add(m9);
+
+        var m10 = new X.cube();
+        m10.color = [13,2,8]
+        m10.center =[300,250,0]
+        r.add(m10);
+
+        var m11 = new X.cube();
+        m11.color = [13,2,8]
+        m11.center =[300,275,0]
+        r.add(m11);
+
+        var m12 = new X.cube();
+        m12.color = [13,2,8]
+        m12.center =[300,300,0]
+        r.add(m12);
+
+        
+        var z1 = new X.cube();
+        z1.color = [13,2,8]
+        z1.center =[325,25,0]
+        r.add(z1);
+
+        var z2 = new X.cube();
+        z2.color = [13,2,8]
+        z2.center =[325,50,0]
+        r.add(z2);
+
+        var z3 = new X.cube();
+        z3.color = [13,2,8]
+        z3.center =[325,75,0]
+        r.add(z3);
+
+        var z4 = new X.cube();
+        z4.color = [13,2,8]
+        z4.center =[325,100,0]
+        r.add(z4);
+
+        var z5 = new X.cube();
+        z5.color = [13,2,8]
+        z5.center =[325,125,0]
+        r.add(z5);
+
+        var z6 = new X.cube();
+        z6.color = [13,2,8]
+        z6.center =[325,150,0]
+        r.add(z6);
+
+        var z7 = new X.cube();
+        z7.color = [13,2,8]
+        z7.center =[325,175,0]
+        r.add(z7);
+
+        var z8 = new X.cube();
+        z8.color = [13,2,8]
+        z8.center =[325,200,0]
+        r.add(z8);
+
+        var z9 = new X.cube();
+        z9.color = [13,2,8]
+        z9.center =[325,225,0]
+        r.add(z9);
+
+        var z10 = new X.cube();
+        z10.color = [13,2,8]
+        z10.center =[325,250,0]
+        r.add(z10);
+
+        var z11 = new X.cube();
+        z11.color = [13,2,8]
+        z11.center =[325,275,0]
+        r.add(z11);
+
+        var z12 = new X.cube();
+        z12.color = [13,2,8]
+        z12.center =[325,300,0]
+        r.add(z12);
+    
+    
+        
+
+      r.camera.position = [0, 0, 450];
+
+      // render everything!
+      r.render();
+
+    };
+
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>
+
+
+
+
+
+
+
+

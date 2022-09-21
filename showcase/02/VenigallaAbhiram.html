@@ -1,0 +1,161 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+      <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+
+    <script type="text/javascript">
+
+window.onload = function() {
+        let ec=true;
+      var r = new X.renderer3D();
+      r.init();
+      for (i=0; i<9; i++){
+        for(j=0;j<9;j++)
+        {
+          c = new X.cube();
+          c.color = [0,1,0]
+          c.center = [25*i, 25*j, 0];
+          r.add(c);
+        }
+      }
+      for (i=0; i<3; i++){
+        for(j=0;j<3-i;j++)
+        {
+          c = new X.cube();
+          c.color = [0, 0, 0]
+          c.center = [25*i, 25*j, 0];
+          r.add(c);
+        }
+      }
+      
+      for (i=-8; i<-5; i++){
+        for(j=0;j<-5-i;j++)
+        {
+          c = new X.cube();
+          c.color = [0, 0, 0]
+          c.center = [-25*i, 25*j, 0];
+          r.add(c);
+        }
+      }
+      for (i=3; i<6; i++){
+        for(j=6;j<8;j++)
+        {
+          c = new X.cube();
+          c.color = [0, 0, 0]
+          c.center = [25*i, 25*j, 0];
+          r.add(c);
+        }
+      }
+      
+      for (i=2; i<7; i++){
+        for(j=8;j<9;j++)
+        {
+          c = new X.cube();
+          c.color = [0, 0, 0]
+          c.center = [25*i, 25*j, 0];
+          r.add(c);
+        }
+      }
+    setInterval(
+    function()
+        {
+            if(ec)
+            {
+               for (i=2; i<7; i++)
+               {
+                for(j=4;j<5;j++)
+                {
+                  c = new X.cube();
+                  c.color = [0, 0, 1]
+                  c.center = [25*i, 25*j, 0];
+                  r.add(c);
+                  c = new X.cube();
+                  c.color = [0, 1, 0];
+                  c.center = [100, 100, 0];
+                  r.add(c);
+                    r.render();
+                }
+                }
+               ec=false;
+            }
+            else
+            {
+              for (i=2; i<7; i++)
+              {
+        for(j=4;j<5;j++)
+        {
+          c = new X.cube();
+          c.color = [1, 0, 0]
+          c.center = [25*i, 25*j, 0];
+          r.add(c);
+          c = new X.cube();
+          c.color = [0, 1, 0];
+          c.center = [100, 100, 0];
+          r.add(c);
+            r.render();
+        }
+      } 
+               ec=true;
+            }
+        }
+    ,1000);
+        
+      
+      for (i=0; i<1; i++){
+        for(j=3;j<9;j++)
+        {
+          c = new X.cube();
+          c.color = [0, 0, 0]
+          c.center = [25*i, 25*j, 0];
+          r.add(c);
+        }
+      }
+
+      for (i=8; i<9; i++){
+        for(j=3;j<9;j++)
+        {
+          c = new X.cube();
+          c.color = [0, 0, 0]
+          c.center = [25*i, 25*j, 0];
+          r.add(c);
+        }
+      }
+      c = new X.cube();
+      c.color = [255, 0, 224]
+      c.center = [100, 25, 0];
+      r.add(c);
+
+      r.camera.position = [0, 0, 500];
+
+      // render everything!
+      r.render();
+
+    };
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="
+https://drive.google.com/uc?export=view&id=1VQTAVP4Xj1388bOfIUFueyk6UzRQ5iOD"></div>
+  </body>
+</html>

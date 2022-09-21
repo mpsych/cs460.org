@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title>CS460 Assignment 2!</title>
+        <style>
+            body {
+                background-color: black;
+                color: white; /* font color */
+                font-family: sans-serif;
+                /*This gets rid of the scroll bar on the side */
+                overflow: hidden !important;
+            }
+            #logo {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+            }
+        </style>
+
+        <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+
+        <script type="text/javascript">
+
+            window.onload = function() {
+                var r = new X.renderer3D();
+                r.init()
+                // gradient is an arbitrary value used to generate a color gradient "behind"
+                // the desired letter "A"
+                var gradient = 0.1
+
+                // The following nested for loop generates the desired pixel art,
+                // which is of the letter "A" as it appears in the font "Revue" by Colin Brignall,
+                // only in an 8x8 pixel letter format, as found by me in this book:
+
+                // Omagari, Toshi. “10: Decorative.” Arcade Game Typography, Read Only Memory, 2019, pp. 254. 
+
+                // This 8x8 pixel version of the "Revue" appears in the game "Hydra" by Atari Games, from 1990.
+
+                for (var i = 0; i < 9; i++) {
+                    xcenter = 25*i;
+                    for (var j = 0; j < 10; j++) {
+                        ycenter = 25 * j;
+                        var c = new X.cube();
+                        c.center = [xcenter, ycenter, 0];
+                        // The following coditionals assign color by row, starting from the bottom, 
+                        // before making its way up to the top row
+                        if ((i >= 3 && i <= 4) && (j == 1)) {
+                            c.color = [1, 0, 0];
+                        } else if (((i >= 2 && i <= 4) || (i >= 6 && i <= 7)) && (j == 2)) {
+                            c.color = [1, 0, 0];
+                        } else if (((i >= 2 && i <= 3) || (i >= 6 && i <= 7)) && (j == 3)) {
+                            c.color = [1, 0, 0];
+                        } else if ((i <= 7) && (j == 4)){
+                            c.color = [1, 0, 0];
+                        } else if (((i >= 2 && i <= 3) || (i >= 6 && i <= 7)) && (j == 5)) {
+                            c.color = [1, 0, 0];
+                        } else if ((i >= 2 && i <= 4) && (j == 6)) {
+                            c.color = [1, 0, 0];
+                        } else if ((i >= 3 && i <= 7) && (j == 7)) {
+                            c.color = [1, 0, 0];
+                        } else if ((i >= 4 && i <= 7) && (j == 8)) {
+                            c.color = [1, 0, 0];
+                        // If the current pixel is not a part of the desired letter "A"...
+                        } else {
+                            c.color = [0 , 1 - gradient, 0.2];
+                        }
+                        r.add(c);
+                    }
+                    gradient += 0.1
+                }
+                r.camera.position = [0, 0, 1000];
+                r.render();
+            };
+
+        </script>
+    </head>
+    <body>
+        <h1>CS460 Assignment 2</h1>
+        <div id="logo">
+            <img src="gfx/cs460.png">
+        </div>
+    </body>
+</html>

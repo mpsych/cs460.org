@@ -1,0 +1,132 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+
+    <script type="text/javascript">
+
+    window.onload = function() {
+
+      // create and initialize a 3d renderer
+    var r = new X.renderer3D();
+    r.init();
+    // cube objects
+    var p1 = new X.cube();
+    p1.lengthX = p1.lengthY = p1.lengthZ = 2;
+    //
+    var p2 = new X.cube();
+    p2.lengthX = p2.lengthY = p2.lengthZ = 2;
+    //
+    var p3 = new X.cube();
+    p3.lengthX = p3.lengthY = p3.lengthZ = 2;
+    //
+    var p4 = new X.cube();
+    p4.lengthX = p4.lengthY = p4.lengthZ = 2;
+    
+
+    // populate the cubes
+ for (var i=0; i<9;i++) {
+     for (var j=0;j<9;j++) {
+         
+        var c = new X.cube();
+
+        c.center = [j * 3, 0, i * 3];
+
+        c.lengthX = c.lengthY = c.lengthZ = 2;
+
+        if (i == 8 && j == 4) { c.color = [0,1,0]; }
+        //
+        else if (i == 7 && j<6 && j>2) { c.color = [0,1,0]; }
+        //
+        else if (i == 5 && j == 5) { c.color = [0,1,0]; }
+        //
+        else if (i == 3 && j == 6) { c.color = [0,1,0]; }
+        //
+        else if (i == 6 && j<6 && j>2) { c.color = [0,1,0]; }
+        //
+        else if (i == 5 && j<8 && j>0) { c.color = [0,1,0]; }
+        //
+        else if (i == 4 && j<8 && j>0) { c.color = [0,1,0]; }
+        //
+        else if (i == 3 && j<=8 && j>=0) { c.color = [0,1,0]; }
+        //
+        else if (i == 2 && j<=8 && j>=0) { c.color = [0,1,0]; }
+        //
+        else if (i == 1 && j<6 && j>2) { c.color = [0,1,0]; }
+        //
+        else if (i == 0 && j<6 && j>2) { c.color = [0,1,0]; }
+         //
+        else { c.color = [0,0,0];}
+
+        r.add(c);
+     }
+ }
+    r.render();
+
+    var redcube = false;
+        setInterval(function() {
+          // position the animation cube objects
+          c.center = [3, 0, 6];
+          p1.center = [6,0,12];
+          p2.center = [18,0,12];
+          p3.center = [21,0,6];
+          p4.center = [12,0,21];
+          // render the cube objects
+          r.add(c);
+          r.add(p1);
+          r.add(p2);
+          r.add(p3);
+          r.add(p4);
+
+          if (!redcube) {
+            // color the cube objects
+            c.color = [1,0,0];
+            p1.color = [.8, .8, 0];
+            p2.color = [1, 0, 0];
+            p3.color = [.8, .8, 0];
+            p4.color = [0, 0, 8];
+            redcube = true;
+
+          } else {
+            // make the cubes blinks
+            c.color = [0,1,0];
+            p1.color = [0,1,0];
+            p2.color = [0,1,0];
+            p3.color = [0,1,0];
+            p4.color = [0,1,0];
+            redcube = false;
+
+          }
+          
+        }, 800);
+
+
+    };
+
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <title>CS460 Assignment 2!</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family:  sans-serif;
+        overflow: hidden !important;
+      }
+
+      #logo {
+        position: absolute; 
+        right: 10px; 
+        top: 10px;
+      }
+
+    </style>
+
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+
+    <script type="text/javascript">
+
+      window.onload = function() {
+
+        // THIS ONLY GETS EXECUTED ONCE THE PAGE
+        // IS FULLY LOADED!
+
+        var r = new X.renderer3D();
+        r.init();
+
+
+        // for (var i=0; i<50; i++) {
+
+        //   var c = new X.cube();
+        //   c.color = [1 / (i+1) + .20, 1 / (i+1) + .20, 1 / (i+1) + .20];
+
+        //   c.center = [10*i, 10*i, 0,];
+
+        //   r.add( c );
+
+        // }
+
+
+
+
+        var c2 = new X.cube();
+        c2.center = [0, 0, 0];
+
+        r.add( c2 );
+
+        var c3 = new X.cube();
+        c3.color = [0, 0, 1]; // rgb space normalized to 0..1
+        c3.center = [-5, 0, 0];
+        c3.lengthX = 20.1;
+        c3.lengthY = 20.1;
+        c3.lengthZ = 20.1;
+
+        r.add( c3 );
+
+
+        r.camera.position = [0, 0, 1000];
+
+
+        r.render();
+
+
+      };
+      
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo">
+      <img src="gfx/cs460.png">
+    </div>
+  </body>
+</html>

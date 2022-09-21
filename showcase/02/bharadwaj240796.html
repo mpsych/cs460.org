@@ -1,0 +1,159 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+        #ftr
+        {
+            position: absolute;
+            bottom: 10px;
+        }
+    </style>
+    
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+    <script type="text/javascript">
+    window.onload = function() 
+    {
+     fecc=true;
+     var n = 9;
+     r = new X.renderer3D();
+     r.init();
+//     var pc1=function()
+//        {
+//           c = new X.cube();
+//           c.center = [25*i,25*j,0];
+//           c.color=[0,0,1];
+//           r.add(c);
+//           r.render();
+//           r.camera.position=[100,0,1000];  
+//        };
+//        var pc2=function()
+//        {
+//           c = new X.cube();
+//           c.center = [25*i,25*j,0];
+//           c.color=[1,0,1];
+//           r.add(c);
+//           r.render();
+//           r.camera.position=[100,0,1000];  
+//        };
+       setInterval(
+        function(){
+            if(fecc)
+               {
+                    for(var i=1;i<=n-1;i++)
+         {
+          for(var j=1;j<=n;j++)
+             {
+                if((j==1&i>=1&i<=5)|(j==n&i>=0&i<=5)|(j==2&i>=2&i<=6)|(j==n-1&i>=2&i<=6)|(j>=3&j<=n-2&i>=3&i<=6)|(i==7&j>=3&j<=7)|(i==8&j>=4&j<=6))
+                {
+                    c = new X.cube();
+                    c.center = [25*i,25*j,0];
+                    c.color=[1,1,0];
+                    r.add(c);
+                }
+             }  
+         }
+        for(var i=1;i<=n-1;i++)
+         {
+          for(var j=1;j<=n;j++)
+             {
+                if(i==7&j==5)
+                {
+                    c = new X.cube();
+                    c.center = [25*i,25*j,0];
+                    c.color=[1,0,0];
+                    r.add(c);
+                }
+                 if((i==4&j>=3&j<=4))
+                    {
+                           c = new X.cube();
+                           c.center = [25*i,25*j,0];
+                           c.color=[0,0,1];
+                           r.add(c); 
+                    }
+                  if((i==4&j>=6&j<=7))
+                    {
+                           c = new X.cube();
+                           c.center = [25*i,25*j,0];
+                           c.color=[0,0,1];
+                           r.add(c);
+                    }
+             }  
+          }
+        r.render();
+        r.camera.position=[100,0,1000]; 
+        fecc=false;
+               }
+            else
+               {
+                   for(var i=1;i<=n-1;i++)
+         {
+          for(var j=1;j<=n;j++)
+             {
+                if((j==1&i>=1&i<=5)|(j==n&i>=0&i<=5)|(j==2&i>=2&i<=6)|(j==n-1&i>=2&i<=6)|(j>=3&j<=n-2&i>=3&i<=6)|(i==7&j>=3&j<=7)|(i==8&j>=4&j<=6))
+                {
+                    c = new X.cube();
+                    c.center = [25*i,25*j,0];
+                    c.color=[1,0,0];
+                    r.add(c);
+                    r.render();
+                    r.camera.position=[100,0,1000]; 
+                }
+             }  
+         }
+        for(var i=1;i<=n-1;i++)
+         {
+          for(var j=1;j<=n;j++)
+             {
+                if(i==7&j==5)
+                {
+                    c = new X.cube();
+                    c.center = [25*i,25*j,0];
+                    c.color=[1,1,0];
+                    r.add(c);
+                }
+                 if((i==4&j>=3&j<=4))
+                    {
+                           c = new X.cube();
+                           c.center = [25*i,25*j,0];
+                           c.color=[1,1,1];
+                           r.add(c);
+                                    }
+                  if((i==4&j>=6&j<=7))
+                    {
+                           c = new X.cube();
+                           c.center = [25*i,25*j,0];
+                           c.color=[1,1,1];
+                           r.add(c);     
+                    }
+                 
+             }  
+         }
+                r.render();
+                    r.camera.position=[100,0,500]; 
+                   fecc=true;
+               }
+        },1000);
+    };
+      </script>
+  </head>
+  <body>
+
+    </body>
+</html>

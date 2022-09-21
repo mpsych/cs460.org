@@ -1,0 +1,128 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;
+      }
+ 
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+ 
+    <script type="text/javascript">
+     
+    window.onload = function() {
+ 
+      // this gets called when the site is ready
+ 
+      // create a new scene and renderer
+      r = new X.renderer3D();
+      r.init();
+ 
+      // create a cube and add it!
+   const list=new Array();
+   r.camera.position = [180,180, 700];
+	
+	 for(var i = 0; i < 6 ; i++){
+		c = new X.cube();
+		c.center = [0,25*i,0];
+    c.color = [1,0.647,0];
+      	r.add(c);
+        list.push(c);
+		
+	}
+   for(var i = 0; i < 6 ; i++){
+		c = new X.cube();
+		c.center = [25,25+(25*i),0];
+    c.color = [1,0.647,0];
+      	r.add(c);
+        list.push(c);
+		
+	}
+  for(var i = 0; i < 6 ; i++){
+		c = new X.cube();
+		c.center = [50,50+(25*i),0];
+    c.color = [1,0.647,0];
+      	r.add(c);
+        list.push(c);
+		
+	}
+  for(var i = 0; i < 6 ; i++){
+		c = new X.cube();
+		c.center = [75,50+(25*i),0];
+    c.color = [1,0.647,0];
+      	r.add(c);
+        list.push(c);
+		
+	}
+  for(var i = 0; i < 6 ; i++){
+		c = new X.cube();
+		c.center = [100,50+(25*i),0];
+    c.color = [1,0.647,0];
+      	r.add(c);
+        list.push(c);
+		
+	}
+  for(var i = 0; i < 6 ; i++){
+		c = new X.cube();
+		c.center = [125,25+(25*i),0];
+    c.color = [1,0.647,0];
+      	r.add(c);
+        list.push(c);
+		
+	}
+  for(var i = 0; i < 6 ; i++){
+		c = new X.cube();
+		c.center = [150,25*i,0];
+    c.color = [1,0.647,0];
+      	r.add(c);
+        list.push(c);
+		
+	}
+  list
+  setInterval(function() {
+        list[8].color = [1, 1, 1];
+        list[13].color = [1, 1, 1];
+        list[22].color = [1,0,0];
+        list[25].color = [1, 1, 1];
+        list[32].color = [1, 1, 1];
+      }, 1000);
+  
+
+  list
+  setInterval(function() {
+        list[8].color = [1, 0, 0];
+        list[13].color = [1, 0, 0];
+        list[22].color = [1, 1, 1];
+        list[25].color = [1, 0, 0];
+        list[32].color = [1, 0, 0];
+      }, 1200);
+      // c = new X.cube();
+      // r.add(c);
+ 
+      // render everything!
+      r.render();
+ 
+    };
+ 
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

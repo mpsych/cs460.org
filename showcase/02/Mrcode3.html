@@ -1,0 +1,167 @@
+<html>
+  <head>
+    <title>CS460 Assignment 2!</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        overflow: hidden !important;
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+
+    <script
+      type="text/javascript"
+      src="https://get.goXTK.com/xtk_edge.js"
+    ></script>
+
+    <script type="text/javascript">
+      window.onload = function () {
+        // THIS ONLY GETS EXECUTED ONCE THE PAGE
+        // IS FULLY LOADED!
+
+        var r = new X.renderer3D();
+        r.init();
+
+        //top(level 1)
+        var c = new X.cube();
+        c.color = [0, 1, 0];
+        c.center = [75, 0, 0];
+        r.add(c);
+
+        //level 2
+        for (var i = 2; i < 5; i++) {
+          var c = new X.cube();
+
+          //light_1
+          if (i === 3) var l1 = c;
+
+          c.color = [0, 1, 0];
+
+          c.center = [25 * i, -25, 0];
+          r.add(c);
+        }
+
+        //level 3
+        for (var i = 2; i < 5; i++) {
+          var c = new X.cube();
+          c.color = [0, 1, 0];
+          c.center = [25 * i, -50, 0];
+          r.add(c);
+        }
+
+        //level 4
+        for (var i = 0; i < 7; i++) {
+          var c = new X.cube();
+
+          //light_2 & light_3
+          if (i === 1) var l2 = c;
+          if (i === 5) var l3 = c;
+
+          c.color = [0, 1, 0];
+          c.center = [25 * i, -75, 0];
+          r.add(c);
+        }
+
+        //level 5
+        for (var i = 0; i < 7; i++) {
+          var c = new X.cube();
+
+          //light_4
+          if (i === 3) var l4 = c;
+
+          c.color = [0, 1, 0];
+          c.center = [25 * i, -100, 0];
+          r.add(c);
+        }
+
+        //level 6
+        for (var i = -1; i < 8; i++) {
+          var c = new X.cube();
+
+          //light_8 & light_9
+          if (i === -1) var l8 = c;
+          if (i === 7) var l9 = c;
+
+          c.color = [0, 1, 0];
+          c.center = [25 * i, -125, 0];
+          r.add(c);
+        }
+
+        //level 7
+        for (var i = -1; i < 8; i++) {
+          var c = new X.cube();
+
+          //light_5 & light_6 & light_7
+          if (i === 1) var l5 = c;
+          if (i === 3) var l6 = c;
+
+          if (i === 5) var l7 = c;
+
+          c.color = [0, 1, 0];
+          c.center = [25 * i, -150, 0];
+          r.add(c);
+        }
+
+        //level 8
+        for (var i = 2; i < 5; i++) {
+          var c = new X.cube();
+          c.color = [0, 1, 0];
+          c.center = [25 * i, -175, 0];
+          r.add(c);
+        }
+
+        //level 9 (bottom)
+        for (var i = 2; i < 5; i++) {
+          var c = new X.cube();
+          c.color = [1, 1, 1];
+          c.center = [25 * i, -200, 0];
+          r.add(c);
+        }
+
+        //Light up the tree
+        var isLight = true;
+        setInterval(function () {
+          if (isLight) {
+            l1.color = [1, 0, 0];
+            l2.color = [1, 0, 0];
+            l3.color = [1, 0, 0];
+            l4.color = [1, 0, 0];
+            l5.color = [1, 0, 0];
+            l6.color = [1, 0, 0];
+            l7.color = [1, 0, 0];
+            l8.color = [0, 0, 1];
+            l9.color = [0, 0, 1];
+          } else {
+            l1.color = [0, 0, 1];
+            l2.color = [0, 0, 1];
+            l3.color = [0, 0, 1];
+            l4.color = [0, 0, 1];
+            l5.color = [1, 1, 0];
+            l6.color = [1, 1, 0];
+            l7.color = [1, 1, 0];
+            l8.color = [1, 1, 0];
+            l9.color = [1, 1, 0];
+          }
+          isLight = !isLight;
+        }, 1000);
+
+        r.camera.position = [0, 0, 1000];
+
+        r.render();
+      };
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo">
+      <img src="gfx/cs460.png" />
+    </div>
+  </body>
+</html>

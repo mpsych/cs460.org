@@ -1,0 +1,149 @@
+<html>
+  <head>
+    <title>CS460 Assignment 2!</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family:  sans-serif;
+        overflow: hidden !important;
+      }
+
+      #logo {
+        position: absolute; 
+        right: 10px; 
+        top: 10px;
+      }
+
+    </style>
+
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+
+    <script type="text/javascript">
+      var eye_colors = [
+          [0,1,1],
+          [1,1,1]
+        ];
+      var eyes_open = new Boolean(true);
+      var stored_cubes = [];
+      window.onload = function() {
+
+        // THIS ONLY GETS EXECUTED ONCE THE PAGE
+        // IS FULLY LOADED!
+
+        var r = new X.renderer3D();
+        r.init();
+        for (var i=0; i<8; i++) {
+          for (var j=0; j<7; j++){
+            if (i==0){
+              if (j>1){
+                if (j<5){
+                  var c = new X.cube();
+                  c.color = [1, 1, 1];
+                  c.center = [c.lengthX*j+(5*j), c.lengthX*i+(5*i), 0];
+                  r.add( c );
+                }
+              }
+            }
+            else if (i==1){
+              if (j>0){
+                if (j<6){
+                  if (j==3){
+                    var c = new X.cube();
+                    c.color = [1, 0, 0];
+                    c.center = [c.lengthX*j+(5*j), c.lengthX*i+(5*i), 0];
+                    r.add( c );
+                  }
+                  else {
+                    var c = new X.cube();
+                    c.color = [1, 1, 1];
+                    c.center = [c.lengthX*j+(5*j), c.lengthX*i+(5*i), 0];
+                    r.add( c );
+                  }
+                }
+              }
+            }
+            else if (i==6){
+              if (j>1){
+                if (j<5){
+                  continue;
+                }
+                else {
+                  var c = new X.cube();
+                  c.color = [1, 1, 1];
+                  c.center = [c.lengthX*j+(5*j), c.lengthX*i+(5*i), 0];
+                  r.add( c );
+                }
+              }
+              else {
+                var c = new X.cube();
+                  c.color = [1, 1, 1];
+                  c.center = [c.lengthX*j+(5*j), c.lengthX*i+(5*i), 0];
+                  r.add( c );
+              } 
+            }
+            else if (i==7){
+              if (j==0){
+                var c = new X.cube();
+                c.color = [1, 1, 1];
+                c.center = [c.lengthX*j+(5*j), c.lengthX*i+(5*i), 0];
+                r.add( c );
+              }
+              else if (j==6){
+                var c = new X.cube();
+                c.color = [1, 1, 1];
+                c.center = [c.lengthX*j+(5*j), c.lengthX*i+(5*i), 0];
+                r.add( c );
+              }
+            }
+            else{
+              if (i==4 && ((j>0 && j<3) || (j>3 && j<6))) {
+                var c = new X.cube();
+                c.color = [0, 1, 1];
+                stored_cubes.push(c)
+                c.center = [c.lengthX*j+(5*j), c.lengthX*i+(5*i), 0];
+                r.add( c );
+              }
+              else {
+                var c = new X.cube();
+                c.color = [1, 1, 1];
+                c.center = [c.lengthX*j+(5*j), c.lengthX*i+(5*i), 0];
+                r.add( c );
+              }
+            }
+          }
+
+        }
+
+        setInterval(function() {
+          if (eyes_open) {
+            for (var i = 0; i < stored_cubes.length; i++) {
+              stored_cubes[i].color = eye_colors[1];
+            }
+            eyes_open = false;
+          }
+          else {
+            for (var i = 0; i < stored_cubes.length; i++) {
+              stored_cubes[i].color = eye_colors[0];
+            }
+            eyes_open = true;
+          }
+        }, 1000);
+
+
+
+        r.camera.position = [0, -150, 500];
+        r.render();
+
+
+      };
+      
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo">
+      <img src="gfx/cs460.png">
+    </div>
+  </body>
+</html>

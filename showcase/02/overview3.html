@@ -1,0 +1,116 @@
+<html>
+<head>
+  <meta content="utf-8" http-equiv="encoding">
+
+  <style>
+    html,body {
+      background: black;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    iframe {
+      border:none;
+      overflow:hidden;
+    }
+
+  </style>
+
+  <script>
+
+    window.onload = function() {
+
+
+      users = ['Prathap-024',
+ 'Praveen-Ganni',
+ 'Robertkevin96',
+ 'SandeepSinghSardar',
+ 'sasank-02023036',
+ 'shenxie905',
+ 'slashback00',
+ 'talkingEagle',
+ 'TejasviRao-024',
+ 'VenigallaAbhiram',
+ 'VishwajithP2308',
+ 'yuva-01997656']
+
+      for (u in users) {
+
+        u = users[u];
+
+        newiframe = document.createElement('iframe');
+
+        newiframe.style.width = '200px';
+        newiframe.style.height = '150px';
+        newiframe.src = u+'.html';
+        document.body.appendChild(newiframe);
+
+      }
+
+
+      setTimeout(function() {
+
+      alliframes = document.body.children;
+      // console.log(alliframes)
+      for (var b=0; b<alliframes.length; b++) {
+        
+        a = alliframes[b];
+
+        if (!a.contentWindow){
+          continue;
+        }
+
+        if (a.contentWindow.document.body.children[0]) {
+
+          a.contentWindow.document.body.children[0].style.display = 'none';
+        }
+        
+        if (a.contentWindow.document.getElementById('logo')) {
+
+
+          a.contentWindow.document.getElementById('logo').style.display = 'none';
+        }
+
+
+
+
+        // if (b==0)
+          
+
+        switch(b) {
+          // case 0: a.contentWindow.r.camera.position = [0,0,-300]; break;
+          // case 1: a.contentWindow.r.camera.position = [0,0, 200]; break;
+          // case 4: a.contentWindow.r.camera.position = [0,0, 50]; break;
+          // case 3: a.contentWindow.r.camera.position = [0,0, -60]; break;
+          // case 10: a.contentWindow.r.camera.position = [0,0, 30]; break;
+          // default: a.contentWindow.r.camera.position = [0,0, -300]; break;
+          // case 7: a.contentWindow.r.camera.position = [0, 0, 1000]; break;
+          // case 8: a.contentWindow.r.camera.position = [0, 0, 300]; break;
+          // case 9: a.contentWindow.r.camera.position = [0, 0, -300]; break
+        }
+
+      }
+
+      }, 5000);
+
+
+
+
+
+    };
+
+
+
+  </script>
+
+</head>
+
+
+<body>
+  
+
+
+
+</body>
+
+</html>

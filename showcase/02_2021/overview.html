@@ -21,16 +21,16 @@
 		window.onload = function() {
 
 
-			users = ['allendai1',
- 'Anirudh909',
- 'bharadwaj240796',
- 'BrianXiaoBin',
- 'ceg9498',
- 'darksofnic',
- 'dathrika13',
- 'fhwarsam',
- 'gab-viva02',
- 'gzhjl2000']
+			users = ['aaryaman11',
+							 'amandakwong898',
+							 'Aniuta78',
+							 'beshu78910',
+							 'danielgoncalves25',
+							 'jpb93',
+							 'jztan93',
+							 'Keqiang-Li',
+							 'muhanedg',
+							 'pjnlf']
 
 			for (u in users) {
 
@@ -54,23 +54,11 @@
 				
 				a = alliframes[b];
 
-				if (!a.contentWindow){
-					continue;
-				}
-
-				if (a.contentWindow.document.body.children[0]) {
-
-					a.contentWindow.document.body.children[0].style.display = 'none';
-				}
-				
-				if (a.contentWindow.document.getElementById('logo')) {
-
-
-					a.contentWindow.document.getElementById('logo').style.display = 'none';
-				}
+				a.contentWindow.document.body.children[0].style.display = 'none';
 
 
 
+				a.contentWindow.document.getElementById('logo').style.display = 'none';
 
 				// if (b==0)
 					
@@ -82,9 +70,9 @@
 					// case 3: a.contentWindow.r.camera.position = [0,0, -60]; break;
 					// case 10: a.contentWindow.r.camera.position = [0,0, 30]; break;
 					// default: a.contentWindow.r.camera.position = [0,0, -300]; break;
-					// case 7: a.contentWindow.r.camera.position = [0, 0, 1000]; break;
-					// case 8: a.contentWindow.r.camera.position = [0, 0, 300]; break;
-					// case 9: a.contentWindow.r.camera.position = [0, 0, -300]; break
+					case 7: a.contentWindow.r.camera.position = [0, 0, 1000]; break;
+					case 8: a.contentWindow.r.camera.position = [0, 0, 300]; break;
+					case 9: a.contentWindow.r.camera.position = [0, 0, -300]; break
 				}
 
 			}

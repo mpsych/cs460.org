@@ -1,0 +1,110 @@
+<html>
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <title>CS460 Assignment 2</title>
+        <style>
+            body {
+                background-color: black;
+                color: white;
+                font-family: sans-serif;
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                overflow: hidden !important; /* stuffs hidden */
+            }
+
+            #logo {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+            }
+        </style>
+        <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>    	
+        <script type="text/javascript">
+ 
+        window.onload = function() {
+            //X.render();
+            var r = new X.renderer3D();
+            r.init();
+
+            var tempList = [];
+            var tempListInt = 0;
+
+            //length is 7, 7/2 = 3, duplicate for less if conditions
+            for (var i = 0; i < 3; i++) {
+                //width is 6
+                for (var j = 0; j < 6; j++){
+                    var c = new X.cube();
+                    c.color = [1, 1, 1];
+                    c.center = [25 * i, 25 * (j-i), 0];
+                    
+                    var c2 = new X.cube();
+                    c2.color = [1, 1, 1];
+                    c2.center = [25 * (6-i), 25 * (j-i), 0];
+
+
+                    if ((i == 1 && j == 3) || (i == 2 && j == 4)) {
+                        c.color = [255, 0, 0];
+                        c2.color = [255, 0, 0];
+                        tempList.push(c);
+                        tempList.push(c2);
+                    }
+
+                    r.add(c);
+                    r.add(c2);
+                }
+
+            }
+
+            //create mid cubes with provided length 3 and width 6
+            for (var i = 0; i < 6; i++) {
+                var c = new X.cube();
+                c.color = [1, 1, 1];
+                if (i == 4) {
+                    c.color = [0, 255, 0];
+                }
+                c.center = [25 * (3), 25 * (3-i), 0];
+                r.add(c);
+            }
+
+            r.camera.position = [0, 0, 1000];
+
+            r.render();
+
+            setInterval(function() {
+                // your code
+                for (var i = 0; i < tempList.length; i++) {
+                    if (tempListInt == 0) {
+                        //0,0,0 for black
+                        tempList[i].color = [0, 0, 0];
+                    }
+                    else {
+                        //origin red eye
+                        tempList[i].color = [255, 0, 0];
+                    }
+
+                }
+                if (tempListInt == 1) {
+                    tempListInt = 0;
+                }
+                else {
+                    tempListInt = 1;
+                }
+
+            }, 1000);
+
+
+        }
+        </script>
+    </head>
+
+
+    <body>
+        <h1>CS460 Assignment 2</h1>
+        <div id="logo">
+            <img src="https://cs460.org/gfx/cs460.png">
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,89 @@
+<html>
+	<head>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+		<meta content="utf-8" http-equiv="encoding" />
+
+		<title>CS460 Assignment 2</title>
+		<style>
+			body {
+				background-color: black;
+				color: white; /* font color */
+				font-family: sans-serif;
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				overflow: hidden !important;
+			}
+
+			#logo {
+				position: absolute;
+				right: 10px;
+				top: 10px;
+			}
+		</style>
+
+		<script
+			type="text/javascript"
+			src="https://get.goXTK.com/xtk_edge.js"
+		></script>
+
+		<script type="text/javascript">
+			window.onload = function () {
+				// this gets called when the site is ready
+
+				// create a new scene and renderer
+				r = new X.renderer3D();
+				r.init();
+
+				let grid = [
+					[0, 0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 1, 0, 0, 0, 0, 0, 1, 0],
+					[0, 1, 1, 0, 0, 0, 1, 1, 0],
+					[0, 1, 1, 1, 1, 1, 1, 1, 0],
+					[0, 1, 2, 2, 1, 2, 2, 1, 0],
+					[0, 1, 1, 1, 1, 1, 1, 1, 0],
+					[0, 1, 1, 1, 1, 1, 1, 1, 0],
+					[0, 0, 1, 1, 2, 1, 1, 0, 0],
+					[0, 0, 0, 1, 1, 1, 0, 0, 0],
+				];
+        // eyes : (4,2), (4,3), (4,5), (4,6)
+				/*
+        grid was rendering sideways, so I rotated the grid 90 degrees clockwise.
+        solution from: https://stackoverflow.com/questions/15170942/how-to-rotate-a-matrix-in-an-array-in-javascript
+        */
+				grid = grid[0].map((val, index) =>
+					grid.map((row) => row[index]).reverse()
+				);
+
+				for (let i = 0; i < 9; i++) {
+					for (let j = 0; j < 9; j++) {
+						c = new X.cube();
+						if (grid[i][j] == 1) {
+              
+							c.color = [1,0.6,0.1];
+							c.center = [i * 25, j * 25, 0];
+							r.add(c);
+						} else if (grid[i][j] == 2) {
+							c.color = [1, 1, 1];
+							c.center = [i * 25, j * 25, 0];
+							r.add(c);
+              
+						}
+					}
+				}
+
+				// set camera further away!
+				r.camera.position = [0, 0, 500];
+
+				// render everything!
+				r.render();
+			};
+		</script>
+	</head>
+	<body>
+		<h1>CS460 Assignment 2</h1>
+    <h2>Allen Dai</h2>
+
+		<div id="logo"><img style="height: 60px" src="gfx/cs460.png" /></div>
+	</body>
+</html>

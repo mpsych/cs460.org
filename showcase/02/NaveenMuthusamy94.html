@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;
+      }
+ 
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+ 
+    <script type="text/javascript">
+ 
+    window.onload = function() {
+ 
+      // this gets called when the site is ready
+ 
+      // create a new scene and renderer
+      r = new X.renderer3D();
+      r.init();
+      const shape = new Array();
+      r.camera.position = [0, 0, 700];
+      // drawing the shape
+      for(var i=0; i<9; i++)
+      {
+         for (var j=0; j<9; j++)
+        {
+          var c = new X.cube();
+          if(i<3)
+          c.color = [0, 1, 0];
+          else if(i<6)
+          c.color = [1, 1, 1];  
+          else
+          c.color = [1, 0.647, 0];  
+          c.center = [25*j, 25*i, 0];
+          r.add(c);
+          shape.push(c);
+        }
+      }
+      
+      // making the sakram blink
+      setInterval(function() 
+      {
+        shape[30].color = [0, 0, 1];
+        shape[31].color = [0, 0, 1];
+        shape[32].color = [0, 0, 1];
+        shape[39].color = [0, 0, 1];
+        shape[40].color = [0, 0, 1];
+        shape[41].color = [0, 0, 1];
+        shape[48].color = [0, 0, 1];
+        shape[49].color = [0, 0, 1];
+        shape[50].color = [0, 0, 1];
+      }, 500);
+      setInterval(function() 
+      {
+        shape[30].color = [1, 1, 1];
+        shape[31].color = [1, 1, 1];
+        shape[32].color = [1, 1, 1];
+        shape[39].color = [1, 1, 1];
+        shape[40].color = [1, 1, 1];
+        shape[41].color = [1, 1, 1];
+        shape[48].color = [1, 1, 1];
+        shape[49].color = [1, 1, 1];
+        shape[50].color = [1, 1, 1];
+      }, 1000);
+
+      // render everything!
+      r.render();
+ 
+    };
+ 
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+    <div id="logo"><img style="height:60px" src="gfx/cs460.png"></div>
+  </body>
+</html>

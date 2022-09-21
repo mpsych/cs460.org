@@ -1,0 +1,193 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>CS460 Assignment 2</title>
+    <style>
+      body {
+        background-color: black;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 5px;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;
+        
+      }
+
+      #logo {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+      #position{
+        position: absolute;
+        right: 5000px;
+        top: 5000px;
+      }
+    </style>
+
+
+    
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+
+    <script type="text/javascript">
+
+    window.onload = function() {
+      
+      // this gets called when the site is ready
+
+      // create a new scene and renderer
+      r = new X.renderer3D();
+      r.init();
+
+      for (i=1; i<8; i++){
+        for(j=3;j<7;j++)
+        {
+          
+          c = new X.cube();
+          c.color=[0.5,0,0.5];
+          c.center = [25*i, 25*j,0];
+          r.add(c);
+        }
+      }
+
+     // bottom line of 5 pixels 
+      for (i=2; i<7; i++){
+       
+       if(j=2) { 
+      c = new X.cube();
+      c.color=[0.5,0,0.5];
+      c.center = [25*i, 25*j,0];
+      r.add(c);
+       }
+     }
+//topleft of horn
+     for(i=1;i<3;i++){
+      if(j=7){
+      c = new X.cube();
+      c.color=[0.8,0.3,0];
+      c.center = [25*i, 25*j,0];
+      r.add(c);
+      }
+     }
+      // top right of horn
+     for(i=6;i<8;i++){
+      if(j=7){
+      c = new X.cube();
+      c.color=[0.8,0.3,0];
+      c.center = [25*i, 25*j,0];
+      r.add(c);
+      }
+     }
+
+     for(i=1;i<2;i++){
+      if(j=8){
+      c = new X.cube();
+      c.color=[0.8,0.3,0];
+      c.center = [25*i, 25*j,0];
+      r.add(c);
+      }
+     }
+
+     for(i=7;i<8;i++){
+      if(j=8){
+      c = new X.cube();
+      c.color=[0.8,0.3,0];
+      c.center = [25*i, 25*j,0];
+      r.add(c);
+      }
+     }
+
+     // bottom line of 3 pixels 
+     for (i=3; i<6; i++){
+       
+       if(j=1) { 
+      c = new X.cube();
+      c.color=[0.5,0,0.5];
+      c.center = [25*i, 25*j,0];
+      r.add(c);
+       }
+     }
+// mouth
+     c = new X.cube();
+      c.color = [0, 0.5, 0.5]
+      c.center = [100,50, 0];
+      r.add(c);
+
+     
+
+    //blinking foxeyes
+     let foxeyeblink=true;
+     setInterval
+     (
+        function()
+        {
+          if(foxeyeblink)
+          {
+            for(i=5;i<7;i++){
+      if(j=5){
+      c = new X.cube();
+      c.color=[1.5, 0,0];
+      c.center = [25*i, 25*j,0];
+      r.add(c);
+      r.render();
+      }
+     }
+     for(i=2;i<4;i++){
+      if(j=5){
+      c = new X.cube();
+      c.color=[1.5, 0, 0];
+      c.center = [25*i, 25*j,0];
+      r.add(c);
+      r.render();
+      }
+     }
+     foxeyeblink=false;
+          }
+          else
+          {
+            for(i=5;i<7;i++){
+      if(j=5){
+      c = new X.cube();
+      c.color=[0, 0,0];
+      c.center = [25*i, 25*j,0];
+      r.add(c);
+      r.render();
+      }
+     }
+     for(i=2;i<4;i++){
+      if(j=5){
+      c = new X.cube();
+      c.color=[0, 0, 0];
+      c.center = [25*i, 25*j,0];
+      r.add(c);
+      r.render();
+      }
+     }
+     foxeyeblink=true;
+          }
+
+        },1000 );
+
+      // set camera further away!
+      r.camera.position = [0, 0, 1000];
+
+      // render everything!
+      r.render();
+
+  };
+
+    </script>
+  </head>
+  <body>
+    <h1>CS460 Assignment 2</h1>
+  <div id="logo"><img style="height:60px" src="https://drive.google.com/uc?export=view&id=170VhrY1iJ1i7Ca0Qm7Pj0hUp5THjNvJC"></div>
+    <div class="position">
+      <p>MANASA KONE
+    </p>
+    <div class="position">
+      <p>ID 02010014
+    </p>
+  </body>
+</html>
