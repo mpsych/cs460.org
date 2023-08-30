@@ -45,13 +45,13 @@
         // UMASS BOSTON
         //
         // create a cube
-        umassboston = new X.cube();
-        // skin it..
-        umassboston.texture.file = 'umassboston1.png';
-        // hide it for now!
-        umassboston.visible = false;
+        // umassboston = new X.cube();
+        // // skin it..
+        // umassboston.texture.file = 'umassboston1.png';
+        // // hide it for now!
+        // umassboston.visible = false;
 
-        r.add(umassboston);
+        // r.add(umassboston);
 
 
         // setup the camera
@@ -287,6 +287,9 @@
 
             if (frames[f] != null) {
               document.getElementById(frames[f]).style.display = 'block';
+
+              responsiveVoice.speak(document.getElementById(frames[f]).innerText);
+
             } else {
               music.volume = .1;
 
@@ -333,5 +336,6 @@
 
     <div id='content'></div>
 
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=O3cTUuB2"></script>  
   </body>
 </html>
