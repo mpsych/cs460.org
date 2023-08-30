@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>CS460.org</title>
+    <title>CS460 Computer Graphics at the University of Massachusetts Boston</title>
     <script type="text/javascript" src="../../js/xtk_edge.js"></script>
     <link rel="stylesheet" type="text/css" href="../../styles/fonts.css"/>
     <style>
@@ -47,15 +47,26 @@
         // create a cube
         umassboston = new X.cube();
         // skin it..
-        umassboston.texture.file = 'umassboston1.png';
+        umassboston.texture.file = 'umassboston.png';
         // hide it for now!
         umassboston.visible = false;
 
         r.add(umassboston);
 
 
+        // BOSTON GFX
+        //
+        // create a cube
+        bostongfx = new X.cube();
+        // skin it..
+        bostongfx.texture.file = 'bostongfx.png';
+        // hide it for now!
+        bostongfx.visible = false;
+
+        r.add(bostongfx);
+
         // setup the camera
-        r.camera.position = [0, 0, 1000];
+        r.camera.position = [0, 0, 60];
         
         // .. and render it
         r.render();
@@ -108,21 +119,23 @@
         music.autoplay = true;
         music.load();
 
-        // setTimeout(function() {
-          create_cs460_logo()
-        // }, 400);
+        setTimeout(function() {
+          umassboston.visible = true;
+        }, 400);
         
-        // setTimeout(function() {
-        //   umassboston.visible = false;
-        //   r.camera.position = [0, 0, -25];
-        //   bostongfx.visible = true;
-        // }, 3200);
+        setTimeout(function() {
+          umassboston.visible = false;
+          r.camera.position = [0, 0, -25];
+          bostongfx.visible = true;
+        }, 3200);
 
-        // setTimeout(rotate_umb, 2000);
+        setTimeout(rotate_bostongfx, 6200);
 
       };
 
-      function rotate_umb() {
+
+
+      function rotate_bostongfx() {
 
         var rotateCounter = 0;
 
@@ -130,30 +143,27 @@
           rotateCounter += 1;
 
           // console.log(rotateCounter*2);
-          if (rotateCounter*2 >= 360) {
+          if (rotateCounter*2 >= 90) {
             clearInterval(spinner1); // this is not time-based now...
 
+            bostongfx.visible = false;
 
-            flicker();
-
+            // now the real CS460 logo..
+            create_cs460_logo();
             return;
 
           }
-          // console.log(rotateCounter*2)
-          cs460logo.transform.rotateY(rotateCounter*2);
+
+          bostongfx.transform.rotateY(rotateCounter*2);
         },100);
 
       };
 
 
 
-
-
-
-
       function create_cs460_logo() {
 
-        // document.getElementById('caption').style.display = 'block';
+        document.getElementById('caption').style.display = 'block';
 
         // create a new X.object
         cs460logo = new X.object();
@@ -186,15 +196,11 @@
         r.add(cs460logo);
 
         // setup the camera
-        r.camera.position = [3000, 3000, 3000];
+        r.camera.position = [500, 500, 500];
 
-        rotate_umb();
-
-        setTimeout(zoom_into_cs460logo, 1000);
+        setTimeout(zoom_into_cs460logo, 2000);
         
       };
-
-
 
 
 
@@ -203,16 +209,15 @@
         var zoomer = setInterval(function() {
 
           // we can stop once we are far away enough
-          // console.log(r.camera.view[14]);
-          if (r.camera.view[14] > -100) {
+          if (r.camera.view[14] > 1000) {
             clearInterval(zoomer); 
             // console.log('zooming done'); 
 
             setTimeout(function() {
-              // document.getElementById('caption').style.display = 'none';
+              document.getElementById('caption').style.display = 'none';
 
               start_content();
-            }, 5000);
+            }, 2000);
             
             return;
 
@@ -221,40 +226,9 @@
           // zoom in
           r.camera.zoomIn();
 
-        }, 50);
+        }, 10);
 
       };
-
-
-      function flicker() {
-
-        flickercount = 0;
-
-        flickery = setInterval(function() {
-
-          if (flickercount % 2 == 0) {
-
-
-            window.document.body.style.backgroundColor = 'white';
-            window.document.body.style.color = 'black';
-
-
-          } else {
-
-
-            window.document.body.style.backgroundColor = 'black';
-            window.document.body.style.color = 'white';
-
-
-          }
-
-          flickercount++;
-
-
-        }, 100);
-
-      }
-
 
 
       function start_content() {
@@ -264,14 +238,11 @@
         music.volume = .2;
 
         // activate speech
-        // var voice = document.getElementById('voice');
+        var voice = document.getElementById('voice');
 
-        // voice.autoplay = true;
-        // voice.volume = 1;
-        // voice.load();
-
-
-        console.log('start voice')
+        voice.autoplay = true;
+        voice.volume = 1;
+        voice.load();
 
 
         //
@@ -281,7 +252,7 @@
     
           setTimeout(function(f) {
             
-            if (f > 0 && f != frames.length-1) {
+            if (f > 0) {
               document.getElementById(frames[f-1]).style.display = 'none';
             }
 
@@ -290,12 +261,7 @@
             } else {
               music.volume = .1;
 
-
-              clearInterval(flickery);
-
               setTimeout(function(f) {
-
-
                 fadeout = setInterval(function(f) {
                   if (music.volume <= 0.) {
                     clearInterval(fadeout);
@@ -304,7 +270,7 @@
                   music.volume -= .05;
                   
                 }, 500);
-              },1000);
+              },3000);
 
               
             }
@@ -326,7 +292,7 @@
 
      <div style="visibility:hidden">
     <audio id='music'>
-      <source src="cyber-war-126419.mp3">
+      <source src="bensound-evolution.mp3">
     </audio>
   </div>
     <div id='caption' style='display:none;position: absolute;color:white;top:45%;left:50%;margin-left:50px;font-size:440%'>CS460</div>
