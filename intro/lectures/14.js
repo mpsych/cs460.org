@@ -16,7 +16,7 @@ document.getElementById("content").innerHTML = "\
 \
     <div id='content4' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>We will learn about the scene graph!</div>\
 \
-    <div id='content5' style='display:none;position: absolute;color:white;top:45%;left:40%;margin-left:50px;font-size:440%'>This is lecture 14.</div>  \
+    <div id='content5' style='display:none;position: absolute;color:white;top:45%;left:40%;margin-left:50px;font-size:440%'>This is lecture 15.</div>  \
 <audio id='voice'>    \
     <source src='lectures/14.mp3'>    \
   </audio>    \
