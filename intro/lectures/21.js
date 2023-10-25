@@ -1,9 +1,9 @@
 frames = ['content1', 'content2', 'content3', 'content4', 'content5', null];
 times = [0, // Today... 
          1000, // 
-         3500, // And
-         4500, // 
-         7300, // this is lecture 19
+         5500, // And
+         6500, // 
+         9000, // this is lecture 19
          13000];
 
 
