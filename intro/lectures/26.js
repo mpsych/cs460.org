@@ -16,7 +16,7 @@ document.getElementById("content").innerHTML = "\
 \
     <div id='content2' style='display:none;position: absolute;color:white;top:30%;left:20%;margin-left:50px;font-size:440%'>We have Manuel Sainsily as our guest.</div>\
 \
-    <div id='content3' style='display:none;position: absolute;color:white;top:20%;left:10%;margin-left:50px;font-size:440%'>Manuel is an UX/HCI/XR specialist based in Montreal, currently working for Unity.</div>\
+    <div id='content3' style='display:none;position: absolute;color:white;top:20%;left:10%;margin-left:50px;font-size:440%'>Manuel is an UX/HCI/XR specialist currently working for Unity.</div>\
 \
     <div id='content4' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>Before, he worked at Immersion, IBM, Fans Entertainment, and Mindgeek.</div>\
 \
