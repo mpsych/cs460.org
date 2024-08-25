@@ -1,0 +1,61 @@
+<html>
+<head>
+    <style>
+        body { background:black;margin: 0; overflow: hidden; }
+    </style>
+</head>
+<body>
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+    <script>
+
+
+    window.onload = function() {
+
+        particles = []; count=0;
+        // Renderer setup
+        r = new X.renderer3D();
+        r.init();
+
+        // Create cubes (as particles)
+         particleCount = 1000;
+        for (let i = 0; i < particleCount; i++) {
+             cube = new X.cube();
+             var x = Math.random() * 200 - 100;
+             var y = Math.random() * 200 - 100;
+             var z = Math.random() * 200 - 100;
+            cube.center = [x, y, z];
+            cube.lengthX = cube.lengthY = cube.lengthZ = 5;
+
+            // Random color based on position
+            cube.color = [Math.abs(x / 100), Math.abs(y / 100), Math.abs(z / 100)];
+
+            // Add cube to renderer and particle array
+            r.add(cube);
+            particles.push(cube);
+        }
+
+        // Setup camera position
+        r.camera.position = [0, 0, 1000];
+
+        // Animation loop
+        r.onRender = function () {
+            // requestAnimationFrame(animate);
+
+            for (let i = 0; i < particles.length; i++) {
+                const particle = particles[i];
+                const x = particle.center[0];
+                particle.center[1] = Math.sin((x + count) * 0.2) * 50; // Modify y position
+                particle.modified();
+            }
+
+            count += 0.1;
+
+            // Render the scene
+           
+        }
+ r.render();
+
+};
+    </script>
+</body>
+</html>

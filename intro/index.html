@@ -133,6 +133,12 @@
           if (rotateCounter*2 >= 360) {
             clearInterval(spinner1); // this is not time-based now...
 
+            cs460logo.transform.rotateX(270);
+            cs460logo.transform.rotateY(270);
+
+            r.camera.zoomIn();
+            r.camera.zoomIn();
+            r.camera.zoomIn();
 
             flicker();
 
@@ -235,23 +241,30 @@
           if (flickercount % 2 == 0) {
 
 
-            window.document.body.style.backgroundColor = 'white';
-            window.document.body.style.color = 'black';
+            // window.document.body.style.backgroundColor = 'white';
+            // window.document.body.style.color = 'black';
+
+            cs460logo.visible = true;
 
 
           } else {
 
 
-            window.document.body.style.backgroundColor = 'black';
-            window.document.body.style.color = 'white';
+            // window.document.body.style.backgroundColor = 'black';
+            // window.document.body.style.color = 'white';
 
+
+            cs460logo.visible = false;
 
           }
+
+
+          // r.camera.rotate([Math.random(),Math.random()]);
 
           flickercount++;
 
 
-        }, 100);
+        }, 1);
 
       }
 
@@ -295,6 +308,8 @@
 
 
               clearInterval(flickery);
+              cs460logo.visible = true;
+
 
               setTimeout(function(f) {
 

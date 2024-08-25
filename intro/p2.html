@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+      html, body { 
+        background-color:#000;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;  
+        font-family: din_condensed;
+        font-size: 18pt;
+      }
+    </style>
+</head>
+<body>
+    <script type="text/javascript" src="https://get.goXTK.com/xtk_edge.js"></script>
+    <script>
+    window.onload = function() {
+        let particles = [], count = 0;
+        let attractionPoint = { x: 0, y: 0, z: 0 };  // Attraction point for particles
+
+        // Renderer setup
+        let r = new X.renderer3D();
+        r.init();
+
+        // Create cubes (as particles)
+        const particleCount = 1000;
+        for (let i = 0; i < particleCount; i++) {
+            let cube = new X.cube();
+            let x = Math.random() * 200 - 100;
+            let y = Math.random() * 200 - 100;
+            let z = Math.random() * 200 - 100;
+            cube.center = [x, y, z];
+            cube.lengthX = cube.lengthY = cube.lengthZ = Math.random() * 5 + 2;  // Random size
+
+            // Initial color
+            cube.color = [Math.abs(x / 100), Math.abs(y / 100), Math.abs(z / 100)];
+
+            // Add cube to renderer and particle array
+            r.add(cube);
+            particles.push(cube);
+        }
+
+        // Setup camera position
+        r.camera.position = [0, 0, 1000];
+
+        // Mouse interaction to move attraction point
+        // document.addEventListener('mousemove', function(event) {
+        //     attractionPoint.x = (event.clientX - window.innerWidth / 2) * 0.1;
+        //     attractionPoint.y = -(event.clientY - window.innerHeight / 2) * 0.1;
+        // });
+
+        // Animation loop
+        r.onRender = function () {
+            for (let i = 0; i < particles.length; i++) {
+                const particle = particles[i];
+
+                // Calculate movement towards attraction point
+                let dx = attractionPoint.x - particle.center[0];
+                let dy = attractionPoint.y - particle.center[1];
+                let dz = attractionPoint.z - particle.center[2];
+
+                // Apply a small pull towards the attraction point
+                particle.center[0] += dx * 0.01;
+                particle.center[1] += dy * 0.01 + Math.sin((particle.center[0] + count) * 0.02) * 2;
+                particle.center[2] += dz * 0.01;
+
+                // Gradually change color based on distance from attraction point
+                let distance = Math.sqrt(dx * dx + dy * dy + dz * dz) / 100;
+                particle.color = [Math.sin(distance), Math.cos(distance), Math.sin(distance * 2)];
+
+                // Smooth size changes
+                particle.lengthX = particle.lengthY = particle.lengthZ = 5 + Math.sin(count + i * 0.1) * 2;
+
+                // Notify the renderer of changes
+                particle.modified();
+            }
+
+            count += 0.1;
+        };
+
+        r.render();
+    };
+    </script>
+</body>
+</html>
