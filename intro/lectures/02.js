@@ -11,13 +11,13 @@ document.getElementById("content").innerHTML = "\
 \
 <div id='content1' style='display:none;position: absolute;color:white;top:25%;left:30%;margin-left:50px;font-size:440%'>Today...</div>   \
 \
-<div id='content2' style='display:none;position: absolute;color:white;top:30%;left:20%;margin-left:50px;font-size:440%'>We will use</div>   \
+<div id='content2' style='display:none;position: absolute;color:white;top:30%;left:20%;margin-left:50px;font-size:440%'>We will continue</div>   \
 \
-<div id='content3' style='display:none;position: absolute;color:white;top:20%;left:10%;margin-left:50px;font-size:440%'>the developer tools of firefox and chrome</div>    \
+<div id='content3' style='display:none;position: absolute;color:white;top:20%;left:10%;margin-left:50px;font-size:440%'>using the developer tools</div>    \
 \
-<div id='content4' style='display:none;position: absolute;color:white;top:25%;left:30%;margin-left:50px;font-size:440%'>to better understand</div>\
+<div id='content4' style='display:none;position: absolute;color:white;top:25%;left:30%;margin-left:50px;font-size:440%'>and we will create our first</div>\
 \
-<div id='content5' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>webgl demos.</div>   \
+<div id='content5' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>webgl visualization.</div>   \
 \
 <div id='content6' style='display:none;position: absolute;color:white;top:45%;left:40%;margin-left:50px;font-size:440%'>This is lecture 2.</div>    \
 \
