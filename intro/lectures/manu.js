@@ -26,7 +26,7 @@ document.getElementById("content").innerHTML = "\
 \
     <div id='content7' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>And he will speak to us about his career and projects!</div>\
 \
-    <div id='content8' style='display:none;position: absolute;color:white;top:45%;left:40%;margin-left:50px;font-size:440%'>This is lecture 26.</div>    \
+    <div id='content8' style='display:none;position: absolute;color:white;top:45%;left:40%;margin-left:50px;font-size:440%'>This is lecture 14.</div>    \
 <audio id='voice'>    \
     <source src='lectures/none.mp3'>    \
   </audio>    \
