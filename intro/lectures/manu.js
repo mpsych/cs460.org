@@ -20,7 +20,7 @@ document.getElementById("content").innerHTML = "\
 \
     <div id='content4' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>Before, he worked at Immersion, IBM, Fans Entertainment, and Mindgeek.</div>\
 \
-    <div id='content5' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>Manu is a computer scientist a Carribean-artist based in Montreal</div>\
+    <div id='content5' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>Manu is a computer scientist and a Carribean-artist based in Montreal</div>\
 \
     <div id='content6' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>and he has over 17,000 followers on instagram.</div>\
 \
