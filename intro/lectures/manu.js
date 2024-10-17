@@ -20,11 +20,11 @@ document.getElementById("content").innerHTML = "\
 \
     <div id='content4' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>Before, he worked at Immersion, IBM, Fans Entertainment, and Mindgeek.</div>\
 \
-    <div id='content5' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>Manu studied Computer Science at SUPINFO International University.</div>\
+    <div id='content5' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>Manu is a computer scientist...</div>\
 \
-    <div id='content6' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>He is a Carribean-artist based in Montreal.</div>\
+    <div id='content6' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>and a Carribean-artist based in Montreal.</div>\
 \
-    <div id='content7' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>And he will speak to us about his career and projects!</div>\
+    <div id='content7' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>And he will share with us the latest in generative AI!</div>\
 \
     <div id='content8' style='display:none;position: absolute;color:white;top:45%;left:40%;margin-left:50px;font-size:440%'>This is lecture 14.</div>    \
 <audio id='voice'>    \
