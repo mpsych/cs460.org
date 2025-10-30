@@ -16,7 +16,7 @@ document.getElementById("content").innerHTML = "\
 \
     <div id='content4' style='display:none;position: absolute;color:white;top:35%;left:20%;margin-left:50px;font-size:440%'>learn about the anaglyph effect!</div>\
 \
-    <div id='content5' style='display:none;position: absolute;color:white;top:45%;left:40%;margin-left:50px;font-size:440%'>This is lecture 18.</div> \
+    <div id='content5' style='display:none;position: absolute;color:white;top:45%;left:40%;margin-left:50px;font-size:440%'>This is lecture 16.</div> \
 <audio id='voice'>    \
     <source src='lectures/"+lecturenumber+".mp3'>    \
   </audio>    \
