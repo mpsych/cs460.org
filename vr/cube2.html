@@ -1,0 +1,105 @@
+<html>
+  <head>
+    <style>
+      html, body { 
+        background-color:#000;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden !important;  
+      }
+    </style>
+    
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@latest/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@latest/examples/jsm/"
+      }
+    }
+    </script>
+
+    <script type="module">
+
+      import * as THREE from 'three';
+      import { OrbitControls } from 'three/addons/controls/OrbitControls.js';      
+
+      import { VRButton } from 'https://unpkg.com/three@0.160.0/examples/jsm/webxr/VRButton.js';
+
+      var renderer, controls, scene, camera;
+
+      var cube;
+
+      window.onload = function() {
+
+
+        // create scene
+        scene = new THREE.Scene();
+
+        // setup the camera
+        var fov = 75;
+        var ratio = window.innerWidth / window.innerHeight;
+        var zNear = 1;
+        var zFar = 10000;
+        camera = new THREE.PerspectiveCamera( fov, ratio, zNear, zFar );
+        camera.position.set(0, 0, 100);
+
+        // create renderer and add canvas
+        renderer = new THREE.WebGLRenderer({antialias:true});
+        renderer.setSize( window.innerWidth, window.innerHeight );
+
+        ////////
+        renderer.xr.enabled = true;        
+        renderer.xr.setReferenceSpaceType('local-floor');
+
+        document.body.appendChild(renderer.domElement);
+        document.body.appendChild(VRButton.createButton(renderer)); 
+
+
+        
+        //.. setup lights
+        var ambientLight = new THREE.AmbientLight();
+        scene.add( ambientLight );
+
+        var light = new THREE.DirectionalLight( 0xffffff, 5.0 );
+        light.position.set( 10, 100, 10 );
+        scene.add( light );
+
+        // configure cube
+        var geometry = new THREE.BoxGeometry( 20, 20, 20 );
+        var material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+        cube = new THREE.Mesh( geometry, material );
+        
+        // add it to the scene
+        scene.add(cube);
+
+        // setup interaction
+        controls = new OrbitControls( camera, renderer.domElement );
+ 
+        // call animation/rendering loop
+        // animate();
+
+        renderer.setAnimationLoop(animate);
+        
+      };
+
+      
+
+
+      function animate(time) {
+
+        // requestAnimationFrame( animate );
+
+        cube.rotation.x += 0.003;
+        cube.rotation.y += 0.006;
+
+        controls.update();
+        renderer.render( scene, camera );
+
+      };
+    </script>
+  </head>
+  <body></body>
+</html>
