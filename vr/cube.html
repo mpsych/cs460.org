@@ -1,0 +1,66 @@
+<html>
+<head>
+  <title></title>
+  <style>body{margin:0;overflow:hidden}</style>
+
+<script type="module">
+  import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+  import { VRButton } from 'https://unpkg.com/three@0.160.0/examples/jsm/webxr/VRButton.js';
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x202025);
+
+  const camera = new THREE.PerspectiveCamera(70, innerWidth/innerHeight, 0.1, 100);
+  camera.position.set(0, 1.6, 3); // eye height
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(innerWidth, innerHeight);
+  renderer.xr.enabled = true;                     // 1) enable WebXR
+  renderer.xr.setReferenceSpaceType('local-floor');
+  document.body.appendChild(renderer.domElement);
+  document.body.appendChild(VRButton.createButton(renderer)); // 2) add VR button
+
+
+  const geo = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+  const mat = new THREE.MeshStandardMaterial({ color: 0x66ccff, roughness: 0.4, metalness: 0.1 });
+  const cube = new THREE.Mesh(geo, mat);
+  cube.position.set(0, 1.5, -1.5);
+  scene.add(cube);
+
+
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1.0));
+  const dir = new THREE.DirectionalLight(0xffffff, 0.5);
+  dir.position.set(1, 2, 1);
+  scene.add(dir);
+
+
+  const floor = new THREE.Mesh(
+    new THREE.PlaneGeometry(10, 10),
+    new THREE.MeshStandardMaterial({ color: 0x222228, roughness: 1 })
+  );
+  floor.rotation.x = -Math.PI/2;
+  scene.add(floor);
+
+
+  const controller1 = renderer.xr.getController(0);
+  const controller2 = renderer.xr.getController(1);
+  scene.add(controller1, controller2);
+
+
+  addEventListener('resize', () => {
+    camera.aspect = innerWidth / innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(innerWidth, innerHeight);
+  });
+
+
+  renderer.setAnimationLoop((time) => {
+    cube.rotation.x += 0.003;
+    cube.rotation.y += 0.006;
+    renderer.render(scene, camera);
+  });
+</script>
+</head>
+<body>
+</body>
+</html>
