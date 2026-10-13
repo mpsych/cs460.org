@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CS460 — WebGL2 Rocketship Transformations</title>
+<style>
+:root { color-scheme: dark; font-family: system-ui, -apple-system, Segoe UI, sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 24px; background: #0b1220; color: #e5edf8; }
+main { max-width: 1000px; margin: auto; }
+h1 { margin: 0 0 6px; font-size: clamp(1.35rem, 3vw, 2rem); }
+p { margin: 0 0 20px; color: #aebcd0; }
+.layout { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(260px, 1fr); gap: 18px; }
+.panel { border: 1px solid #34445f; background: #141f32; border-radius: 14px; padding: 18px; }
+canvas { display: block; width: 100%; aspect-ratio: 4 / 3; border-radius: 8px; background: #0b1424; }
+label { display: flex; justify-content: space-between; margin: 14px 0 7px; font-size: 0.95rem; }
+output, .value { color: #67d7ff; font-variant-numeric: tabular-nums; }
+input[type=range] { width: 100%; accent-color: #38bdf8; cursor: pointer; }
+.matrix { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 12px; }
+.matrix div { background: #0b1424; text-align: center; border-radius: 5px; padding: 11px 4px; font: 14px ui-monospace, SFMono-Regular, Consolas, monospace; }
+button { padding: 9px 15px; border-radius: 7px; background: #243751; border: 1px solid #567291; color: #fff; cursor: pointer; margin-top: 16px; }
+button:hover { background: #315075; }
+.note { font-size: 0.82rem; line-height: 1.5; margin: 12px 0 0; }
+code { color: #a7e3ff; }
+#error { color: #ff9b9b; }
+@media(max-width: 720px) { body { padding: 12px; } .layout { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main>
+<h1>🚀 Rocketship Transformations — CS460</h1>
+<p>Raw WebGL2: move, rotate, and scale a rocketship with one matrix uniform.</p>
+<div class="layout">
+  <section class="panel">
+    <canvas id="glcanvas" width="800" height="600" aria-label="Interactive WebGL2 rocketship viewport"></canvas>
+    <p class="note">Coordinate system: origin at canvas center; +X is right, +Y is up. The faint grid marks 0.1 world-unit intervals.</p>
+    <p id="error" role="alert"></p>
+  </section>
+  <section class="panel">
+    <label for="tx">Translate X <output id="txv">0.00</output></label>
+    <input id="tx" type="range" min="-0.8" max="0.8" step="0.01" value="0">
+    <label for="ty">Translate Y <output id="tyv">0.00</output></label>
+    <input id="ty" type="range" min="-0.8" max="0.8" step="0.01" value="0">
+    <label for="rotation">Rotate <output id="rotationv">0°</output></label>
+    <input id="rotation" type="range" min="-180" max="180" step="1" value="0">
+    <label for="scale">Scale <output id="scalev">1.00×</output></label>
+    <input id="scale" type="range" min="0.25" max="2" step="0.01" value="1">
+    <h3 style="margin:24px 0 8px">Transformation matrix</h3>
+    <div id="matrix" class="matrix" aria-label="Transformation matrix"></div>
+    <p class="note"><code>M = T × R × S</code> for column vectors. The GLSL vertex shader applies <code>u_matrix * vec3(a_position, 1.0)</code>.</p>
+    <button id="reset">↺ Reset</button>
+  </section>
+</div>
+</main>
+<script>
+'use strict';
+const canvas = document.querySelector('#glcanvas');
+const gl = canvas.getContext('webgl2', { antialias: true });
+if (!gl) {
+  document.querySelector('#error').textContent = 'WebGL2 is unavailable in this browser.';
+} else {
+  const vertexSource = `#version 300 es
+    in vec2 a_position;
+    in vec3 a_color;
+    uniform mat3 u_matrix;
+    out vec3 v_color;
+    void main() {
+      vec3 transformed = u_matrix * vec3(a_position, 1.0);
+      gl_Position = vec4(transformed.xy, 0.0, 1.0);
+      v_color = a_color;
+    }`;
+  const fragmentSource = `#version 300 es
+    precision highp float;
+    in vec3 v_color;
+    out vec4 outColor;
+    void main() { outColor = vec4(v_color, 1.0); }`;
+  function shader(type, source) {
+    const sh = gl.createShader(type);
+    gl.shaderSource(sh, source);
+    gl.compileShader(sh);
+    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) throw Error(gl.getShaderInfoLog(sh));
+    return sh;
+  }
+  const program = gl.createProgram();
+  gl.attachShader(program, shader(gl.VERTEX_SHADER, vertexSource));
+  gl.attachShader(program, shader(gl.FRAGMENT_SHADER, fragmentSource));
+  gl.linkProgram(program);
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw Error(gl.getProgramInfoLog(program));
+  gl.useProgram(program);
+
+  // Each triangle vertex: (x, y, r, g, b). Rocket faces +Y at 0°.
+  const vertices = [];
+  function triangle(a, b, c, color) {
+    for (const v of [a, b, c]) vertices.push(v[0], v[1], ...color);
+  }
+  function quad(a, b, c, d, color) {
+    triangle(a,b,c,color); triangle(a,c,d,color);
+  }
+  // Hull, nose, side fins, window, and flame.
+  quad([-.075,-.13],[.075,-.13],[.075,.13],[-.075,.13],[.17,.73,.96]);
+  triangle([-.075,.13],[.075,.13],[0,.25],[.92,.95,1]);
+  triangle([-.075,-.04],[-.075,-.18],[-.155,-.21],[.99,.35,.40]);
+  triangle([.075,-.04],[.155,-.21],[.075,-.18],[.99,.35,.40]);
+  triangle([-.038,-.13],[.038,-.13],[0,-.255],[1,.66,.19]);
+  triangle([-.020,-.13],[.020,-.13],[0,-.215],[1,.90,.42]);
+  // Square window (all geometry is triangles; no external frameworks).
+  quad([-.032,.015],[.032,.015],[.032,.079],[-.032,.079],[.07,.18,.34]);
+
+  const vao = gl.createVertexArray(); gl.bindVertexArray(vao);
+  const vbo = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+  const stride = 5 * Float32Array.BYTES_PER_ELEMENT;
+  const positionLoc = gl.getAttribLocation(program, 'a_position');
+  const colorLoc = gl.getAttribLocation(program, 'a_color');
+  gl.enableVertexAttribArray(positionLoc); gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, stride, 0);
+  gl.enableVertexAttribArray(colorLoc); gl.vertexAttribPointer(colorLoc, 3, gl.FLOAT, false, stride, 2 * 4);
+  const matrixLoc = gl.getUniformLocation(program, 'u_matrix');
+
+  // Lines share the same shader, but use the identity transform.
+  const grid = [];
+  function line(x1,y1,x2,y2,color) {
+    grid.push(x1,y1,...color,x2,y2,...color);
+  }
+  for (let i=-10; i<=10; i++) {
+    const n=i/10, major=i===0;
+    const clr=major ? [.43,.56,.72] : [.13,.22,.35];
+    line(n,-1,n,1,clr); line(-1,n,1,n,clr);
+  }
+  const gridVao=gl.createVertexArray(); gl.bindVertexArray(gridVao);
+  const gridVbo=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,gridVbo);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(grid),gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(positionLoc); gl.vertexAttribPointer(positionLoc,2,gl.FLOAT,false,stride,0);
+  gl.enableVertexAttribArray(colorLoc); gl.vertexAttribPointer(colorLoc,3,gl.FLOAT,false,stride,8);
+
+  const inputs = Object.fromEntries(['tx','ty','rotation','scale'].map(k=>[k,document.getElementById(k)]));
+  const identity = new Float32Array([1,0,0, 0,1,0, 0,0,1]);
+  function render() {
+    const tx=Number(inputs.tx.value), ty=Number(inputs.ty.value);
+    const degrees=Number(inputs.rotation.value), scale=Number(inputs.scale.value);
+    const radians=degrees*Math.PI/180;
+    const c=Math.cos(radians)*scale, s=Math.sin(radians)*scale;
+    // Column-major array passed to GLSL; displayed row-major below.
+    const m=new Float32Array([c,s,0, -s,c,0, tx,ty,1]);
+    document.getElementById('txv').textContent=tx.toFixed(2);
+    document.getElementById('tyv').textContent=ty.toFixed(2);
+    document.getElementById('rotationv').textContent=`${degrees}°`;
+    document.getElementById('scalev').textContent=`${scale.toFixed(2)}×`;
+    const rows=[[c,-s,tx],[s,c,ty],[0,0,1]];
+    document.getElementById('matrix').replaceChildren(...rows.flat().map(v=>{
+      const el=document.createElement('div');
+      el.textContent=(Math.abs(v)<0.000005?0:v).toFixed(2); return el;
+    }));
+
+    gl.viewport(0,0,canvas.width,canvas.height);
+    gl.clearColor(.043,.078,.141,1); gl.clear(gl.COLOR_BUFFER_BIT);
+    // Correct for a 4:3 drawing buffer: equal X/Y units have equal pixel size.
+    const aspect=canvas.width/canvas.height;
+    const correction=new Float32Array([1/aspect,0,0, 0,1,0, 0,0,1]);
+    gl.uniformMatrix3fv(matrixLoc,false,correction);
+    gl.bindVertexArray(gridVao); gl.drawArrays(gl.LINES,0,grid.length/5);
+    // Apply aspect correction after the student's T × R × S model transform.
+    const visible=new Float32Array([c/aspect,s,0, -s/aspect,c,0,tx/aspect,ty,1]);
+    gl.uniformMatrix3fv(matrixLoc,false,visible);
+    gl.bindVertexArray(vao); gl.drawArrays(gl.TRIANGLES,0,vertices.length/5);
+  }
+  for(const input of Object.values(inputs)) input.addEventListener('input',render);
+  document.getElementById('reset').addEventListener('click',()=>{
+    inputs.tx.value=0; inputs.ty.value=0; inputs.rotation.value=0; inputs.scale.value=1; render();
+  });
+  render();
+}
+</script>
+</body>
+</html>
